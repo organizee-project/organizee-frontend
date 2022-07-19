@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Input = styled.input`
-  margin: 6px 0px 34px 0px;
+  margin: 6px 0px;
   background: none;
   width: 100%;
 
@@ -20,15 +20,4 @@ export const Outline = styled(Input)`
 export const Default = styled(Input)`
   border: 1px solid #404040;
   margin-bottom: 34px;
-`;
-
-export const Label = styled.span`
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-
-  color: var(--black);
-  display: block;
 `;

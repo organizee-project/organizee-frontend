@@ -1,9 +1,16 @@
+import { useState } from "react";
 import { LoginStyle } from "styled/global";
-import { Form } from "components/form";
-import { Input } from "components/input";
+import { Form, Field } from "components/form";
 import { Button } from "components/button";
 
 const SignIn = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <>
       <LoginStyle />
@@ -12,9 +19,22 @@ const SignIn = () => {
         secondaryTitle="Novo por aqui?"
         linkText="Crie sua conta"
         link="/signup"
+        onSubmit={onSubmit}
       >
-        <Input variant="outline" label="Endereço de email" type="email" />
-        <Input variant="outline" label="Senha" type="password" />
+        <Field
+          variant="outline"
+          label="Endereço de email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <Field
+          variant="outline"
+          label="Senha"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <Button variant="pink">Fazer Login</Button>
       </Form>
     </>
