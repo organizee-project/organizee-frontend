@@ -5,14 +5,19 @@ export const GlobalStyles = createGlobalStyle`
     
     --pink: #FE4572;
 
+    --light-white: #F7F7F7;
     --white: #F2F2F2;
+
+    --light-gray: #404040;
     --gray: #333333;
+
     --black: #000000;
   }
 
   *{
     padding: 0;
     margin: 0;
+    font-family: 'Poppins';
   }
 
   a {

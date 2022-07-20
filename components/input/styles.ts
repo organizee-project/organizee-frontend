@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
-const Input = styled.input`
+export const Input = styled.input`
   margin: 6px 0px;
   background: none;
   width: 100%;
 
-  font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;

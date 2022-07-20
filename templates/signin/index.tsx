@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LoginStyle } from "styled/global";
+import { LoginStyle } from "styles/global";
 import { Form, Field } from "components/form";
 import { Button } from "components/button";
 

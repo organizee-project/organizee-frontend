@@ -12,7 +12,6 @@ export const FormWrapper = styled.form`
 `;
 
 export const Title = styled.h1`
-  font-family: "Poppins";
   font-style: normal;
   font-weight: 700;
   font-size: 48px;
@@ -22,7 +21,6 @@ export const Title = styled.h1`
 `;
 
 export const SecondaryTitle = styled.p`
-  font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
   font-size: 13px;
@@ -34,7 +32,6 @@ export const SecondaryTitle = styled.p`
 `;
 
 export const Label = styled.span`
-  font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -45,7 +42,6 @@ export const Label = styled.span`
 `;
 
 export const Required = styled.span`
-  font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
   font-size: 8px;
