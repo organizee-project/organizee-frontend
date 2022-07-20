@@ -7,11 +7,7 @@ export const StyledHeader = styled.header`
   background-color: var(--pink);
   padding: 24px 0px 15px 0px;
   width: 100%;
-`;
-
-export const Content = styled(Container)`
-  display: flex;
-  justify-content: space-between;
+  top: 0px;
 `;
 
 export const Input = styled(Default)`
@@ -45,6 +41,7 @@ export const Button = styled.button`
 `;
 
 export const LinkText = styled.span<Link>`
+  margin: 6px;
   padding: 4px 16px;
   background-color: ${(props) =>
     props.active ? "var(--light-blue)" : "transparent"};

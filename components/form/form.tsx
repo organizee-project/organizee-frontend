@@ -1,6 +1,7 @@
-import { FormWrapper, Title, SecondaryTitle } from "./styles";
+import { FormWrapper, SecondaryTitle } from "./styles";
 import Link from "next/link";
 import { FormEventHandler } from "react";
+import { Title } from "styles/styles";
 
 export const Form = ({
   title,
@@ -11,7 +12,7 @@ export const Form = ({
   onSubmit,
 }: PropTypes) => (
   <FormWrapper onSubmit={onSubmit}>
-    <Title>{title}</Title>
+    <Title color="gray">{title}</Title>
     <SecondaryTitle>
       {secondaryTitle} <Link href={link}>{linkText}</Link>
     </SecondaryTitle>

@@ -11,17 +11,7 @@ export const FormWrapper = styled.form`
   transform: translateY(-50%);
 `;
 
-export const Title = styled.h1`
-  font-style: normal;
-  font-weight: 700;
-  font-size: 48px;
-  line-height: 72px;
-
-  color: var(--gray);
-`;
-
 export const SecondaryTitle = styled.p`
-  font-style: normal;
   font-weight: 400;
   font-size: 13px;
   line-height: 20px;
@@ -32,7 +22,6 @@ export const SecondaryTitle = styled.p`
 `;
 
 export const Label = styled.span`
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -42,7 +31,6 @@ export const Label = styled.span`
 `;
 
 export const Required = styled.span`
-  font-style: normal;
   font-weight: 400;
   font-size: 8px;
   line-height: 12px;
