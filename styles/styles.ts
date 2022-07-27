@@ -9,6 +9,8 @@ export const Container = styled.div`
 export const ContainerFlex = styled(Container)`
   display: flex;
   justify-content: space-between;
+
+  flex-wrap: wrap;
 `;
 
 export const Title = styled.h1<Title>`

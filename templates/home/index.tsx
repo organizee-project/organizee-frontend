@@ -1,11 +1,13 @@
 import { Header } from "components/header";
-import { Banner } from "./banner";
+import { Banner } from "./homeBanner";
+import { Posts } from "./homePosts";
 
 const Home = () => {
   return (
     <>
-      <Header></Header>
-      <Banner></Banner>
+      <Header />
+      <Banner />
+      <Posts />
     </>
   );
 };
