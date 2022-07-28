@@ -1,7 +1,7 @@
-import SignUpTemplate from "templates/signup";
+import SignUpLayout from "layouts/signup";
 
 const SignUp = () => {
-  return <SignUpTemplate></SignUpTemplate>;
+  return <SignUpLayout></SignUpLayout>;
 };
 
 export default SignUp;

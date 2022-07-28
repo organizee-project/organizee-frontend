@@ -1,4 +1,4 @@
-import SignInTemplate from "templates/signin";
+import SignInTemplate from "layouts/signin";
 
 const SignIn = () => {
   return <SignInTemplate></SignInTemplate>;
