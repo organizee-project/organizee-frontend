@@ -1,5 +1,4 @@
-import { Container } from "styles/styles";
-import { Container as PostsContainer } from "./styles";
+import { Container } from "./styles";
 import { Post } from "components/post";
 
 const posts = [
@@ -56,11 +55,9 @@ const posts = [
 export const Posts = () => {
   return (
     <Container>
-      <PostsContainer>
-        {posts.map((post) => (
-          <Post key={post.id} post={post} />
-        ))}
-      </PostsContainer>
+      {posts.map((post) => (
+        <Post key={post.id} post={post} />
+      ))}
     </Container>
   );
 };

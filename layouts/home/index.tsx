@@ -1,13 +1,13 @@
 import { Header } from "components/header";
 import { Banner } from "./homeBanner";
-import { Posts } from "./homePosts";
+import { HomeContent } from "./homeContent";
 
 const Home = () => {
   return (
     <>
       <Header />
       <Banner />
-      <Posts />
+      <HomeContent />
     </>
   );
 };

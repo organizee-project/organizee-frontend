@@ -24,6 +24,11 @@ export const GlobalStyles = createGlobalStyle`
     color: var(--black);
     text-decoration: none;
   }
+
+  .mt-6{
+    padding-top: 24px;
+  }
+
 }`;
 
 export const LoginStyle = createGlobalStyle`
