@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   width: 1342px;
@@ -6,11 +6,22 @@ export const Container = styled.div`
   margin: auto;
 `;
 
-export const ContainerFlex = styled(Container)`
+const flex = css`
   display: flex;
   justify-content: space-between;
 
   flex-wrap: wrap;
+`;
+
+export const Flex = styled.div<{ width?: string }>`
+  ${flex}
+  align-content: center;
+
+  width: ${(props) => props.width ?? "auto"};
+`;
+
+export const ContainerFlex = styled(Container)`
+  ${flex}
 `;
 
 export const Title = styled.h1<Title>`

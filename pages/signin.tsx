@@ -1,7 +1,7 @@
 import SignInTemplate from "layouts/signin";
 
 const SignIn = () => {
-  return <SignInTemplate></SignInTemplate>;
+  return <SignInTemplate />;
 };
 
 export default SignIn;
