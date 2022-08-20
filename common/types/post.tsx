@@ -1,4 +1,7 @@
 export enum EText {
-  title = 1,
-  author = 2,
+  title = "title",
+  author = "author",
+
+  paragraph = "paragraph",
+  header = "header",
 }
