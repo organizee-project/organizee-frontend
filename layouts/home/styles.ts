@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const BannerBackground = styled.div`
   width: 100%;
-  margin-top: 85px;
   padding: 40px 0px;
 
   background: url("/images/bannerBg.svg");

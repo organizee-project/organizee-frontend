@@ -1,8 +1,10 @@
 import Head from "next/head";
 
 import HomeTemplate from "layouts/home";
+import { ReactElement } from "react";
+import { HeaderLayout } from "components/layouts";
 
-export default function Home() {
+const Home = () => {
   return (
     <div>
       <Head>
@@ -16,4 +18,10 @@ export default function Home() {
       <HomeTemplate />
     </div>
   );
-}
+};
+
+Home.getLayout = function getLayout(page: ReactElement) {
+  return <HeaderLayout>{page}</HeaderLayout>;
+};
+
+export default Home;
