@@ -1,15 +1,15 @@
 import { Button } from "./styles";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faUser } from "@fortawesome/free-solid-svg-icons";
+
+import { BsPlus, BsPerson } from "react-icons/bs";
 
 export const HeaderAuthOn = () => {
   return (
     <div>
       <Button>
-        <FontAwesomeIcon icon={faPlus} />
+        <BsPlus size="24px" />
       </Button>
       <Button>
-        <FontAwesomeIcon icon={faUser} />
+        <BsPerson size="24px" />
       </Button>
     </div>
   );

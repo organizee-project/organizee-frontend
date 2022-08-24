@@ -25,14 +25,14 @@ export const Input = styled(Default)`
 
 export const Button = styled.button`
   margin-left: 12px;
-  padding: 8px 10px;
+  padding: 8px;
   background-color: var(--light-white);
 
   border: 0px;
   border-radius: 50%;
 
   color: var(--light-gray);
-  font-size: 15px;
+  font-size: 0px;
   text-align: center;
 
   :hover {

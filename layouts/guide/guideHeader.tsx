@@ -3,12 +3,7 @@ import { Text } from "components/text";
 import { Flex } from "styles/styles";
 import { Categories } from "./styles";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHeart,
-  faBookmark,
-  faEllipsis,
-} from "@fortawesome/free-solid-svg-icons";
+import { BsBookmark, BsHeart, BsThreeDots } from "react-icons/bs";
 
 export const Header = ({ guide }) => {
   return (
@@ -19,9 +14,9 @@ export const Header = ({ guide }) => {
           <Text type={EText.author}>Por {guide.author}</Text>
         </div>
         <Flex width="136px">
-          <FontAwesomeIcon icon={faHeart} size="2x" />
-          <FontAwesomeIcon icon={faBookmark} size="2x" />
-          <FontAwesomeIcon icon={faEllipsis} size="2x" />
+          <BsHeart size="26px" />
+          <BsBookmark size="26px" />
+          <BsThreeDots size="26px" />
         </Flex>
       </Flex>
       <Categories>
