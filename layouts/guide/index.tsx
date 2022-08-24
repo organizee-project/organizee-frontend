@@ -8,6 +8,8 @@ const Guide = () => {
     title: "A arte europeia da perspectiva latina",
     author: "Anna Luiza",
     categories: ["Arte", "Latinos", "Sociologia"],
+    is_liked: true,
+    is_saved: true,
     content: {
       blocks: [
         {
