@@ -1,13 +1,13 @@
-import PostTemplate from "layouts/post";
+import GuideTemplate from "layouts/guide";
 import { ReactElement } from "react";
 import { HeaderLayout } from "components/layouts";
 
-const Post = () => {
-  return <PostTemplate />;
+const Guide = () => {
+  return <GuideTemplate />;
 };
 
-Post.getLayout = function getLayout(page: ReactElement) {
+Guide.getLayout = function getLayout(page: ReactElement) {
   return <HeaderLayout>{page}</HeaderLayout>;
 };
 
-export default Post;
+export default Guide;

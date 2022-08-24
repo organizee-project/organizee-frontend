@@ -1,12 +1,13 @@
-import { Header } from "./postHeader";
-import { Content } from "./postContent";
+import { Header } from "./guideHeader";
+import { Content } from "./guideContent";
 
 import { Container } from "styles/styles";
 
-const Post = () => {
-  const post = {
+const Guide = () => {
+  const guide = {
     title: "A arte europeia da perspectiva latina",
     author: "Anna Luiza",
+    categories: ["Arte", "Latinos", "Sociologia"],
     content: {
       blocks: [
         {
@@ -63,7 +64,7 @@ const Post = () => {
           id: "0yob7aFPnE",
           type: "paragraph",
           data: {
-            text: 'There are dozens of <a href="https://github.com/editor-js">ready-to-use Blocks</a> and the <a href="https://editorjs.io/creating-a-block-tool">simple API</a> for creation any Block you need. For example, you can implement Blocks for Tweets, Instagram posts, surveys and polls, CTA-buttons and even games.',
+            text: 'There are dozens of <a href="https://github.com/editor-js">ready-to-use Blocks</a> and the <a href="https://editorjs.io/creating-a-block-tool">simple API</a> for creation any Block you need. For example, you can implement Blocks for Tweets, Instagram guides, surveys and polls, CTA-buttons and even games.',
           },
         },
         {
@@ -126,11 +127,11 @@ const Post = () => {
   };
 
   return (
-    <Container>
-      <Header post={post} />
-      <Content content={post.content.blocks} />
+    <Container paddingTop="55px">
+      <Header guide={guide} />
+      <Content content={guide.content.blocks} />
     </Container>
   );
 };
 
-export default Post;
+export default Guide;

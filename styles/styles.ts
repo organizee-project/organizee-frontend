@@ -1,9 +1,11 @@
 import styled, { css } from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.div<{ paddingTop?: string }>`
   width: 1342px;
   padding: 0px 24px;
   margin: auto;
+
+  padding-top: ${(props) => props.paddingTop ?? "0px"};
 `;
 
 const flex = css`

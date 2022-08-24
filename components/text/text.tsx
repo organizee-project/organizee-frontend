@@ -13,6 +13,6 @@ export const Text = ({ type, level, children }: IProps) => {
 
 interface IProps {
   type: EText;
-  level: number;
+  level?: number;
   children: any;
 }

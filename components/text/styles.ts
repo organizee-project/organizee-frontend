@@ -8,7 +8,7 @@ export const Title = styled.h1`
   color: var(--black);
 `;
 
-export const Author = styled.span`
+export const Author = styled.p`
   font-size: 12px;
   line-height: 18px;
 
