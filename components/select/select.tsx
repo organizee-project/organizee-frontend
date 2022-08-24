@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import { Container, SelectContainer } from "./styles";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Select = ({ options, icon, onChange, ...props }) => {
   const [selected, setSelected] = useState(options[0]);
@@ -25,7 +24,7 @@ export const Select = ({ options, icon, onChange, ...props }) => {
           </option>
         ))}
       </SelectContainer>
-      <FontAwesomeIcon icon={icon} className="select__icon" />
+      {icon}
     </Container>
   );
 };

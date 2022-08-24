@@ -2,7 +2,7 @@ import { ContainerFlex } from "styles/styles";
 import { Select } from "components/select";
 import { Categories } from "components/categories";
 
-import { faChevronDown, faFilter } from "@fortawesome/free-solid-svg-icons";
+import { BsChevronDown, BsFilter } from "react-icons/bs";
 
 const orderByOptions = [
   { id: "popular", name: "Popular" },
@@ -39,13 +39,13 @@ export const Filter = () => {
     <ContainerFlex className="mt-6">
       <Select
         options={orderByOptions}
-        icon={faChevronDown}
+        icon={<BsChevronDown className="select__icon" />}
         onChange={handleOrderBy}
       />
       <Categories options={categories} />
       <Select
         options={filterOptions}
-        icon={faFilter}
+        icon={<BsFilter className="select__icon" />}
         onChange={handleFiltersBy}
       />
     </ContainerFlex>

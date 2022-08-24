@@ -3,9 +3,10 @@ import styled from "styled-components";
 export const Container = styled.div`
   .select__icon {
     position: relative;
-    right: 20px;
+    right: 30px;
+    top: 4px;
 
-    font-size: 12px;
+    font-size: 18px;
     color: #fff;
   }
 `;

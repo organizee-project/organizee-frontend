@@ -25,16 +25,20 @@ export const Header = ({ guide }) => {
         </div>
         <Flex width="136px">
           <div onClick={() => setLiked(!liked)}>
-            {liked ? <BsHeartFill size="26px" /> : <BsHeart size="26px" />}
+            {liked ? (
+              <BsHeartFill size="26px" className="pointer" />
+            ) : (
+              <BsHeart size="26px" className="pointer" />
+            )}
           </div>
           <div onClick={() => setSaved(!saved)}>
             {saved ? (
-              <BsBookmarkFill size="26px" />
+              <BsBookmarkFill size="26px" className="pointer" />
             ) : (
-              <BsBookmark size="26px" />
+              <BsBookmark size="26px" className="pointer" />
             )}
           </div>
-          <BsThreeDots size="26px" />
+          <BsThreeDots size="26px" className="pointer" />
         </Flex>
       </Flex>
       <Categories>

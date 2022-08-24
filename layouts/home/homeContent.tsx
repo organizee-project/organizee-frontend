@@ -1,12 +1,12 @@
 import { Container } from "styles/styles";
 import { Filter } from "./homeContentFilter";
-import { Posts } from "./homeContentPosts";
+import { Guides } from "./homeContentGuides";
 
 export const HomeContent = () => (
   <>
     <Filter />
     <Container>
-      <Posts />
+      <Guides />
     </Container>
   </>
 );

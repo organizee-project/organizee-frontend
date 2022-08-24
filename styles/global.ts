@@ -25,6 +25,10 @@ export const GlobalStyles = createGlobalStyle`
     text-decoration: none;
   }
 
+  .pointer:hover{
+    cursor: pointer;
+  }
+
   .mt-6{
     padding-top: 24px;
   }
