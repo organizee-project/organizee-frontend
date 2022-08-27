@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { OpenProps } from "styles/styles";
 
-export const Container = styled.div<ContainerProps>`
+export const Container = styled.div<OpenProps>`
   display: ${(props) => (props.open ? "block" : "none")};
   width: 223px;
 
@@ -48,7 +49,3 @@ export const Item = styled.div`
 `;
 
 export const Divider = styled.div``;
-
-interface ContainerProps {
-  open: boolean;
-}

@@ -3,6 +3,7 @@ export const GlobalStyles = createGlobalStyle`
   :root {
     --light-blue: #305DFE;
     
+    --light-pink: #FF668B;
     --pink: #FE4572;
 
     --light-white: #F7F7F7;
@@ -35,6 +36,14 @@ export const GlobalStyles = createGlobalStyle`
     padding-top: 24px;
   }
 
+  .mb-6{
+    margin-bottom: 24px;
+  }
+
+  .ml-3 {
+    margin-left: 12px;
+  }
+
 }`;
 
 export const LoginStyle = createGlobalStyle`
@@ -44,5 +53,11 @@ export const LoginStyle = createGlobalStyle`
     background-repeat: no-repeat;
     width: 100%;
     height: 100vh;
+  }
+}`;
+
+export const AddStyles = createGlobalStyle`
+  body{
+    background-color: var(--white);
   }
 }`;

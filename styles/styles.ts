@@ -34,6 +34,20 @@ export const Title = styled.h1<Title>`
   color: var(--${(props) => props.color});
 `;
 
+export const OpenDiv = styled.div<OpenProps>`
+  display: ${(props) => (props.open ? "block" : "none")};
+
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0px;
+  left: 0px;
+`;
+
 type Title = {
   color: string;
+};
+
+export type OpenProps = {
+  open: boolean;
 };
