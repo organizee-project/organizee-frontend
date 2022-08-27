@@ -23,7 +23,7 @@ export const Area = styled.div<{ area: string }>`
   position: relative;
   margin-bottom: 24px;
 
-  span {
+  span.add {
     color: var(--light-pink);
 
     border-left: 1px solid #e0e0e0;
@@ -130,4 +130,15 @@ export const Item = styled.div`
 export const FlexWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
+`;
+
+export const Editor = styled.div`
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px 40px 12px 60px;
+
+  * {
+    max-width: 100%;
+    margin: 0px;
+  }
 `;

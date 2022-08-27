@@ -8,6 +8,8 @@ export const StyledHeader = styled.header`
   padding: 24px 0px 15px 0px;
   width: 100%;
   top: 0px;
+
+  z-index 100;
 `;
 
 export const Input = styled(Default)`

@@ -8,13 +8,14 @@ import {
   Input,
   Area,
   AddInput,
-  Selected,
   Select,
   Item,
   FlexWrap,
 } from "./styles";
 
 import { BsX } from "react-icons/bs";
+
+import { AddGuideEditor } from "./addGuideEditor";
 
 const AddGuide = () => {
   const [selectedItems, setSelectedItems] = useState([]);
@@ -73,7 +74,9 @@ const AddGuide = () => {
             value={topic}
             onChange={({ target }) => setTopic(target.value)}
           />
-          <span onClick={() => onClickTopic()}>+</span>
+          <span onClick={() => onClickTopic()} className="add">
+            +
+          </span>
           <FlexWrap>
             {topics.map((item) => (
               <Item
@@ -84,6 +87,10 @@ const AddGuide = () => {
               </Item>
             ))}
           </FlexWrap>
+        </Area>
+        <Area area="editor">
+          <Label>Conteúdo</Label>
+          <AddGuideEditor />
         </Area>
       </Container>
     </>
@@ -124,7 +131,9 @@ const Autocomplete = ({ onClickItem, selectedItems }) => {
           onChange={({ target }) => setText(target.value)}
           onFocus={() => items.length > 0 && setOpen(true)}
         />
-        <span onClick={() => onClickAdd()}>+</span>
+        <span onClick={() => onClickAdd()} className="add">
+          +
+        </span>
         {items.length > 0 && (
           <Select open={open}>
             {items.map((item) => (

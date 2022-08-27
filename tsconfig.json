@@ -16,6 +16,11 @@
     "jsx": "preserve",
     "moduleResolution": "node"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "layouts/addGuide/addGuideEditor.jsx"
+  ],
   "exclude": ["node_modules"]
 }
