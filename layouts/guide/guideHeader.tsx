@@ -1,5 +1,5 @@
 import { EText } from "common/types/post";
-import { Text } from "components/text";
+import { Text } from "components/textInterpreter";
 import { Flex } from "styles/styles";
 import { Categories } from "./styles";
 
