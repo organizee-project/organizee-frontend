@@ -11,8 +11,10 @@ import {
   BsThreeDots,
 } from "react-icons/bs";
 import { useState } from "react";
+import { Options } from "components/options";
 
 export const Header = ({ guide }) => {
+  const [openOptions, setOpenOptions] = useState(false);
   const [liked, setLiked] = useState(guide.is_saved);
   const [saved, setSaved] = useState(guide.is_liked);
 
@@ -38,7 +40,20 @@ export const Header = ({ guide }) => {
               <BsBookmark size="26px" className="pointer" />
             )}
           </div>
-          <BsThreeDots size="26px" className="pointer" />
+          <div style={{ position: "relative" }}>
+            <BsThreeDots
+              size="26px"
+              className="pointer"
+              onClick={() => setOpenOptions(!openOptions)}
+            />
+            <Options
+              open={openOptions}
+              itens={[
+                { name: "Denunciar Trilha", onClick: () => {} },
+                { name: "Denunciar Criador", onClick: () => {} },
+              ]}
+            />
+          </div>
         </Flex>
       </Flex>
       <Categories>
