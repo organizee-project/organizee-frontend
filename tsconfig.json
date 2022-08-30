@@ -20,7 +20,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "layouts/addGuide/addGuideEditor.jsx"
+    "layouts/addGuide/addGuideEditor.tsx"
   ],
   "exclude": ["node_modules"]
 }

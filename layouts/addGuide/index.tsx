@@ -15,7 +15,10 @@ import {
 
 import { BsX } from "react-icons/bs";
 
-import { AddGuideEditor } from "./addGuideEditor";
+// import { AddGuideEditor } from "./addGuideEditor";
+import dynamic from "next/dynamic";
+
+const AddGuideEditor = dynamic(import("./addGuideEditor"), { ssr: false });
 
 const AddGuide = () => {
   const [selectedItems, setSelectedItems] = useState([]);
