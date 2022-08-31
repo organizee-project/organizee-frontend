@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { AddStyles } from "styles/global";
-import { OpenDiv } from "styles/styles";
 
 import { Container, Label, Input, Area, Item, FlexWrap } from "./styles";
 
@@ -17,28 +16,45 @@ const AddGuide = () => {
     { id: "europa", name: "europa" },
     { id: "america-latina", name: "américa latina" },
   ]);
-  const [selectedTags, setSelectedTags] = useState([
-    { id: "b", name: "b" },
-    { name: "a" },
-  ]);
-
-  const [topics, setTopics] = useState([]);
+  const [guide, setGuide] = useState({
+    title: "",
+    subtitle: "",
+    tags: [],
+    topics: [],
+    content: "",
+  });
 
   const onClickTag = (item) => {
-    if (item.id) setSelectedTags([...selectedTags, item]);
-    else setSelectedTags([...selectedTags, { name: item }]);
+    const tags = item.id
+      ? [...guide.tags, item]
+      : [...guide.tags, { name: item }];
+
+    setGuide({ ...guide, tags });
   };
 
   const onRemoveTag = (item) => {
-    setSelectedTags(selectedTags.filter((sel) => sel != item));
+    const tags = guide.tags.filter((sel) => sel != item);
+    setGuide({ ...guide, tags });
   };
 
   const onClickTopic = (text: string) => {
-    setTopics([...topics, text]);
+    const topics = [...guide.topics, text];
+    setGuide({ ...guide, topics });
   };
 
   const onRemoveTopic = (item) => {
-    setTopics(topics.filter((sel) => sel != item));
+    const topics = guide.topics.filter((sel) => sel != item);
+    setGuide({ ...guide, topics });
+  };
+
+  const onContentChange = (content) => {
+    setGuide({ ...guide, content });
+  };
+
+  const onSave = async () => {
+    // const content = await editor.current?.saver.save();
+    // const newGuide = { ...guide, content };
+    console.log(guide);
   };
 
   return (
@@ -57,11 +73,11 @@ const AddGuide = () => {
           <Label>Tags</Label>
           <Autocomplete
             onClickItem={onClickTag}
-            selectedItems={selectedTags}
+            selectedItems={guide.tags}
             originalItems={optionsTag}
           />
           <FlexWrap>
-            {selectedTags.map((item, i) => (
+            {guide.tags.map((item, i) => (
               <Item key={"tags" + i} onClick={() => onRemoveTag(item)}>
                 {item.name} <BsX size="22px" />
               </Item>
@@ -72,11 +88,11 @@ const AddGuide = () => {
           <Label>Tópicos abordados</Label>
           <Autocomplete
             onClickItem={onClickTopic}
-            selectedItems={topics}
+            selectedItems={guide.topics}
             originalItems={[]}
           />
           <FlexWrap>
-            {topics.map((item, i) => (
+            {guide.topics.map((item, i) => (
               <Item key={"topics" + i} onClick={() => onRemoveTopic(item)}>
                 {item} <BsX size="22px" />
               </Item>
@@ -85,9 +101,10 @@ const AddGuide = () => {
         </Area>
         <Area area="editor">
           <Label>Conteúdo</Label>
-          <AddGuideEditor />
+          <AddGuideEditor setContent={onContentChange} />
         </Area>
       </Container>
+      <button onClick={() => onSave()}>salvar</button>
     </>
   );
 };
