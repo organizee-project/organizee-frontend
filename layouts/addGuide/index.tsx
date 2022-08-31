@@ -2,39 +2,39 @@ import { useState, useEffect } from "react";
 import { AddStyles } from "styles/global";
 import { OpenDiv } from "styles/styles";
 
-import {
-  Container,
-  Label,
-  Input,
-  Area,
-  AddInput,
-  Select,
-  Item,
-  FlexWrap,
-} from "./styles";
+import { Container, Label, Input, Area, Item, FlexWrap } from "./styles";
 
 import { BsX } from "react-icons/bs";
+import { Autocomplete } from "./addGuideAutocomplete";
 
-// import { AddGuideEditor } from "./addGuideEditor";
 import dynamic from "next/dynamic";
 
 const AddGuideEditor = dynamic(import("./addGuideEditor"), { ssr: false });
 
 const AddGuide = () => {
-  const [selectedItems, setSelectedItems] = useState([]);
-  const [topic, setTopic] = useState("");
+  const [optionsTag, setOptionsTag] = useState([
+    { id: "arte", name: "arte" },
+    { id: "europa", name: "europa" },
+    { id: "america-latina", name: "américa latina" },
+  ]);
+  const [selectedTags, setSelectedTags] = useState([
+    { id: "b", name: "b" },
+    { name: "a" },
+  ]);
+
   const [topics, setTopics] = useState([]);
 
-  const onClickItem = (item) => {
-    setSelectedItems([...selectedItems, item]);
+  const onClickTag = (item) => {
+    if (item.id) setSelectedTags([...selectedTags, item]);
+    else setSelectedTags([...selectedTags, { name: item }]);
   };
 
-  const onRemoveItem = (item) => {
-    setSelectedItems(selectedItems.filter((sel) => sel != item));
+  const onRemoveTag = (item) => {
+    setSelectedTags(selectedTags.filter((sel) => sel != item));
   };
 
-  const onClickTopic = () => {
-    setTopics([...topics, topic]);
+  const onClickTopic = (text: string) => {
+    setTopics([...topics, text]);
   };
 
   const onRemoveTopic = (item) => {
@@ -56,15 +56,13 @@ const AddGuide = () => {
         <Area area="tags">
           <Label>Tags</Label>
           <Autocomplete
-            onClickItem={onClickItem}
-            selectedItems={selectedItems}
+            onClickItem={onClickTag}
+            selectedItems={selectedTags}
+            originalItems={optionsTag}
           />
           <FlexWrap>
-            {selectedItems.map((item) => (
-              <Item
-                key={"selected" + item.id}
-                onClick={() => onRemoveItem(item)}
-              >
+            {selectedTags.map((item, i) => (
+              <Item key={"tags" + i} onClick={() => onRemoveTag(item)}>
                 {item.name} <BsX size="22px" />
               </Item>
             ))}
@@ -72,20 +70,14 @@ const AddGuide = () => {
         </Area>
         <Area area="topics">
           <Label>Tópicos abordados</Label>
-          <AddInput
-            type="text"
-            value={topic}
-            onChange={({ target }) => setTopic(target.value)}
+          <Autocomplete
+            onClickItem={onClickTopic}
+            selectedItems={topics}
+            originalItems={[]}
           />
-          <span onClick={() => onClickTopic()} className="add">
-            +
-          </span>
           <FlexWrap>
-            {topics.map((item) => (
-              <Item
-                key={"selected" + item.id}
-                onClick={() => onRemoveTopic(item)}
-              >
+            {topics.map((item, i) => (
+              <Item key={"topics" + i} onClick={() => onRemoveTopic(item)}>
                 {item} <BsX size="22px" />
               </Item>
             ))}
@@ -96,58 +88,6 @@ const AddGuide = () => {
           <AddGuideEditor />
         </Area>
       </Container>
-    </>
-  );
-};
-
-const Autocomplete = ({ onClickItem, selectedItems }) => {
-  const [text, setText] = useState("");
-  const [originalItems, setOriginalItems] = useState([
-    { id: "arte", name: "arte" },
-    { id: "europa", name: "europa" },
-    { id: "america-latina", name: "américa latina" },
-  ]);
-  const [items, setItems] = useState([]);
-  const [open, setOpen] = useState(false);
-
-  const onClickAdd = () => {
-    if (text.trim() === "") return;
-
-    setText("");
-    onClickItem({ name: text });
-  };
-
-  useEffect(() => {
-    setItems(
-      originalItems.filter(
-        (item) => !selectedItems.includes(item) && item.name.includes(text)
-      )
-    );
-  }, [selectedItems, text, originalItems]);
-
-  return (
-    <>
-      <div>
-        <AddInput
-          type="text"
-          value={text}
-          onChange={({ target }) => setText(target.value)}
-          onFocus={() => items.length > 0 && setOpen(true)}
-        />
-        <span onClick={() => onClickAdd()} className="add">
-          +
-        </span>
-        {items.length > 0 && (
-          <Select open={open}>
-            {items.map((item) => (
-              <div key={item.id} onClick={() => onClickItem(item)}>
-                {item.name}
-              </div>
-            ))}
-          </Select>
-        )}
-      </div>
-      <OpenDiv open={open} onClick={() => setOpen(false)} />
     </>
   );
 };

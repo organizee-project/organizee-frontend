@@ -137,6 +137,8 @@ export const Editor = styled.div`
   border-radius: 8px;
   padding: 12px 40px 12px 60px;
 
+  max-height: 500px;
+
   * {
     max-width: 100%;
     margin: 0px;
