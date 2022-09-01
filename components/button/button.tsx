@@ -1,10 +1,7 @@
 import { Button as StyledButton } from "./styles";
 
-export const Button = ({ variant = "default", children }: PropTypes) => (
-  <StyledButton variant={variant}>{children}</StyledButton>
+export const Button = ({ variant = "default", children, ...props }) => (
+  <StyledButton variant={variant} {...props}>
+    {children}
+  </StyledButton>
 );
-
-interface PropTypes {
-  variant: string;
-  children: string;
-}

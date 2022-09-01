@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Container } from "styles/styles";
 import { Input as Default } from "components/input/styles";
 
 export const StyledHeader = styled.header`

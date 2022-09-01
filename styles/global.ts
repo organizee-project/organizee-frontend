@@ -2,17 +2,18 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyles = createGlobalStyle`
   :root {
     --light-blue: #305DFE;
+    --blue: #0F41F5;
     
     --light-pink: #FF668B;
-    --pink: #FE4572;
+    --pink: #F41A4F;
 
     --light-white: #F7F7F7;
     --white: #F2F2F2;
 
+    --lighter-gray: #979797;
     --light-gray: #404040;
     --medium-gray: #3E3E3E;
     --gray: #333333;
-    
 
     --black: #000000;
   }
@@ -53,11 +54,5 @@ export const LoginStyle = createGlobalStyle`
     background-repeat: no-repeat;
     width: 100%;
     height: 100vh;
-  }
-}`;
-
-export const AddStyles = createGlobalStyle`
-  body{
-    background-color: var(--white);
   }
 }`;

@@ -10,20 +10,20 @@ export const Container = styled.div<{ paddingTop?: string }>`
 
 const flex = css`
   display: flex;
-  justify-content: space-between;
-
   flex-wrap: wrap;
 `;
 
-export const Flex = styled.div<{ width?: string }>`
+export const Flex = styled.div<{ width?: string; justify?: string }>`
   ${flex}
   align-content: center;
 
-  width: ${(props) => props.width ?? "auto"};
+  width: ${({ width }) => width ?? "auto"};
+  justify-content: ${({ justify }) => justify ?? "space-between"};
 `;
 
 export const ContainerFlex = styled(Container)`
   ${flex}
+  justify-content: space-between;
 `;
 
 export const Title = styled.h1<Title>`
