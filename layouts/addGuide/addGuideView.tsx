@@ -1,3 +1,3 @@
-export const AddGuideView = () => {
+export const AddGuideView = ({ guide, setEdit }) => {
   return <></>;
 };

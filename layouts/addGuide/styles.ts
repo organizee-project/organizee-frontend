@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const Container = styled.div`
+export const ContainerEdit = styled.div`
   width: 1106px;
 
   padding: 55px 39px;
@@ -87,11 +87,6 @@ export const Item = styled.div`
   &:hover {
     cursor: pointer;
   }
-`;
-
-export const FlexWrap = styled.div`
-  display: flex;
-  flex-wrap: wrap;
 `;
 
 export const Editor = styled.div`

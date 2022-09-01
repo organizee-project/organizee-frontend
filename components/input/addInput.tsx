@@ -44,7 +44,10 @@ export const AddInput = ({ onClickItem, selectedItems, originalItems }) => {
           </Select>
         )}
       </div>
-      <OpenDiv open={open} onClick={() => setOpen(false)} />
+      <OpenDiv
+        open={items.length > 0 ? open : false}
+        onClick={() => setOpen(false)}
+      />
     </>
   );
 };
