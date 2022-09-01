@@ -12,7 +12,7 @@ export const Header = () => {
     <StyledHeader>
       <ContainerFlex>
         <Link href="/">
-          <Image src={Logo} alt="Logo Organizze" className="pointer" />
+          <Image src={Logo} alt="Logo Organizze" className="pointer" priority />
         </Link>
         <HeaderInput />
         <HeaderAuth />

@@ -16,12 +16,14 @@ const AddGuide = () => {
     { id: "europa", name: "europa" },
     { id: "america-latina", name: "américa latina" },
   ]);
+
+  const [files, setFiles] = useState([]);
   const [guide, setGuide] = useState({
     title: "",
     subtitle: "",
     tags: [],
     topics: [],
-    content: "",
+    content: [],
   });
 
   const onClickTag = (item) => {
@@ -51,10 +53,19 @@ const AddGuide = () => {
     setGuide({ ...guide, content });
   };
 
-  const onSave = async () => {
-    // const content = await editor.current?.saver.save();
-    // const newGuide = { ...guide, content };
-    console.log(guide);
+  const onFilesChange = (file) => {
+    console.log(files);
+    setFiles([...files, file]);
+  };
+
+  const onSave = () => {
+    const existingImages = guide.content.filter(
+      (item) => item.type === "image"
+    );
+
+    const imagesToUpload = files.filter((file) =>
+      existingImages.some((img) => img.data.file.url === file.url)
+    );
   };
 
   return (
@@ -101,7 +112,10 @@ const AddGuide = () => {
         </Area>
         <Area area="editor">
           <Label>Conteúdo</Label>
-          <AddGuideEditor setContent={onContentChange} />
+          <AddGuideEditor
+            setContent={onContentChange}
+            setFiles={onFilesChange}
+          />
         </Area>
       </Container>
       <button onClick={() => onSave()}>salvar</button>
