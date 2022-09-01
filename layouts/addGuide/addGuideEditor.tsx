@@ -6,6 +6,7 @@ import Header from "@editorjs/header";
 import Quote from "@editorjs/quote";
 import Table from "@editorjs/table";
 import Code from "@editorjs/code";
+import { ToogleList } from "components/editorTools";
 
 const AddGuideEditor = ({ setContent }) => {
   const ejInstance = useRef(null);
@@ -24,8 +25,7 @@ const AddGuideEditor = ({ setContent }) => {
 
   async function handleSave() {
     const savedData = await ejInstance.current?.save();
-    console.log(savedData);
-    setContent(savedData);
+    setContent(savedData.blocks);
   }
 
   const initEditor = () => {
@@ -42,6 +42,7 @@ const AddGuideEditor = ({ setContent }) => {
         quote: Quote,
         table: Table,
         code: Code,
+        toogle: ToogleList,
       },
     });
   };
