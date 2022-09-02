@@ -23,9 +23,7 @@ export class ToogleList {
   constructor({ data, config, api, readOnly }) {
     this.api = api;
     this.readOnly = readOnly;
-    this.data = {
-      events: data.events || [],
-    };
+    this.data = {};
 
     this.CSS = {
       wrapper: "walkthrough-toogle",

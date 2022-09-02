@@ -10,7 +10,7 @@ export const Categories = styled.ul`
   li {
     padding: 6px 24px;
     color: var(--white);
-    background-color: var(--light-blue);
+    background-color: var(--light-pink);
     border-radius: 20px;
     display: inline-block;
     margin-right: 8px;

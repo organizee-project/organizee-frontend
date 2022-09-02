@@ -82,3 +82,20 @@ export const StyledCode = styled.p`
     font-size: 10px;
   }
 `;
+
+export const StyledToogle = styled.div`
+  h3 {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 33px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 6px;
+  }
+
+  p {
+    padding-left: 30px;
+  }
+`;

@@ -5,6 +5,7 @@ import { Flex } from "styles/styles";
 import { Open } from "./styles";
 
 export const AddGuideView = ({ guide, setEdit, onSave, show }) => {
+  console.log(guide);
   return (
     <Open open={show}>
       <LayoutGuide guide={guide}>

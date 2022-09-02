@@ -4,8 +4,8 @@ import { OpenProps } from "styles/styles";
 export const ContainerEdit = styled.div<OpenProps>`
   width: 1106px;
 
-  padding: 55px 39px;
-  margin: 150px auto 0px auto;
+  padding: 0px 39px;
+  margin: 140px auto 0px auto;
 
   background-color: #fff;
 
