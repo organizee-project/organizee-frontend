@@ -1,7 +1,7 @@
 import { Header } from "components/header";
 import { Container } from "./styles";
 
-export const HeaderLayout = ({ children }) => {
+export const LayoutHeader = ({ children }) => {
   return (
     <>
       <Header />

@@ -1,11 +1,11 @@
 import styled, { css } from "styled-components";
 
-export const Container = styled.div<{ paddingTop?: string }>`
-  width: 1342px;
+export const Container = styled.div<{ paddingTop?: string; isGuide?: boolean }>`
   padding: 0px 24px;
   margin: auto;
 
-  padding-top: ${(props) => props.paddingTop ?? "0px"};
+  padding-top: ${({ paddingTop }) => paddingTop ?? "0px"};
+  width: ${({ isGuide }) => (isGuide ? "1152px" : "1342px")};
 `;
 
 const flex = css`

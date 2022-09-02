@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import AddGuideEdit from "./addGuideEdit";
 import { AddGuideView } from "./addGuideView";
@@ -18,15 +18,18 @@ const AddGuide = () => {
 
   return (
     <>
-      {edit ? (
-        <AddGuideEdit
-          setFinalGuide={setGuide}
-          onSave={onSave}
-          setEdit={setEdit}
-        />
-      ) : (
-        <AddGuideView guide={guide} setEdit={setEdit} />
-      )}
+      <AddGuideEdit
+        setFinalGuide={setGuide}
+        onSave={onSave}
+        setEdit={setEdit}
+        show={edit}
+      />
+      <AddGuideView
+        guide={guide}
+        setEdit={setEdit}
+        show={!edit}
+        onSave={onSave}
+      />
     </>
   );
 };

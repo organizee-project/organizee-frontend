@@ -20,6 +20,8 @@ export const Paragraph = styled.p`
   line-height: 24px;
 
   color: var(--medium-gray);
+
+  margin-bottom: 8px;
 `;
 
 export const Header1 = styled.h1`
@@ -55,7 +57,7 @@ export const Header4 = styled.h4`
 `;
 
 export const StyledQuote = styled.p`
-  margin-left: 30px;
+  margin: 20px 0px 20px 30px;
   padding-left: 10px;
 
   border-left: #d9d9d9 solid 6px;
@@ -64,7 +66,7 @@ export const StyledQuote = styled.p`
 `;
 
 export const StyledCode = styled.p`
-  margin: 4px 0px;
+  margin: 4px 0px 20px 0px;
   padding: 10px;
   color: #d9d9d9;
 

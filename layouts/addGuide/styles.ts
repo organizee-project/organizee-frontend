@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
+import { OpenProps } from "styles/styles";
 
-export const ContainerEdit = styled.div`
+export const ContainerEdit = styled.div<OpenProps>`
   width: 1106px;
 
   padding: 55px 39px;
@@ -8,7 +9,7 @@ export const ContainerEdit = styled.div`
 
   background-color: #fff;
 
-  display: grid;
+  display: ${({ open }) => (open ? "grid" : "none")}};
   grid-template-areas:
     "title buttons"
     "tags topics"
@@ -100,4 +101,8 @@ export const Editor = styled.div`
     max-width: 100%;
     margin: 0px;
   }
+`;
+
+export const Open = styled.div<OpenProps>`
+display: ${({ open }) => (open ? "block" : "none")}};
 `;

@@ -2,7 +2,7 @@ import Head from "next/head";
 
 import HomeTemplate from "layouts/home";
 import { ReactElement } from "react";
-import { HeaderLayout } from "components/layouts";
+import { LayoutHeader } from "components/layouts";
 
 const Home = () => {
   return (
@@ -21,7 +21,7 @@ const Home = () => {
 };
 
 Home.getLayout = function getLayout(page: ReactElement) {
-  return <HeaderLayout>{page}</HeaderLayout>;
+  return <LayoutHeader>{page}</LayoutHeader>;
 };
 
 export default Home;

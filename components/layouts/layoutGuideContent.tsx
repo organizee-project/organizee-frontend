@@ -1,6 +1,6 @@
 import { Text, Header, Quote, Code } from "components/textInterpreter";
 
-export const Content = ({ content }) => {
+export const LayoutContent = ({ content }) => {
   return content.map((block) => {
     if (block.type === "header")
       return <Header level={block.data.level}>{block.data.text}</Header>;
