@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { ContainerEdit, Label, Input, Area, Item } from "./styles";
 
@@ -10,7 +10,7 @@ import { Flex } from "styles/styles";
 
 const AddGuideEditor = dynamic(import("./addGuideEditEditor"), { ssr: false });
 
-const AddGuideEdit = ({ setFinalGuide, onSave, setEdit }) => {
+const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
   const [guide, setGuide] = useState({
     title: "",
     tags: [],
@@ -50,7 +50,9 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit }) => {
   };
 
   const onContentChange = (content) => {
-    setGuide({ ...guide, content });
+    setGuide((old) => {
+      return { ...old, content };
+    });
   };
 
   const onFilesChange = (file) => {
@@ -78,7 +80,7 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit }) => {
   };
 
   return (
-    <ContainerEdit>
+    <ContainerEdit open={show}>
       <Area area="title">
         <Label>Título da trilha</Label>
         <Input
