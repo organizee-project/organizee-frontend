@@ -16,6 +16,5 @@ export const Categories = styled.ul`
     margin-right: 8px;
     font-size: 14px;
     line-height: 21px;
-    opacity: 0.59;
   }
 `;

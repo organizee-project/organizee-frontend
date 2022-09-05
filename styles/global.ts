@@ -33,8 +33,8 @@ export const GlobalStyles = createGlobalStyle`
     cursor: pointer;
   }
 
-  .mt-6{
-    padding-top: 24px;
+  .mt-4{
+    padding-top: 40px;
   }
 
   .mb-6{

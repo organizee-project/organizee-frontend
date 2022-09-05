@@ -32,3 +32,21 @@ export const Container = styled.section`
 
   margin-top: 40px;
 `;
+
+export const Categories = styled.ul`
+  width: auto;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+
+  list-style-type: none;
+
+  li {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 31px;
+
+    color: #101010;
+  }
+`;

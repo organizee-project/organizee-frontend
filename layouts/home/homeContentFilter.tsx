@@ -1,6 +1,7 @@
 import { ContainerFlex } from "styles/styles";
+import { Categories } from "./styles";
+
 import { Select } from "components/select";
-import { Categories } from "components/categories";
 
 import { BsChevronDown, BsFilter } from "react-icons/bs";
 
@@ -36,13 +37,19 @@ export const Filter = () => {
   };
 
   return (
-    <ContainerFlex className="mt-6">
+    <ContainerFlex className="mt-4">
       <Select
         options={orderByOptions}
         icon={<BsChevronDown className="select__icon" />}
         onChange={handleOrderBy}
       />
-      <Categories options={categories} />
+      <Categories>
+        {categories.map((option) => (
+          <li key={option.id} className="pointer">
+            {option.name}
+          </li>
+        ))}
+      </Categories>
       <Select
         options={filterOptions}
         icon={<BsFilter className="select__icon" />}
