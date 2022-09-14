@@ -10,13 +10,11 @@ import { HeaderAuth } from "./headerAuth";
 export const Header = () => {
   return (
     <StyledHeader>
-      <ContainerFlex>
-        <Link href="/">
-          <Image src={Logo} alt="Logo Organizze" className="pointer" priority />
-        </Link>
-        <HeaderInput />
-        <HeaderAuth />
-      </ContainerFlex>
+      <Link href="/">
+        <Image src={Logo} alt="Logo Organizze" className="pointer" priority />
+      </Link>
+      <HeaderInput />
+      <HeaderAuth />
     </StyledHeader>
   );
 };
