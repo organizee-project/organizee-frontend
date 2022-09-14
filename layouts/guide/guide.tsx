@@ -137,7 +137,7 @@ const Guide = () => {
         type: "image",
         data: {
           file: {
-            url: "https://codex.so/public/app/img/external/codex2x.png",
+            url: "https://images.unsplash.com/photo-1493612276216-ee3925520721",
           },
           caption: "",
           withBorder: false,

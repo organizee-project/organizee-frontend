@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import { OpenDiv } from "styles/styles";
 import { ActionInput, Select } from "./styles";
 
-export const AddInput = ({ onClickItem, selectedItems, originalItems }) => {
+export const AddInput = ({
+  onClickItem,
+  selectedItems,
+  originalItems,
+  small = true,
+}) => {
   const [text, setText] = useState("");
   const [items, setItems] = useState([]);
   const [open, setOpen] = useState(false);
@@ -30,6 +35,7 @@ export const AddInput = ({ onClickItem, selectedItems, originalItems }) => {
           value={text}
           onChange={({ target }) => setText(target.value)}
           onFocus={() => items.length > 0 && setOpen(true)}
+          small={small}
         />
         <span onClick={() => onClickAdd()} className="add">
           +

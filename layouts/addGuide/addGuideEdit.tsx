@@ -7,15 +7,18 @@ import { BsX } from "react-icons/bs";
 import { AddInput } from "components/input";
 import { Button } from "components/button";
 import { Flex } from "styles/styles";
+import { FileInput } from "components/fileInput";
 
 const AddGuideEditor = dynamic(import("./addGuideEditEditor"), { ssr: false });
 
 const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
   const [guide, setGuide] = useState({
     title: "",
+    references: [],
     tags: [],
     topics: [],
     content: [],
+    file: null,
   });
 
   const [files, setFiles] = useState([]);
@@ -47,6 +50,16 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
   const onRemoveTopic = (item) => {
     const topics = guide.topics.filter((sel) => sel != item);
     setGuide({ ...guide, topics });
+  };
+
+  const onClickRef = (text: string) => {
+    const references = [...guide.references, text];
+    setGuide({ ...guide, references });
+  };
+
+  const onRemoveRef = (item) => {
+    const references = guide.references.filter((sel) => sel != item);
+    setGuide({ ...guide, references });
   };
 
   const onContentChange = (content) => {
@@ -125,6 +138,26 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
         <Flex justify="flex-start">
           {guide.topics.map((item, i) => (
             <Item key={"topics" + i} onClick={() => onRemoveTopic(item)}>
+              {item} <BsX size="22px" />
+            </Item>
+          ))}
+        </Flex>
+      </Area>
+      <Area area="img">
+        <Label>Capa da trilha</Label>
+        <FileInput onChangeFile={(file) => setGuide({ ...guide, file })} />
+      </Area>
+      <Area area="refs" big={true}>
+        <Label>Referências</Label>
+        <AddInput
+          onClickItem={onClickRef}
+          selectedItems={guide.references}
+          originalItems={[]}
+          small={false}
+        />
+        <Flex justify="flex-start">
+          {guide.references.map((item, i) => (
+            <Item key={"ref" + i} onClick={() => onRemoveRef(item)}>
               {item} <BsX size="22px" />
             </Item>
           ))}

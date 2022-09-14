@@ -13,6 +13,8 @@ export const ContainerEdit = styled.div<OpenProps>`
   grid-template-areas:
     "title buttons"
     "tags topics"
+    "img img"
+    "refs refs"
     "editor editor";
 
   grid-template-columns: 1fr 1fr;
@@ -20,8 +22,8 @@ export const ContainerEdit = styled.div<OpenProps>`
   column-gap: 24px;
 `;
 
-export const Area = styled.div<{ area: string }>`
-  grid-area: ${(props) => props.area};
+export const Area = styled.div<{ area: string; big?: boolean }>`
+  grid-area: ${({ area }) => area};
   position: relative;
   margin-bottom: 24px;
 
@@ -31,8 +33,11 @@ export const Area = styled.div<{ area: string }>`
     border-left: 1px solid #e0e0e0;
 
     position: absolute;
-    left: 220px;
-    padding: 8px;
+    left: ${({ big }) => (big ? "calc(100% - 30px)" : "220px")};
+    top: 28px;
+
+    padding: 0px 6px;
+    font-size: 26px;
   }
 
   span:hover {

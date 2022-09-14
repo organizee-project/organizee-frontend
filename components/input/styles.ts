@@ -30,10 +30,10 @@ const input = css`
   border-radius: 8px;
 `;
 
-export const ActionInput = styled.input`
+export const ActionInput = styled.input<{ small: string }>`
   ${input}
 
-  width: 200px;
+  width: ${({ small }) => (small ? "200px" : "calc(100% - 50px)")};
   padding: 8px 38px 8px 12px;
 `;
 
