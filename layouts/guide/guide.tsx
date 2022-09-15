@@ -145,6 +145,17 @@ const Guide = () => {
           withBackground: false,
         },
       },
+      {
+        id: "lavGV3swSZ",
+        type: "table",
+        data: {
+          withHeadings: true,
+          content: [
+            ["a", "b", "c", "d", ""],
+            ["e", "f", "g", "h", "i"],
+          ],
+        },
+      },
     ],
   };
 

@@ -1,5 +1,12 @@
 import Image from "next/image";
-import { Text, Header, Quote, Code, Toogle } from "components/textInterpreter";
+import {
+  Text,
+  Header,
+  Quote,
+  Code,
+  Toogle,
+  Table,
+} from "components/editorInterpreter";
 
 export const LayoutContent = ({ content }) => {
   return content.map((block) => {
@@ -20,6 +27,7 @@ export const LayoutContent = ({ content }) => {
           objectFit="contain"
         />
       );
-    if (block.type === "toogle") return <Toogle block={block}></Toogle>;
+    if (block.type === "toogle") return <Toogle block={block} />;
+    if (block.type === "table") return <Table block={block} />;
   });
 };

@@ -1,5 +1,5 @@
 import { EText } from "common/types/post";
-import { Text } from "components/textInterpreter";
+import { Text } from "components/editorInterpreter";
 import { Flex } from "styles/styles";
 import { Categories } from "./styles";
 import { useState } from "react";

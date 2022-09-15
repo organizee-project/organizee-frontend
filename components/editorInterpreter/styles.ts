@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Title = styled.h1`
   font-weight: 600;
@@ -99,3 +99,32 @@ export const StyledToogle = styled.div`
     padding-left: 30px;
   }
 `;
+
+const heading = css`
+  tr:first-child {
+    font-weight: bold;
+  }
+`;
+
+export const StyledTable = styled.table<TableProps>`
+  width: 100%;
+  margin-top: 16px;
+  border-spacing: 0;
+
+  ${({ withHeadings }) => withHeadings && heading}
+
+  tr td:last-child {
+    border-right: 0px;
+    border-bottom: 1px solid var(--light-white);
+  }
+
+  td {
+    border-right: 1px solid var(--light-white);
+    border-top: 1px solid var(--light-white);
+    padding: 6px 12px;
+  }
+`;
+
+interface TableProps {
+  withHeadings: boolean;
+}
