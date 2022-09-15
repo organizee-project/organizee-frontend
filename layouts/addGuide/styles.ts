@@ -20,6 +20,8 @@ export const ContainerEdit = styled.div<OpenProps>`
   grid-template-columns: 1fr 1fr;
 
   column-gap: 24px;
+
+  .cdx-quote-settings{display: none;}
 `;
 
 export const Area = styled.div<{ area: string; big?: boolean }>`

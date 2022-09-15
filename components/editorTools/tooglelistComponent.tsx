@@ -3,7 +3,7 @@ import { BsChevronRight, BsChevronDown } from "react-icons/bs";
 import { FlexStart, Title, Description } from "./styles";
 
 const DEFAULT_INITIAL_DATA = () => {
-  return { title: "Title", description: "Description" };
+  return { title: "Título", description: "Descrição" };
 };
 
 const ToogleListComponent = (props) => {

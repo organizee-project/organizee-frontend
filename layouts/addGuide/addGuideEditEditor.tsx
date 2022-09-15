@@ -43,7 +43,14 @@ const AddGuideEditor = ({ setContent, setFiles }) => {
       },
       tools: {
         header: Header,
-        quote: Quote,
+        quote: {
+          class: Quote,
+          inlineToolbar: false,
+          config: {
+            quotePlaceholder: "Digite uma citação",
+            captionPlaceholder: "Digite o autor da citação (opcional)",
+          },
+        },
         table: Table,
         image: {
           class: Image,
@@ -68,6 +75,71 @@ const AddGuideEditor = ({ setContent, setFiles }) => {
         },
         toogle: ToogleList,
         code: Code,
+      },
+      i18n: {
+        messages: {
+          toolNames: {
+            Quote: "Citação",
+            Text: "Parágrafo",
+            Heading: "Título",
+            Table: "Tabela",
+            Image: "Imagem",
+            Code: "Código",
+            Bold: "Negrito",
+            Italic: "Itálico",
+          },
+          ui: {
+            blockTunes: {
+              toggler: {
+                "Click to tune": "Clique para editar",
+              },
+            },
+            toolbar: {
+              toolbox: {
+                Add: "Adicionar",
+                Filter: "Filtrar",
+              },
+            },
+            inlineToolbar: {
+              converter: {
+                "Convert to": "Transformar em",
+              },
+            },
+          },
+          blockTunes: {
+            delete: {
+              Delete: "Deletar",
+            },
+            moveUp: {
+              "Move up": "Subir",
+            },
+            moveDown: {
+              "Move down": "Descer",
+            },
+          },
+          tools: {
+            table: {
+              "Add row above": "Adicionar linha acima",
+              "Add row below": "Adicionar linha abaixo",
+              "Delete row": "Deletar linha",
+              "Add column to left": "Adicionar coluna a esquerda",
+              "Add column to right": "Adicionar coluna a direita",
+              "Delete column": "Deletar coluna",
+              "With headings": "Com cabeçalho",
+              "Without headings": "Sem cabeçalho",
+            },
+            code: {
+              "Enter a code": "Digite o código",
+            },
+            image: {
+              "Select an Image": "Selecione uma imagem",
+              Caption: "Legenda (opcional)",
+              "With border": "Com bordas",
+              "Stretch Image": "Alongar imagem",
+              "With background": "Adicionar fundo",
+            },
+          },
+        },
       },
       data: {
         time: 1552744582955,
