@@ -34,15 +34,13 @@ export const Container = styled.section`
 `;
 
 export const Categories = styled.ul`
-  width: auto;
-
-  display: flex;
-  justify-content: space-between;
-  gap: 24px;
+  overflow: hidden
 
   list-style-type: none;
 
   li {
+    display: inline-flex;
+    
     font-weight: 400;
     font-size: 16px;
     line-height: 31px;
