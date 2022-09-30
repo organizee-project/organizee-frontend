@@ -1,3 +1,5 @@
+import styled, { css } from "styled-components";
+
 import { ContainerFlex } from "styles/styles";
 
 import { Slider } from "components/slider";
@@ -25,6 +27,44 @@ const categories = [
   { id: 11, name: "Ciências Naturais" },
 ];
 
+const button = css`
+  top: 50%;
+  text-align: center;
+  color: black;
+  font-size: 23px;
+  font-weight: bold;
+  line-height: 25px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  user-select: none;
+`;
+
+const RightButton = styled.div`
+  ${button}
+
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.76) -57.78%,
+    rgba(255, 255, 255, 0.578125) -6.7%,
+    rgba(255, 255, 255, 1) 50%
+  );
+  padding-left: 8px;
+`;
+const LeftButton = styled.div`
+  ${button}
+
+  background: linear-gradient(
+  270deg,
+  rgba(255, 255, 255, 0.76) -57.78%,
+  rgba(255, 255, 255, 0.578125) -6.7%,
+  rgba(255, 255, 255, 1) 50%
+);
+  padding-right: 8px;
+`;
+
 export const Filter = () => {
   const handleOrderBy = (e: string) => {
     console.log(e);
@@ -33,20 +73,8 @@ export const Filter = () => {
   return (
     <ContainerFlex className="mt-4">
       <Slider
-        rightButton={
-          <div
-            style={{
-              borderRadius: "50%",
-              width: "20px",
-              height: "20px",
-              textAlign: "center",
-              backgroundColor: "red",
-              top: "50%",
-            }}
-          >
-            {">"}
-          </div>
-        }
+        rightButton={<RightButton>{">"}</RightButton>}
+        leftButton={<LeftButton>{"<"}</LeftButton>}
         maxWidth="1130px"
       >
         {categories.map((option) => (

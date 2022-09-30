@@ -4,6 +4,7 @@ import { Container, Inner, Button } from "./styles";
 export const Slider = ({
   children,
   rightButton,
+  leftButton,
   maxWidth = "100%",
   jump = 20,
 }) => {
@@ -40,7 +41,7 @@ export const Slider = ({
     <Container maxWidth={maxWidth} id="slider">
       {translate != 0 && (
         <Button onClick={handleLeft()} left={true}>
-          {rightButton}
+          {leftButton}
         </Button>
       )}
       <Inner right={translate} id="inner">

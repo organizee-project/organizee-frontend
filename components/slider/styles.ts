@@ -5,6 +5,7 @@ export const Container = styled.div<SliderProps>`
   max-width: ${({ maxWidth }) => maxWidth};
 
   position: relative;
+  user-select: none;
 `;
 
 export const Inner = styled.div<InnerProps>`
