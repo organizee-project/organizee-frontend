@@ -13,7 +13,7 @@ import {
   BsThreeDots,
 } from "react-icons/bs";
 
-const Guide = () => {
+export const Guide = () => {
   const guide = {
     title: "A arte europeia da perspectiva latina",
     author: "Anna Luiza",
@@ -198,5 +198,3 @@ const Guide = () => {
     </LayoutGuide>
   );
 };
-
-export default Guide;

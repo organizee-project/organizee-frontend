@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { ContainerEdit, Label, Input, Area, Item } from "./styles";
 
@@ -9,7 +9,7 @@ import { Button } from "components/button";
 import { Flex } from "styles/styles";
 import { FileInput } from "components/fileInput";
 
-const AddGuideEditor = dynamic(import("./addGuideEditEditor"), { ssr: false });
+const AddGuideEditor = dynamic(import("./addEditEditor"), { ssr: false });
 
 const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
   const [guide, setGuide] = useState({

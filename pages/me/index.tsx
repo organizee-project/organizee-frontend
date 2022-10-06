@@ -1,13 +1,13 @@
-import GuideTemplate from "layouts/guide";
+import { Guide } from "layouts/guide";
 import { ReactElement } from "react";
 import { LayoutHeader } from "components/layouts";
 
-const Guide = () => {
-  return <GuideTemplate />;
+const Page = () => {
+  return <Guide />;
 };
 
-Guide.getLayout = function getLayout(page: ReactElement) {
+Page.getLayout = function getLayout(page: ReactElement) {
   return <LayoutHeader>{page}</LayoutHeader>;
 };
 
-export default Guide;
+export default Page;

@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-import AddGuideEdit from "./addGuideEdit";
-import { AddGuideView } from "./addGuideView";
+import AddGuideEdit from "./addEdit";
+import { AddGuideView } from "./addView";
 
-const AddGuide = () => {
+export const AddGuide = () => {
   const [edit, setEdit] = useState(true);
   const [guide, setGuide] = useState({
     title: "",
@@ -33,5 +33,3 @@ const AddGuide = () => {
     </>
   );
 };
-
-export default AddGuide;

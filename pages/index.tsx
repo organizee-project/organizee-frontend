@@ -1,10 +1,10 @@
 import Head from "next/head";
 
-import HomeTemplate from "layouts/home";
+import { Home } from "layouts/home";
 import { ReactElement } from "react";
 import { LayoutHeader } from "components/layouts";
 
-const Home = () => {
+const Page = () => {
   return (
     <div>
       <Head>
@@ -15,13 +15,13 @@ const Home = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <HomeTemplate />
+      <Home />
     </div>
   );
 };
 
-Home.getLayout = function getLayout(page: ReactElement) {
+Page.getLayout = function getLayout(page: ReactElement) {
   return <LayoutHeader>{page}</LayoutHeader>;
 };
 
-export default Home;
+export default Page;

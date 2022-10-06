@@ -1,7 +1,7 @@
-import SignInTemplate from "layouts/signin";
+import { SignIn } from "layouts/signin";
 
-const SignIn = () => {
-  return <SignInTemplate />;
+const Page = () => {
+  return <SignIn />;
 };
 
-export default SignIn;
+export default Page;
