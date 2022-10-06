@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  margin-top: 85px;
-`;
-
 export const Categories = styled.ul`
   margin: 16px 0px 33px 0px;
 

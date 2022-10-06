@@ -1,7 +1,7 @@
 import { Container } from "styles/styles";
 
-import { LayoutContent } from "./layoutGuideContent";
-import { LayoutHeader } from "./layoutGuideHeader";
+import { LayoutContent } from "./guideContent";
+import { LayoutHeader } from "./guideHeader";
 
 export const LayoutGuide = ({ children, guide }) => {
   return (
