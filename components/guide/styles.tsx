@@ -18,6 +18,7 @@ export const Title = styled.h2`
   left: 8px;
   bottom: 21px;
 
+  width: calc(100% - 24px);
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
@@ -32,5 +33,13 @@ export const Author = styled.h3`
   font-weight: 500;
   font-size: 8px;
   line-height: 12px;
+  color: var(--white);
+`;
+
+export const Lock = styled.h3`
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+
   color: var(--white);
 `;
