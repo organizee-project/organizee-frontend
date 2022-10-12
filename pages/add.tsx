@@ -1,4 +1,4 @@
-import { AddGuide } from "layouts/me";
+import { AddGuide } from "layouts/add";
 import { ReactElement } from "react";
 import { LayoutHeader } from "components/layouts";
 

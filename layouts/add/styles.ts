@@ -11,11 +11,11 @@ export const ContainerEdit = styled.div<OpenProps>`
 
   display: ${({ open }) => (open ? "grid" : "none")}};
   grid-template-areas:
-    "title buttons"
-    "tags topics"
-    "img img"
-    "refs refs"
-    "editor editor";
+    "title private buttons"
+    "tags topics topics"
+    "img img img"
+    "refs refs refs"
+    "editor editor editor";
 
   grid-template-columns: 1fr 1fr;
 

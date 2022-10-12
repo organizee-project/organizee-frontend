@@ -8,6 +8,7 @@ import { AddInput } from "components/input";
 import { Button } from "components/button";
 import { Flex } from "styles/styles";
 import { FileInput } from "components/fileInput";
+import { Check } from "components/check";
 
 const AddGuideEditor = dynamic(import("./addEditEditor"), { ssr: false });
 
@@ -18,6 +19,7 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
     tags: [],
     topics: [],
     content: [],
+    private: false,
     file: null,
   });
 
@@ -100,6 +102,21 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
           type="text"
           onChange={({ target }) => setGuide({ ...guide, title: target.value })}
         />
+      </Area>
+      <Area area="private">
+        <Label>Privar trilha</Label>
+        <Flex justify="flex-start">
+          <Check
+            text="Sim"
+            active={guide.private}
+            onClick={() => setGuide({ ...guide, private: true })}
+          />
+          <Check
+            text="Não"
+            active={!guide.private}
+            onClick={() => setGuide({ ...guide, private: false })}
+          />
+        </Flex>
       </Area>
       <Area area="buttons">
         <Flex justify="flex-end">
