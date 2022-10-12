@@ -10,6 +10,7 @@ export const GlobalStyles = createGlobalStyle`
     --light-white: #F7F7F7;
     --white: #F2F2F2;
 
+    --secondary-gray: #888888;
     --lighter-gray: #979797;
     --light-gray: #404040;
     --medium-gray: #3E3E3E;
@@ -37,8 +38,16 @@ export const GlobalStyles = createGlobalStyle`
     padding-top: 40px;
   }
 
+  .mb-5{
+    margin-bottom: 20px;
+  }
+
   .mb-6{
     margin-bottom: 24px;
+  }
+
+  .mt-6{
+    margin-top: 24px;
   }
 
   .ml-3 {

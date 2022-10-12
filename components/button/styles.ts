@@ -38,6 +38,22 @@ export const Button = styled.button<PropsTypes>`
   }
 `;
 
+export const Add = styled.button`
+  padding: 10px;
+  margin: 26px auto;
+
+  background-color: var(--blue);
+  border-radius: 50%;
+
+  border: 0;
+  line-height: 0;
+  display: block;
+
+  :hover {
+    cursor: pointer;
+  }
+`;
+
 interface PropsTypes {
   variant: string;
   width?: string;
