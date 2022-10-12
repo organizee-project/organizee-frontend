@@ -1,10 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { LoginStyle } from "styles/global";
 import { Form, Field } from "components/form";
 import { Button } from "components/button";
 
+import { useAuthState } from "react-firebase-hooks/auth";
+
+import {
+  auth,
+  registerWithEmailAndPassword,
+  signInWithGoogle,
+} from "services/firebase";
+import { useRouter } from "next/router";
+
 export const SignUp = () => {
+  const router = useRouter();
+
   const [inputs, setInputs] = useState({
     email: "",
     name: "",
@@ -13,23 +24,30 @@ export const SignUp = () => {
     confirmPassword: "",
   } as IInputs);
 
+  const [user, loading, error] = useAuthState(auth);
+
+  useEffect(() => {
+    if (loading) return;
+
+    if (user) router.push("/");
+    console.log(user);
+  }, [user, loading]);
+
   const handleOnChange = ({ target }, key) => {
     setInputs({ ...inputs, [key]: target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const register = () => {
+    registerWithEmailAndPassword(inputs.name, inputs.email, inputs.password);
   };
 
   return (
-    <>
-      <LoginStyle />
+    <LoginStyle>
       <Form
         title="Criar uma conta"
         secondaryTitle="Já tem uma conta?"
         linkText="Faça o login!"
         link="/signin"
-        onSubmit={handleSubmit}
       >
         <Field
           variant="outline"
@@ -68,9 +86,14 @@ export const SignUp = () => {
           value={inputs.confirmPassword}
           onChange={(e) => handleOnChange(e, "confirmPassword")}
         />
-        <Button variant="pink">Fazer Login</Button>
+        <Button variant="pink" onClick={register}>
+          Criar conta
+        </Button>
+        <Button variant="pink" onClick={signInWithGoogle}>
+          Continuar com o Google
+        </Button>
       </Form>
-    </>
+    </LoginStyle>
   );
 };
 

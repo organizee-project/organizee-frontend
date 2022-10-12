@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FormWrapper = styled.form`
+export const FormWrapper = styled.div`
   position: absolute;
   padding: 47px 55px;
   background-color: var(--white);

@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 export const GlobalStyles = createGlobalStyle`
   :root {
     --light-blue: #305DFE;
@@ -7,7 +7,8 @@ export const GlobalStyles = createGlobalStyle`
     --light-pink: #FF668B;
     --pink: #F41A4F;
 
-    --light-white: #F7F7F7;
+    --light-white: #F9F9F9;
+    --medium-white: #F7F7F7;
     --white: #F2F2F2;
 
     --secondary-gray: #888888;
@@ -23,6 +24,10 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
     margin: 0;
     font-family: 'Poppins';
+  }
+
+  body {
+    background-color: var(--light-white);
   }
 
   a {
@@ -57,7 +62,7 @@ export const GlobalStyles = createGlobalStyle`
 
 }`;
 
-export const LoginStyle = createGlobalStyle`
+export const LoginStyle = styled.body`
   body{
     background: url('/images/background.svg'), linear-gradient(116.82deg, #f41a4f 0%, rgba(254, 69, 114, 0) 100%);
     background-position: top right;

@@ -1,10 +1,12 @@
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "services/firebase";
 import { HeaderAuthOff } from "./headerAuthOff";
 import { HeaderAuthOn } from "./headerAuthOn";
 
 export const HeaderAuth = () => {
-  const isAuth = false;
+  const [user] = useAuthState(auth);
 
-  if (isAuth) return <HeaderAuthOn />;
+  if (user) return <HeaderAuthOn />;
 
   return <HeaderAuthOff />;
 };

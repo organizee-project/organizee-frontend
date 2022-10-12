@@ -9,9 +9,8 @@ export const Form = ({
   link,
   linkText,
   children,
-  onSubmit,
 }: PropTypes) => (
-  <FormWrapper onSubmit={onSubmit}>
+  <FormWrapper>
     <Title color="gray">{title}</Title>
     <SecondaryTitle>
       {secondaryTitle} <Link href={link}>{linkText}</Link>
@@ -26,5 +25,4 @@ interface PropTypes {
   link: string;
   linkText: string;
   children: JSX.Element | JSX.Element[];
-  onSubmit: FormEventHandler<HTMLFormElement>;
 }

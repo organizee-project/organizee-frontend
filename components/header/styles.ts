@@ -30,7 +30,7 @@ export const Input = styled(Default)`
 export const Button = styled.button`
   margin-left: 12px;
   padding: 8px;
-  background-color: var(--light-white);
+  background-color: var(--medium-white);
 
   border: 0px;
   border-radius: 50%;

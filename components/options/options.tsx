@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { Container, Item } from "./styles";
 
 export const Options = ({ open, itens }) => {

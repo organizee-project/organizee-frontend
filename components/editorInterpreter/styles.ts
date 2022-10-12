@@ -115,12 +115,12 @@ export const StyledTable = styled.table<TableProps>`
 
   tr td:last-child {
     border-right: 0px;
-    border-bottom: 1px solid var(--light-white);
+    border-bottom: 1px solid var(--medium-white);
   }
 
   td {
-    border-right: 1px solid var(--light-white);
-    border-top: 1px solid var(--light-white);
+    border-right: 1px solid var(--medium-white);
+    border-top: 1px solid var(--medium-white);
     padding: 6px 12px;
   }
 `;
