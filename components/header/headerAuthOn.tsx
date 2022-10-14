@@ -4,7 +4,7 @@ import { BsPlus, BsPerson } from "react-icons/bs";
 import Link from "next/link";
 import { Options } from "components/options";
 import { useState } from "react";
-import { logout } from "services/firebase";
+import { logout } from "utils/firebase";
 import { useRouter } from "next/router";
 
 export const HeaderAuthOn = () => {
