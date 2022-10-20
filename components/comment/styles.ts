@@ -1,13 +1,17 @@
 import styled from "styled-components";
-import { LayoutProps } from "styled-system";
+import { space, layout } from "styled-system";
+import { GenericProps } from "styles";
 
-export const Container = styled.div<LayoutProps>`
+export const Container = styled.div<GenericProps>`
   width: 100%;
   padding: 18px;
   background: #f7f7f7;
   box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.06);
   border-radius: 8px;
   margin: 24px auto;
+
+  ${space}
+  ${layout}
 `;
 
 export const TextArea = styled.textarea`

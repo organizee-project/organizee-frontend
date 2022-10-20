@@ -1,5 +1,5 @@
-import { Comment } from "components/comment";
+import { CommentWrite } from "components/comment";
 
 export const GuideCommentsAdd = () => {
-  return <Comment type="write" />;
+  return <CommentWrite />;
 };

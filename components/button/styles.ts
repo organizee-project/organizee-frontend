@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { layout, LayoutProps } from "styled-system";
+import { space, layout, LayoutProps, SpaceProps } from "styled-system";
 
 const variantStyles = (variant = "default") =>
   ({
@@ -36,6 +36,7 @@ export const Button = styled.button<ButtonProps>`
   }
 
   ${layout}
+  ${space}
   ${({ variant }) => variantStyles(variant)}
 `;
 
@@ -55,6 +56,7 @@ export const Add = styled.button`
   }
 `;
 
-type ButtonProps = LayoutProps & {
-  variant: string;
-};
+type ButtonProps = LayoutProps &
+  SpaceProps & {
+    variant: string;
+  };

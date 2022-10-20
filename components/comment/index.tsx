@@ -1,2 +1,2 @@
-export { Comment } from "./comment";
-export { CommentUser } from "./commentUser";
+export { CommentRead } from "./commentRead";
+export { CommentWrite } from "./commentWrite";

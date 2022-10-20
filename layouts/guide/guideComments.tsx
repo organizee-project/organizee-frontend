@@ -1,6 +1,6 @@
 import { Container, Divider } from "styles";
 import { Background, Text } from "./styles";
-import { Comment } from "components/comment";
+import { CommentRead } from "components/comment";
 import { GuideCommentsAdd } from "./guideCommentsAdd";
 
 export const GuideComments = ({ comments }) => {
@@ -13,7 +13,7 @@ export const GuideComments = ({ comments }) => {
       <Divider />
       <Container>
         {comments.map((comment) => (
-          <Comment comment={comment} key={comment.id} type="read" />
+          <CommentRead comment={comment} key={comment.id} />
         ))}
       </Container>
     </Background>

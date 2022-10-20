@@ -1,23 +1,22 @@
 import { Button } from "components/button";
-import { Flex } from "styles";
-import { CommentUser } from "./commentUser";
+import { Flex, GenericProps } from "styles";
+import { Comment } from "./comment";
 import { Container, TextArea } from "./styles";
 
-export const CommentWrite = () => {
+export const CommentWrite = (props: GenericProps) => {
   const user = {
     username: "user",
     image: "https://images.unsplash.com/photo-1493612276216-ee3925520721",
   };
 
   return (
-    <Container>
-      <CommentUser user={user} />
+    <Container {...props}>
+      <Comment user={user} />
       <TextArea placeholder="O que você achou desta trilha?" />
       <Flex justifyContent="flex-end">
-        <Flex justifyContent="flex-start" width="220px">
-          <Button>Cancelar</Button>
-          <Button variant="blue">Responder</Button>
-        </Flex>
+        <Button variant="blue" mr="0px">
+          Responder
+        </Button>
       </Flex>
     </Container>
   );
