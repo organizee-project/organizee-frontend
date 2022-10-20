@@ -1,7 +1,7 @@
 import { FormWrapper, SecondaryTitle } from "./styles";
 import Link from "next/link";
 import { FormEventHandler } from "react";
-import { Title } from "styles/styles";
+import { Title } from "styles";
 
 export const Form = ({
   title,

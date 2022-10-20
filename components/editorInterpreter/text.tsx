@@ -1,5 +1,6 @@
 import { EText } from "common/types/post";
-import { Title, Author, Paragraph } from "./styles";
+import { Paragraph } from "styles";
+import { Title, Author } from "./styles";
 
 export const Text = ({ type, children, hide }: IProps) => {
   if (hide) return <></>;

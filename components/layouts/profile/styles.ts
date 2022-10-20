@@ -1,19 +1,9 @@
 import styled from "styled-components";
-import { Flex } from "styles/styles";
+import { Flex } from "styles";
 
 export const InfoContainer = styled.div`
   max-width: 284px;
   margin-right: 126px;
-`;
-
-export const ImageContainer = styled.div`
-  position: relative;
-  width: 284px;
-  height: 284px;
-
-  img {
-    border-radius: 50%;
-  }
 `;
 
 export const ButtonContainer = styled(Flex)`

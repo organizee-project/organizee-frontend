@@ -1,7 +1,7 @@
 import { Button } from "components/button";
 import { LayoutGuide } from "components/layouts";
 
-import { Flex } from "styles/styles";
+import { Flex } from "styles";
 import { Open } from "./styles";
 
 export const AddGuideView = ({ guide, setEdit, onSave, show }) => {

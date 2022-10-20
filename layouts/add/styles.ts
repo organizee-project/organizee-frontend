@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { OpenProps } from "styles/styles";
+import { OpenProps } from "styles";
 
 export const ContainerEdit = styled.div<OpenProps>`
   width: 1106px;

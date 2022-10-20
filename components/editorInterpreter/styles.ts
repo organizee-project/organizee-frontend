@@ -15,15 +15,6 @@ export const Author = styled.p`
   color: var(--black);
 `;
 
-export const Paragraph = styled.p`
-  font-size: 16px;
-  line-height: 24px;
-
-  color: var(--medium-gray);
-
-  margin-bottom: 8px;
-`;
-
 export const Header1 = styled.h1`
   font-weight: 500;
   font-size: 48px;

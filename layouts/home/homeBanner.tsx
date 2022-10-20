@@ -1,7 +1,7 @@
 import Image from "next/image";
 import BannerImg from "public/images/banner.png";
 
-import { ContainerFlex, Title } from "styles/styles";
+import { ContainerFlex, Title } from "styles";
 import { BannerBackground, TextWrapper, Subtitle } from "./styles";
 
 export const Banner = () => {

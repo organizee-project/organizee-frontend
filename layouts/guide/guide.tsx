@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Options } from "components/options";
 import { LayoutGuide } from "components/layouts";
 
-import { Flex } from "styles/styles";
+import { Flex } from "styles";
 
 import {
   BsBookmark,
@@ -12,6 +12,7 @@ import {
   BsHeartFill,
   BsThreeDots,
 } from "react-icons/bs";
+import { GuideComments } from "./guideComments";
 
 export const Guide = () => {
   const guide = {
@@ -157,6 +158,24 @@ export const Guide = () => {
         },
       },
     ],
+    comments: [
+      {
+        user: {
+          username: "tatiferreira",
+          image: "https://images.unsplash.com/photo-1493612276216-ee3925520721",
+        },
+        content:
+          "dhasu dsua dsaudasuda duas dasudasbdas dsaud saudsa dsabud sauid asudasudasdsaud sudsa dsaud sauidsa dus dsaudsa udsa dsauds audsa dsaud suds audsa d",
+      },
+      {
+        user: {
+          username: "tatiferreira",
+          image: "https://images.unsplash.com/photo-1493612276216-ee3925520721",
+        },
+        content:
+          "dhasu dsua dsaudasuda duas dasudasbdas dsaud saudsa dsabud sauid asudasudasdsaud sudsa dsaud sauidsa dus dsaudsa udsa dsauds audsa dsaud suds audsa d",
+      },
+    ],
   };
 
   const [openOptions, setOpenOptions] = useState(false);
@@ -164,37 +183,40 @@ export const Guide = () => {
   const [saved, setSaved] = useState(guide.is_liked);
 
   return (
-    <LayoutGuide guide={guide}>
-      <Flex width="136px">
-        <div onClick={() => setLiked(!liked)}>
-          {liked ? (
-            <BsHeartFill size="26px" className="pointer" />
-          ) : (
-            <BsHeart size="26px" className="pointer" />
-          )}
-        </div>
-        <div onClick={() => setSaved(!saved)}>
-          {saved ? (
-            <BsBookmarkFill size="26px" className="pointer" />
-          ) : (
-            <BsBookmark size="26px" className="pointer" />
-          )}
-        </div>
-        <div style={{ position: "relative" }}>
-          <BsThreeDots
-            size="26px"
-            className="pointer"
-            onClick={() => setOpenOptions(!openOptions)}
-          />
-          <Options
-            open={openOptions}
-            itens={[
-              { name: "Denunciar Trilha", onClick: () => {} },
-              { name: "Denunciar Criador", onClick: () => {} },
-            ]}
-          />
-        </div>
-      </Flex>
-    </LayoutGuide>
+    <>
+      <LayoutGuide guide={guide}>
+        <Flex width="136px">
+          <div onClick={() => setLiked(!liked)}>
+            {liked ? (
+              <BsHeartFill size="26px" className="pointer" />
+            ) : (
+              <BsHeart size="26px" className="pointer" />
+            )}
+          </div>
+          <div onClick={() => setSaved(!saved)}>
+            {saved ? (
+              <BsBookmarkFill size="26px" className="pointer" />
+            ) : (
+              <BsBookmark size="26px" className="pointer" />
+            )}
+          </div>
+          <div style={{ position: "relative" }}>
+            <BsThreeDots
+              size="26px"
+              className="pointer"
+              onClick={() => setOpenOptions(!openOptions)}
+            />
+            <Options
+              open={openOptions}
+              itens={[
+                { name: "Denunciar Trilha", onClick: () => {} },
+                { name: "Denunciar Criador", onClick: () => {} },
+              ]}
+            />
+          </div>
+        </Flex>
+      </LayoutGuide>
+      <GuideComments comments={guide.comments} />
+    </>
   );
 };

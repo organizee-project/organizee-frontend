@@ -1,4 +1,5 @@
-import { Header1, Header2, Header3, Header4, Paragraph } from "./styles";
+import { Paragraph } from "styles";
+import { Header1, Header2, Header3, Header4 } from "./styles";
 
 export const Header = ({ level, children }: IProps) => {
   if (level === 1) return <Header1>{children}</Header1>;

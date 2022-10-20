@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { OpenProps } from "styles/styles";
+import { OpenProps } from "styles";
 
 export const Container = styled.div<OpenProps>`
   display: ${(props) => (props.open ? "block" : "none")};

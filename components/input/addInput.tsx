@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { OpenDiv } from "styles/styles";
+import { OpenDiv } from "styles";
 import { ActionInput, Select } from "./styles";
 
 export const AddInput = ({

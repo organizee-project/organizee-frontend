@@ -1,4 +1,4 @@
-import { Container } from "styles/styles";
+import { Container } from "styles";
 import { Filter } from "./homeContentFilter";
 import { Guides } from "./homeContentGuides";
 

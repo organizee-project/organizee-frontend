@@ -10,7 +10,6 @@ import {
 } from "utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/router";
-import { useCookie } from "utils/hooks";
 
 export const SignIn = () => {
   const router = useRouter();
@@ -19,13 +18,11 @@ export const SignIn = () => {
   const [password, setPassword] = useState("");
 
   const [user, loading, error] = useAuthState(auth);
-  const { setCookie } = useCookie("token");
 
   useEffect(() => {
     if (loading) return;
 
     if (user) {
-      setCookie((user as any).accessToken);
       router.push("/");
     }
   }, [user, loading]);

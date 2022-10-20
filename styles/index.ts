@@ -48,6 +48,31 @@ type Title = {
   color: string;
 };
 
+export const Picture = styled.div<{ width: string; height: string }>`
+  position: relative;
+  ${({ width, height }) => `width: ${width}; height: ${height}`}
+`;
+
+export const RoundedPicture = styled(Picture)`
+  img {
+    border-radius: 50%;
+  }
+`;
+
+export const Paragraph = styled.p`
+  font-size: 16px;
+  line-height: 24px;
+
+  color: var(--medium-gray);
+
+  margin-bottom: 8px;
+`;
+
+export const Divider = styled.div`
+  border-bottom: 1px solid #d6d6d6;
+  width: 100%;
+`;
+
 export type OpenProps = {
   open: boolean;
 };

@@ -28,7 +28,9 @@
     "react-dom": "18.2.0",
     "react-firebase-hooks": "^5.0.3",
     "react-icons": "^4.4.0",
-    "styled-components": "^5.3.5"
+    "react-query": "^3.39.2",
+    "styled-components": "^5.3.5",
+    "styled-system": "^5.1.5"
   },
   "devDependencies": {
     "@types/node": "^18.0.1",

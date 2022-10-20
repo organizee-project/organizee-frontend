@@ -1,4 +1,4 @@
-import { Container } from "styles/styles";
+import { Container } from "styles";
 
 import { LayoutContent } from "./guideContent";
 import { LayoutHeader } from "./guideHeader";

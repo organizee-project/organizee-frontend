@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { OpenProps } from "styles/styles";
+import { OpenProps } from "styles";
 
 export const Input = styled.input`
   margin: 6px 0px;

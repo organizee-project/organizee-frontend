@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-import { ContainerFlex } from "styles/styles";
+import { ContainerFlex } from "styles";
 
 import { Slider } from "components/slider";
 import { Select } from "components/select";

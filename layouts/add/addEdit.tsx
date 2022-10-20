@@ -6,7 +6,7 @@ import { ContainerEdit, Label, Input, Area, Item } from "./styles";
 import { BsX } from "react-icons/bs";
 import { AddInput } from "components/input";
 import { Button } from "components/button";
-import { Flex } from "styles/styles";
+import { Flex } from "styles";
 import { FileInput } from "components/fileInput";
 import { Check } from "components/check";
 

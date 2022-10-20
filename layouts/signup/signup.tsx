@@ -12,7 +12,6 @@ import {
   signInWithGoogle,
 } from "utils/firebase";
 import { useRouter } from "next/router";
-import { useCookie } from "utils/hooks";
 
 export const SignUp = () => {
   const router = useRouter();
@@ -26,13 +25,11 @@ export const SignUp = () => {
   } as IInputs);
 
   const [user, loading, error] = useAuthState(auth);
-  const { setCookie } = useCookie("token");
 
   useEffect(() => {
     if (loading) return;
 
     if (user) {
-      setCookie((user as any).accessToken);
       router.push("/");
     }
   }, [user, loading]);

@@ -1,6 +1,6 @@
 import { EText } from "common/types/post";
 import { Text } from "components/editorInterpreter";
-import { Flex } from "styles/styles";
+import { Flex } from "styles";
 import { Categories } from "./styles";
 
 export const LayoutHeader = ({ guide, children }) => {
