@@ -1,32 +1,35 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+import {
+  space,
+  layout,
+  flexbox,
+  SpaceProps,
+  LayoutProps,
+  FlexboxProps,
+  ColorProps,
+} from "styled-system";
 
-export const Container = styled.div<{ paddingTop?: string; isGuide?: boolean }>`
+export const Container = styled.div<ContainerProps>`
   padding: 0px 24px;
   margin: auto;
-
-  padding-top: ${({ paddingTop }) => paddingTop ?? "0px"};
   width: ${({ isGuide }) => (isGuide ? "1152px" : "1342px")};
+
+  ${layout}
+  ${space}
+  ${flexbox}
 `;
 
-const flex = css`
+export const Flex = styled.div<GenericProps>`
   display: flex;
   flex-wrap: wrap;
-`;
-
-export const Flex = styled.div<{ width?: string; justify?: string }>`
-  ${flex}
   align-content: center;
 
-  width: ${({ width }) => width ?? "auto"};
-  justify-content: ${({ justify }) => justify ?? "space-between"};
+  ${layout}
+  ${space}
+  ${flexbox}
 `;
 
-export const ContainerFlex = styled(Container)`
-  ${flex}
-  justify-content: space-between;
-`;
-
-export const Title = styled.h1<Title>`
+export const Title = styled.h1<ColorProps>`
   font-weight: 700;
   font-size: 48px;
   line-height: 72px;
@@ -44,13 +47,9 @@ export const OpenDiv = styled.div<OpenProps>`
   left: 0px;
 `;
 
-type Title = {
-  color: string;
-};
-
-export const Picture = styled.div<{ width: string; height: string }>`
+export const Picture = styled.div<LayoutProps>`
   position: relative;
-  ${({ width, height }) => `width: ${width}; height: ${height}`}
+  ${layout}
 `;
 
 export const RoundedPicture = styled(Picture)`
@@ -73,6 +72,12 @@ export const Divider = styled.div`
   width: 100%;
 `;
 
+export type GenericProps = SpaceProps & FlexboxProps & LayoutProps;
+
 export type OpenProps = {
   open: boolean;
+};
+
+type ContainerProps = GenericProps & {
+  isGuide?: boolean;
 };

@@ -11,9 +11,9 @@ export const CommentRead = ({ comment }) => {
     <Container>
       <CommentUser user={comment.user} />
       <Paragraph>{comment.content}</Paragraph>
-      <Flex>
+      <Flex justifyContent="space-between">
         <Paragraph>20/11/2022 - 10h55</Paragraph>
-        <Flex width="50px">
+        <Flex width="50px" justifyContent="space-between">
           {isLiked ? <BsHeartFill /> : <BsHeart />}
           <BsReply />
         </Flex>

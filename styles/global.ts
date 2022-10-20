@@ -39,10 +39,6 @@ export const GlobalStyles = createGlobalStyle`
     cursor: pointer;
   }
 
-  .mt-4{
-    padding-top: 40px;
-  }
-
   .mb-5{
     margin-bottom: 20px;
   }

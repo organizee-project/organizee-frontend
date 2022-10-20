@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export const CommentUser = ({ user }) => {
   return (
-    <Flex justify="flex-start">
+    <Flex justifyContent="flex-start">
       <RoundedPicture height="48px" width="48px">
         <Image
           src={user.image}

@@ -8,7 +8,7 @@ export const AddGuideView = ({ guide, setEdit, onSave, show }) => {
   return (
     <Open open={show}>
       <LayoutGuide guide={guide}>
-        <Flex width="300px">
+        <Flex width="300px" justifyContent="space-between">
           <Button variant="disabled" width="45%" onClick={() => setEdit(true)}>
             Visualizar
           </Button>

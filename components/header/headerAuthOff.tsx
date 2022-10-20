@@ -5,7 +5,7 @@ import { Flex } from "styles";
 
 export const HeaderAuthOff = () => {
   return (
-    <Flex>
+    <Flex justifyContent="space-between">
       <Link href="/signin">
         <Text>Entrar</Text>
       </Link>

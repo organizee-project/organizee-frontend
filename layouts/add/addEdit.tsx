@@ -105,7 +105,7 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
       </Area>
       <Area area="private">
         <Label>Privar trilha</Label>
-        <Flex justify="flex-start">
+        <Flex justifyContent="flex-start">
           <Check
             text="Sim"
             active={guide.private}
@@ -119,8 +119,8 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
         </Flex>
       </Area>
       <Area area="buttons">
-        <Flex justify="flex-end">
-          <Flex width="300px">
+        <Flex justifyContent="flex-end">
+          <Flex width="300px" justifyContent="space-between">
             <Button variant="blue" width="45%" onClick={onVisualization}>
               Visualizar
             </Button>
@@ -137,7 +137,7 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
           selectedItems={guide.tags}
           originalItems={optionsTag}
         />
-        <Flex justify="flex-start">
+        <Flex justifyContent="flex-start">
           {guide.tags.map((item, i) => (
             <Item key={"tags" + i} onClick={() => onRemoveTag(item)}>
               {item.name} <BsX size="22px" />
@@ -152,7 +152,7 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
           selectedItems={guide.topics}
           originalItems={[]}
         />
-        <Flex justify="flex-start">
+        <Flex justifyContent="flex-start">
           {guide.topics.map((item, i) => (
             <Item key={"topics" + i} onClick={() => onRemoveTopic(item)}>
               {item} <BsX size="22px" />
@@ -172,7 +172,7 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
           originalItems={[]}
           small={false}
         />
-        <Flex justify="flex-start">
+        <Flex justifyContent="flex-start">
           {guide.references.map((item, i) => (
             <Item key={"ref" + i} onClick={() => onRemoveRef(item)}>
               {item} <BsX size="22px" />

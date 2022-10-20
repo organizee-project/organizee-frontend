@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-import { ContainerFlex } from "styles";
+import { Container } from "styles";
 
 import { Slider } from "components/slider";
 import { Select } from "components/select";
@@ -71,7 +71,12 @@ export const Filter = () => {
   };
 
   return (
-    <ContainerFlex className="mt-4">
+    <Container
+      display="flex"
+      flexWrap="wrap"
+      justifyContent="space-between"
+      mt="40px"
+    >
       <Slider
         rightButton={<RightButton>{">"}</RightButton>}
         leftButton={<LeftButton>{"<"}</LeftButton>}
@@ -88,6 +93,6 @@ export const Filter = () => {
         icon={<BsChevronDown className="select__icon" />}
         onChange={handleOrderBy}
       />
-    </ContainerFlex>
+    </Container>
   );
 };

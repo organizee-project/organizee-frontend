@@ -13,7 +13,7 @@ export const CommentWrite = () => {
     <Container>
       <CommentUser user={user} />
       <TextArea />
-      <Flex justify="flex-start" width="200px">
+      <Flex justifyContent="flex-start" width="200px">
         <Button>Cancelar</Button>
         <Button variant="blue">Responder</Button>
       </Flex>

@@ -6,7 +6,7 @@ import { Categories } from "./styles";
 export const LayoutHeader = ({ guide, children }) => {
   return (
     <>
-      <Flex>
+      <Flex justifyContent="space-between">
         <div>
           <Text type={EText.title}>{guide.title}</Text>
           <Text type={EText.author}>Por {guide.author}</Text>

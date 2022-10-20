@@ -185,7 +185,7 @@ export const Guide = () => {
   return (
     <>
       <LayoutGuide guide={guide}>
-        <Flex width="136px">
+        <Flex width="136px" justifyContent="space-between">
           <div onClick={() => setLiked(!liked)}>
             {liked ? (
               <BsHeartFill size="26px" className="pointer" />
