@@ -1,22 +1,18 @@
 import { Flex, Paragraph } from "styles";
-import { BsHeart, BsHeartFill, BsReply } from "react-icons/bs";
-import { useState } from "react";
+import { BsReply } from "react-icons/bs";
 import { CommentUser } from "./commentUser";
 import { Container } from "./styles";
 
 export const CommentRead = ({ comment }) => {
-  const [isLiked, setIsLiked] = useState(comment.is_liked);
-
   return (
     <Container>
       <CommentUser user={comment.user} />
-      <Paragraph>{comment.content}</Paragraph>
-      <Flex justifyContent="space-between">
-        <Paragraph>20/11/2022 - 10h55</Paragraph>
-        <Flex width="50px" justifyContent="space-between">
-          {isLiked ? <BsHeartFill /> : <BsHeart />}
-          <BsReply />
-        </Flex>
+      <Paragraph mb="24px">{comment.content}</Paragraph>
+      <Flex justifyContent="space-between" alignItems="baseline">
+        <Paragraph fontSize="12px" mb="0px">
+          20/11/2022 - 10h55
+        </Paragraph>
+        <BsReply size="28px" />
       </Flex>
     </Container>
   );

@@ -2,8 +2,6 @@ import { useRouter } from "next/router";
 
 import { ReactElement } from "react";
 import { LayoutProfile, LayoutHeader } from "components/layouts";
-import { Guide } from "components/guide";
-import { Add } from "components/button";
 import { Guides } from "layouts/me";
 
 const Page = () => {

@@ -3,10 +3,12 @@ import {
   space,
   layout,
   flexbox,
+  typography,
   SpaceProps,
   LayoutProps,
   FlexboxProps,
   ColorProps,
+  TypographyProps,
 } from "styled-system";
 
 export const Container = styled.div<ContainerProps>`
@@ -58,13 +60,17 @@ export const RoundedPicture = styled(Picture)`
   }
 `;
 
-export const Paragraph = styled.p`
+export const Paragraph = styled.p<ParagraphProps>`
   font-size: 16px;
   line-height: 24px;
 
   color: var(--medium-gray);
-
   margin-bottom: 8px;
+
+  ${layout}
+  ${space}
+  ${flexbox}
+  ${typography}
 `;
 
 export const Divider = styled.div`
@@ -81,3 +87,5 @@ export type OpenProps = {
 type ContainerProps = GenericProps & {
   isGuide?: boolean;
 };
+
+type ParagraphProps = TypographyProps & GenericProps;

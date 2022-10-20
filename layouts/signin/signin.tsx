@@ -51,6 +51,7 @@ export const SignIn = () => {
         />
         <Button
           variant="pink"
+          width="100%"
           onClick={() => logInWithEmailAndPassword(email, password)}
         >
           Fazer Login

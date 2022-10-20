@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { layout, LayoutProps } from "styled-system";
 
 const variantStyles = (variant = "default") =>
   ({
@@ -16,11 +17,10 @@ const variantStyles = (variant = "default") =>
     `,
   }[variant]);
 
-export const Button = styled.button<PropsTypes>`
+export const Button = styled.button<ButtonProps>`
   display: block;
-  width: ${({ width }) => width ?? "100%"};
 
-  padding: 6px 0px;
+  padding: 6px 12px;
   margin: 6px auto;
 
   border: 0px;
@@ -31,11 +31,12 @@ export const Button = styled.button<PropsTypes>`
   line-height: 24px;
   color: var(--white);
 
-  ${({ variant }) => variantStyles(variant)}
-
   :hover {
     cursor: pointer;
   }
+
+  ${layout}
+  ${({ variant }) => variantStyles(variant)}
 `;
 
 export const Add = styled.button`
@@ -54,7 +55,6 @@ export const Add = styled.button`
   }
 `;
 
-interface PropsTypes {
+type ButtonProps = LayoutProps & {
   variant: string;
-  width?: string;
-}
+};

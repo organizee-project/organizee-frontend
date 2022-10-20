@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export const CommentUser = ({ user }) => {
   return (
-    <Flex justifyContent="flex-start">
+    <Flex justifyContent="flex-start" mb="22px" alignItems="center">
       <RoundedPicture height="48px" width="48px">
         <Image
           src={user.image}
@@ -12,7 +12,9 @@ export const CommentUser = ({ user }) => {
           layout="fill"
         />
       </RoundedPicture>
-      <Paragraph>{user.username}</Paragraph>
+      <Paragraph ml="12px" fontWeight="medium">
+        @{user.username}
+      </Paragraph>
     </Flex>
   );
 };

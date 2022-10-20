@@ -87,10 +87,10 @@ export const SignUp = () => {
           value={inputs.confirmPassword}
           onChange={(e) => handleOnChange(e, "confirmPassword")}
         />
-        <Button variant="pink" onClick={register}>
+        <Button variant="pink" onClick={register} width="100%">
           Criar conta
         </Button>
-        <Button variant="pink" onClick={signInWithGoogle}>
+        <Button variant="pink" onClick={signInWithGoogle} width="100%">
           Continuar com o Google
         </Button>
       </Form>

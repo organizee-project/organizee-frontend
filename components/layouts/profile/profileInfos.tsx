@@ -1,10 +1,9 @@
 import { Button } from "components/button";
 import Image from "next/image";
 import { InfoContainer, ButtonContainer } from "./styles";
-import { HiBan } from "react-icons/hi";
-import { RoundedPicture } from "styles";
+import { RoundedPicture, Paragraph } from "styles";
 
-export const ProfileInfos = ({ isAuth = true }) => {
+export const ProfileInfos = () => {
   return (
     <InfoContainer>
       <RoundedPicture height="284px" width="184px">
@@ -16,17 +15,9 @@ export const ProfileInfos = ({ isAuth = true }) => {
       </RoundedPicture>
 
       <h1>Tatiana Ferreira de Lima</h1>
-      <p className="mb-5">@piresluna</p>
-      {isAuth ? (
-        <ButtonContainer>
-          <Button width="84%">Seguindo</Button>
-          <HiBan size="24px" />
-        </ButtonContainer>
-      ) : (
-        <Button>Seguindo</Button>
-      )}
-
-      <p className="mt-6">Breve bibliografia com limite de dígitos</p>
+      <Paragraph mb="20px">@piresluna</Paragraph>
+      <Button width="100%">Seguindo</Button>
+      <Paragraph mt="24px">Breve bibliografia com limite de dígitos</Paragraph>
     </InfoContainer>
   );
 };

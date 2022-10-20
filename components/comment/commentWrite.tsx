@@ -12,10 +12,12 @@ export const CommentWrite = () => {
   return (
     <Container>
       <CommentUser user={user} />
-      <TextArea />
-      <Flex justifyContent="flex-start" width="200px">
-        <Button>Cancelar</Button>
-        <Button variant="blue">Responder</Button>
+      <TextArea placeholder="O que você achou desta trilha?" />
+      <Flex justifyContent="flex-end">
+        <Flex justifyContent="flex-start" width="220px">
+          <Button>Cancelar</Button>
+          <Button variant="blue">Responder</Button>
+        </Flex>
       </Flex>
     </Container>
   );

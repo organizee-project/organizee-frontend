@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
+
 export const GlobalStyles = createGlobalStyle`
   :root {
     --light-blue: #305DFE;
@@ -37,22 +38,6 @@ export const GlobalStyles = createGlobalStyle`
 
   .pointer:hover{
     cursor: pointer;
-  }
-
-  .mb-5{
-    margin-bottom: 20px;
-  }
-
-  .mb-6{
-    margin-bottom: 24px;
-  }
-
-  .mt-6{
-    margin-top: 24px;
-  }
-
-  .ml-3 {
-    margin-left: 12px;
   }
   
 
