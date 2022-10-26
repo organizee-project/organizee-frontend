@@ -1,30 +1,29 @@
 import { Container } from "./styles";
 import { Guide } from "components/guide";
-import { getGuidesList } from "services/guides";
+import { useGuidesList } from "services/guides";
 import { Add } from "components/button";
-import { useInfiniteQuery } from "react-query";
 
-export const Guides = () => {
-  const { isLoading, isFetchingNextPage, data, fetchNextPage } =
-    useInfiniteQuery(["home"], getGuidesList, {
-      getNextPageParam: (data) => {
-        return data.nextPage;
-      },
-    });
+export const Guides = ({ sortBy }: Props) => {
+  const { isLoading, isFetchingNextPage, data, fetchNextPage, hasNextPage } =
+    useGuidesList(sortBy);
 
   return (
     <>
       <Container>
         {data &&
           data.pages.map((page) =>
-            page.itens.map((guide) => <Guide key={guide.slug} guide={guide} />)
+            page.items.map((guide) => <Guide key={guide.slug} guide={guide} />)
           )}
         {(isLoading || isFetchingNextPage) &&
           Array.from({ length: 12 }).map((_, i) => (
             <Guide isLoading={true} key={i} />
           ))}
       </Container>
-      {!isLoading && <Add onClick={fetchNextPage} />}
+      {!isLoading && hasNextPage && <Add onClick={fetchNextPage} />}
     </>
   );
 };
+
+interface Props {
+  sortBy: string;
+}

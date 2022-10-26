@@ -3,5 +3,5 @@ export interface IPagination<T> {
   nextPage: number;
   currentPage: number;
   totalPages: number;
-  itens: T[];
+  items: T[];
 }

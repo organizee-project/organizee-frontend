@@ -20,8 +20,9 @@ export const Guide = ({ guide, showType, isLoading }: PropsTypes) => {
       <Container className="pointer">
         <Image
           src={
-            guide.imgUrl ??
-            "https://images.unsplash.com/photo-1493612276216-ee3925520721"
+            guide.imgUrl != ""
+              ? guide.imgUrl
+              : "https://images.unsplash.com/photo-1493612276216-ee3925520721"
           }
           alt="teste"
           layout="fill"
