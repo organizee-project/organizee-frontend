@@ -74,7 +74,7 @@ export const Guides = () => {
     <>
       <GuideContainer>
         {guides.map((guide) => (
-          <Guide key={guide.id} guide={guide} />
+          <Guide key={guide.id} guide={guide} showType={true} />
         ))}
       </GuideContainer>
       <Add />

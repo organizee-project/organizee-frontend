@@ -4,33 +4,39 @@ import Link from "next/link";
 import { Container, Author, Title, Lock } from "./styles";
 
 import { BsUnlock, BsLock } from "react-icons/bs";
+import { IGuide } from "types/guide";
 
-export const Guide = ({ guide }: PropsTypes) => (
-  <Link href={`/guide/${guide.slug}`}>
-    <Container className="pointer">
-      <Image
-        src={guide.img_url}
-        alt="teste"
-        layout="fill"
-        className="post__image"
-      />
-      <Title>{guide.name}</Title>
-      <Author>{guide.author_name}</Author>
-      {guide.is_private != null && (
-        <Lock>{guide.is_private ? <BsLock /> : <BsUnlock />}</Lock>
-      )}
-    </Container>
-  </Link>
-);
+export const Guide = ({ guide, showType, isLoading }: PropsTypes) => {
+  if (isLoading)
+    return (
+      <Container backgroundColor="#fcfcfc">
+        <Title height="24px" className="skeleton" />
+        <Author width="200px" height="12px" className="skeleton" />
+      </Container>
+    );
+
+  return (
+    <Link href={`/guide/${guide.slug}`}>
+      <Container className="pointer">
+        <Image
+          src={
+            guide.imgUrl ??
+            "https://images.unsplash.com/photo-1493612276216-ee3925520721"
+          }
+          alt="teste"
+          layout="fill"
+          className="post__image"
+        />
+        <Title>{guide.title}</Title>
+        <Author>{guide.user.name}</Author>
+        {showType && <Lock>{guide.type ? <BsLock /> : <BsUnlock />}</Lock>}
+      </Container>
+    </Link>
+  );
+};
 
 interface PropsTypes {
-  guide: IGuide;
-}
-
-interface IGuide {
-  name: string;
-  author_name: string;
-  img_url: string;
-  slug: string;
-  is_private?: boolean;
+  guide?: IGuide;
+  isLoading?: boolean;
+  showType?: boolean;
 }
