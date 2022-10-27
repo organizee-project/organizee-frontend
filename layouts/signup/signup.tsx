@@ -12,56 +12,97 @@ import {
   signInWithGoogle,
 } from "utils/firebase";
 import { useRouter } from "next/router";
+import { createUser, getUser } from "services/users";
+import { useCookie } from "utils/hooks";
 
 export const SignUp = () => {
   const router = useRouter();
+  const [registerByGoogle, setRegisterByGoogle] = useState(false);
 
   const [inputs, setInputs] = useState({
     email: "",
-    name: "",
-    username: "",
     password: "",
     confirmPassword: "",
+    name: "",
+    username: "",
+    surname: "",
   } as IInputs);
 
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
+  const { setCookie } = useCookie("user");
 
-  useEffect(() => {
-    if (loading) return;
+  const login = async () => {
+    const newUser = {
+      name: inputs.name,
+      username: inputs.username,
+      surname: inputs.surname,
+    };
 
-    if (user) {
+    try {
+      const data = await createUser(await user.getIdToken(), newUser);
+      setCookie(data);
       router.push("/");
+    } catch (ex) {
+      console.log(ex);
     }
-  }, [user, loading]);
+  };
 
   const handleOnChange = ({ target }, key) => {
     setInputs({ ...inputs, [key]: target.value });
   };
 
   const register = () => {
+    if (
+      inputs.password !== inputs.confirmPassword ||
+      inputs.password.length < 8
+    )
+      return;
+
+    if (registerByGoogle) {
+      login();
+      return;
+    }
+
     registerWithEmailAndPassword(inputs.name, inputs.email, inputs.password);
+  };
+
+  const registerWithGoogle = async () => {
+    signInWithGoogle();
+    setRegisterByGoogle(true);
   };
 
   return (
     <LoginStyle>
       <Form
-        title="Criar uma conta"
-        secondaryTitle="Já tem uma conta?"
+        title={registerByGoogle ? "Finalize sua conta" : "Criar uma conta"}
+        secondaryTitle={
+          registerByGoogle
+            ? "Preencha as informações para finalizar seu cadastro"
+            : "Já tem uma conta?"
+        }
         linkText="Faça o login!"
         link="/signin"
       >
+        {!registerByGoogle && (
+          <Field
+            variant="outline"
+            label="Endereço de email"
+            type="email"
+            value={inputs.email}
+            onChange={(e) => handleOnChange(e, "email")}
+          />
+        )}
         <Field
           variant="outline"
-          label="Endereço de email"
-          type="email"
-          value={inputs.email}
-          onChange={(e) => handleOnChange(e, "email")}
+          label="Nome"
+          value={inputs.name}
+          onChange={(e) => handleOnChange(e, "name")}
         />
         <Field
           variant="outline"
-          label="Nome completo"
-          value={inputs.name}
-          onChange={(e) => handleOnChange(e, "name")}
+          label="Sobrenome"
+          value={inputs.surname}
+          onChange={(e) => handleOnChange(e, "surname")}
         />
         <Field
           variant="outline"
@@ -90,9 +131,11 @@ export const SignUp = () => {
         <Button variant="pink" onClick={register} width="100%">
           Criar conta
         </Button>
-        <Button variant="pink" onClick={signInWithGoogle} width="100%">
-          Continuar com o Google
-        </Button>
+        {!registerByGoogle && (
+          <Button variant="pink" onClick={registerWithGoogle} width="100%">
+            Continuar com o Google
+          </Button>
+        )}
       </Form>
     </LoginStyle>
   );
@@ -102,6 +145,7 @@ interface IInputs {
   email: string;
   name: string;
   username: string;
+  surname: string;
   password: string;
   confirmPassword: string;
 }

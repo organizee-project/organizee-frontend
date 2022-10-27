@@ -64,11 +64,10 @@ export const GlobalStyles = createGlobalStyle`
 }`;
 
 export const LoginStyle = styled.body`
-  body{
-    background: url('/images/background.svg'), linear-gradient(116.82deg, #f41a4f 0%, rgba(254, 69, 114, 0) 100%);
-    background-position: top right;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 100vh;
-  }
+  background: url('/images/background.svg'), linear-gradient(116.82deg, #f41a4f 0%, rgba(254, 69, 114, 0) 100%);
+  background-position: top right;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 100vh;
 }`;

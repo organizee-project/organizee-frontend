@@ -2,6 +2,7 @@ import styled from "styled-components";
 import {
   space,
   layout,
+  color,
   flexbox,
   typography,
   SpaceProps,
@@ -71,6 +72,7 @@ export const Paragraph = styled.p<ParagraphProps>`
   ${space}
   ${flexbox}
   ${typography}
+  ${color}
 `;
 
 export const Divider = styled.div`
@@ -88,4 +90,4 @@ type ContainerProps = GenericProps & {
   isGuide?: boolean;
 };
 
-type ParagraphProps = TypographyProps & GenericProps;
+type ParagraphProps = TypographyProps & ColorProps & GenericProps;

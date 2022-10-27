@@ -1,10 +1,10 @@
 export const useCookie = (key: string) => {
   const getCookie = () => {
-    return localStorage.getItem(key);
+    return JSON.parse(localStorage.getItem(key));
   };
 
-  const setCookie = (value: string) => {
-    return localStorage.setItem(key, value);
+  const setCookie = (value: any) => {
+    return localStorage.setItem(key, JSON.stringify(value));
   };
 
   const removeCookie = () => {

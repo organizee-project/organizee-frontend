@@ -1,7 +1,7 @@
 import { SignUp } from "layouts/signup";
 
 const Page = () => {
-  return <SignUp></SignUp>;
+  return <SignUp />;
 };
 
 export default Page;

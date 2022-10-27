@@ -10,20 +10,35 @@ import {
 } from "utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/router";
+import { getUser } from "services/users";
+import { useCookie } from "utils/hooks";
+import { Paragraph } from "styles";
 
 export const SignIn = () => {
   const router = useRouter();
+  const { setCookie } = useCookie("user");
+  const [user, loading] = useAuthState(auth);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
-  const [user, loading, error] = useAuthState(auth);
+  const login = async () => {
+    try {
+      const data = await getUser(await user.getIdToken());
+      console.log(data.user);
+      setCookie(data.user);
+      router.push("/");
+    } catch {
+      setMessage("usuário não encontrado");
+    }
+  };
 
   useEffect(() => {
     if (loading) return;
 
     if (user) {
-      router.push("/");
+      login();
     }
   }, [user, loading]);
 
@@ -56,9 +71,19 @@ export const SignIn = () => {
         >
           Fazer Login
         </Button>
-        <Button variant="pink" onClick={signInWithGoogle}>
+        <Button variant="pink" width="100%" onClick={signInWithGoogle}>
           Continuar com o Google
         </Button>
+        <Paragraph
+          fontSize="10px"
+          color="red"
+          height="24px"
+          textAlign="center"
+          mb="0px"
+          mt="20px"
+        >
+          {message}
+        </Paragraph>
       </Form>
     </LoginStyle>
   );

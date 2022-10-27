@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Label as StyledLabel, Wrapper, Required } from "./styles";
 
 import { Input } from "components/input";

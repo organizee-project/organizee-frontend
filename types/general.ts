@@ -5,3 +5,7 @@ export interface IPagination<T> {
   totalPages: number;
   items: T[];
 }
+
+export interface IResult<T> {
+  [key: string]: T;
+}

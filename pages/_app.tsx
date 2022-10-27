@@ -1,5 +1,4 @@
 import { QueryClient, QueryClientProvider } from "react-query";
-import { GlobalStyles } from "styles/global";
 
 function MyApp({ Component, pageProps }) {
   const getLayout = Component.getLayout || ((page) => page);
@@ -7,7 +6,6 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <GlobalStyles />
       <QueryClientProvider client={queryClient}>
         {getLayout(<Component {...pageProps} />)}
       </QueryClientProvider>
