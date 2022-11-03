@@ -2,13 +2,7 @@ import { useInfiniteQuery, useMutation } from "react-query";
 import { apiWithToken } from "services/api";
 import { IPagination, IResult } from "types/general";
 import { IGuide } from "types/guide";
-import { IUser, IUserProfile } from "types/user";
-
-interface ICreateUser {
-  name: string;
-  surname: string;
-  username: string;
-}
+import { IUser, IUserProfile, ICreateUser } from "types/user";
 
 export const createUser = async (user: ICreateUser) => {
   const { data } = await apiWithToken().post(`/users`, user);

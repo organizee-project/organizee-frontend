@@ -1,25 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 
 import { LoginStyle } from "styles/global";
 import { Form, Field } from "components/form";
 import { Button } from "components/button";
-
-import { useAuthState } from "react-firebase-hooks/auth";
 
 import {
   auth,
   registerWithEmailAndPassword,
   signInWithGoogle,
 } from "utils/firebase";
-import { useRouter } from "next/router";
-import { createUser } from "services/users";
-import { useCookie } from "utils/hooks";
+import { UserContext } from "contexts/user";
 
 export const SignUp = () => {
-  const router = useRouter();
+  const { register } = useContext(UserContext);
   const [registerByGoogle, setRegisterByGoogle] = useState(false);
-
-  const [user, loading] = useAuthState(auth);
 
   const [inputs, setInputs] = useState({
     email: "",
@@ -29,9 +23,6 @@ export const SignUp = () => {
     username: "",
     surname: "",
   } as IInputs);
-
-  const { setCookie } = useCookie("user");
-  const { setCookie: setToken } = useCookie("token");
 
   const handleOnChange = ({ target }, key) => {
     setInputs({ ...inputs, [key]: target.value });
@@ -45,18 +36,18 @@ export const SignUp = () => {
     };
 
     try {
-      user.getIdToken().then(async (token) => {
-        setToken(token);
-        const data = await createUser(newUser);
-        setCookie(data);
-        router.push("/");
-      });
+      register(newUser);
     } catch (ex) {
       console.log(ex);
     }
   };
 
-  const register = async () => {
+  const registerWithGoogle = async () => {
+    await signInWithGoogle();
+    setRegisterByGoogle(true);
+  };
+
+  const sendRegister = async () => {
     if (registerByGoogle) {
       await login();
       return;
@@ -75,12 +66,6 @@ export const SignUp = () => {
     );
     await login();
     return;
-  };
-
-  const registerWithGoogle = async () => {
-    await signInWithGoogle();
-    console.log("a");
-    setRegisterByGoogle(true);
   };
 
   return (
@@ -145,7 +130,7 @@ export const SignUp = () => {
             onChange={(e) => handleOnChange(e, "confirmPassword")}
           />
         )}
-        <Button variant="pink" onClick={register} width="100%">
+        <Button variant="pink" onClick={sendRegister} width="100%">
           Criar conta
         </Button>
         {!registerByGoogle && (

@@ -2,13 +2,10 @@ import Image from "next/image";
 
 import { Container, LoadingImage } from "./styles";
 import { RoundedPicture, Paragraph, Span } from "styles";
-import { useCookie } from "utils/hooks";
-import { IActivity } from "types/user";
+import { IActivity, IUser } from "types/user";
 
-export const Activity = ({ activity, isLoading }: Props) => {
-  const { getCookie } = useCookie("user");
-
-  const { imgUrl, name, surname } = getCookie();
+export const Activity = ({ activity, isLoading, user }: Props) => {
+  const { imgUrl, name } = user;
   if (isLoading)
     return (
       <Container>
@@ -31,7 +28,7 @@ export const Activity = ({ activity, isLoading }: Props) => {
         />
       </RoundedPicture>
       <Paragraph>
-        <Span fontWeight="bold">{name + " " + surname + " "}</Span>
+        <Span fontWeight="bold">{name}</Span>
         {activity.text}
       </Paragraph>
     </Container>
@@ -41,4 +38,5 @@ export const Activity = ({ activity, isLoading }: Props) => {
 interface Props {
   activity: IActivity;
   isLoading: boolean;
+  user: IUser;
 }

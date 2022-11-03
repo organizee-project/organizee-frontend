@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useCookie } from "utils/hooks";
+import { useContext, useEffect, useState } from "react";
 
 import { useRouter } from "next/router";
 
@@ -9,27 +8,27 @@ import { Flex, Container } from "styles";
 import { ProfileActivity } from "./profileActivity";
 import { ProfileInfos } from "./profileInfos";
 import { getUserInfos } from "services/users";
+import { UserContext } from "contexts/user";
 
 export const LayoutProfile = ({ children }) => {
   const router = useRouter();
   const { username } = router.query;
 
-  const { getCookie } = useCookie("user");
-  const [user, setUser] = useState<IUserProfile>();
+  const { user } = useContext(UserContext);
+
+  const [localUser, setLocalUser] = useState<IUserProfile>();
   const [isLogged, setIsLogged] = useState(false);
 
   const getUser = async () => {
     const data = await getUserInfos(username as string);
-    setUser(data.user);
+    setLocalUser(data.user);
     setIsLogged(false);
   };
 
   useEffect(() => {
     if (username) {
-      const logged = getCookie();
-
-      if (logged.username === username) {
-        setUser(logged);
+      if (user.username === username) {
+        setLocalUser(user);
         setIsLogged(true);
         return;
       }
@@ -43,7 +42,7 @@ export const LayoutProfile = ({ children }) => {
   return (
     <Container paddingTop="35px">
       <Flex justifyContent="flex-start">
-        <ProfileInfos user={user} isLogged={isLogged} />
+        <ProfileInfos user={localUser} isLogged={isLogged} />
         <ProfileActivity>{children}</ProfileActivity>
       </Flex>
     </Container>

@@ -3,26 +3,16 @@ import { Button } from "./styles";
 import { BsPlus, BsPerson } from "react-icons/bs";
 import Link from "next/link";
 import { Options } from "components/options";
-import { useState } from "react";
-import { logout as firebaseLogout } from "utils/firebase";
+import { useContext, useState } from "react";
 import { useRouter } from "next/router";
-import { useCookie } from "utils/hooks";
+import { UserContext } from "contexts/user";
 
 export const HeaderAuthOn = () => {
+  const { logout, user } = useContext(UserContext);
+
   const router = useRouter();
   const [openOptions, setOpenOptions] = useState(false);
 
-  const { removeCookie, getCookie } = useCookie("user");
-  const { removeCookie: removeToken } = useCookie("token");
-
-  const logout = () => {
-    firebaseLogout();
-    removeCookie();
-    removeToken();
-    router.push("/");
-  };
-
-  const { username } = getCookie();
   return (
     <div>
       <Link href="/add">
@@ -39,7 +29,7 @@ export const HeaderAuthOn = () => {
             {
               name: "Meu Perfil",
               onClick: () => {
-                router.push("/" + username);
+                router.push("/" + user.username);
               },
             },
             {

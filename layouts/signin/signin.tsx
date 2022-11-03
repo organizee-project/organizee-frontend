@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LoginStyle } from "styles/global";
 import { Form, Field } from "components/form";
 import { Button } from "components/button";
@@ -9,39 +9,26 @@ import {
   signInWithGoogle,
 } from "utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useRouter } from "next/router";
-import { getUser } from "services/users";
-import { useCookie } from "utils/hooks";
 import { Paragraph } from "styles";
+import { UserContext } from "contexts/user";
 
 export const SignIn = () => {
-  const router = useRouter();
-  const { setCookie } = useCookie("user");
-  const { setCookie: setToken } = useCookie("token");
+  const { login } = useContext(UserContext);
   const [user, loading] = useAuthState(auth);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const login = async () => {
-    try {
-      user.getIdToken().then(async (token) => {
-        setToken(token);
-        const data = await getUser();
-        setCookie(data.user);
-        router.push("/");
-      });
-    } catch {
-      setMessage("Usuário não encontrado");
-    }
-  };
-
   useEffect(() => {
     if (loading) return;
 
     if (user) {
-      login();
+      try {
+        login();
+      } catch {
+        setMessage("Usuário não encontrado");
+      }
     }
   }, [user, loading]);
 

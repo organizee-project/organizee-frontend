@@ -11,7 +11,12 @@ export const Activitys = () => {
     <>
       <ActivityContainer>
         {data.map((item, i) => (
-          <Activity key={i} activity={item} isLoading={false} />
+          <Activity
+            key={i}
+            activity={item}
+            isLoading={false}
+            user={{ imgUrl: "", name: "", username: "" }}
+          />
         ))}
       </ActivityContainer>
     </>

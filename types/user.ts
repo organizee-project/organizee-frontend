@@ -17,3 +17,9 @@ export interface IUserProfile {
 export interface IActivity {
   text: string;
 }
+
+export interface ICreateUser {
+  name: string;
+  surname: string;
+  username: string;
+}
