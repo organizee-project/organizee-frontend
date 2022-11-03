@@ -1,6 +1,6 @@
 import { Button } from "components/button";
 import Image from "next/image";
-import { InfoContainer, ButtonContainer } from "./styles";
+import { InfoContainer } from "./styles";
 import { RoundedPicture, Paragraph } from "styles";
 
 export const ProfileInfos = () => {

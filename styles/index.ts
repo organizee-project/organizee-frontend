@@ -50,9 +50,10 @@ export const OpenDiv = styled.div<OpenProps>`
   left: 0px;
 `;
 
-export const Picture = styled.div<LayoutProps>`
+export const Picture = styled.div<GenericProps>`
   position: relative;
   ${layout}
+  ${space}
 `;
 
 export const RoundedPicture = styled(Picture)`
@@ -68,6 +69,14 @@ export const Paragraph = styled.p<ParagraphProps>`
   color: var(--medium-gray);
   margin-bottom: 8px;
 
+  ${layout}
+  ${space}
+  ${flexbox}
+  ${typography}
+  ${color}
+`;
+
+export const Span = styled.span<ParagraphProps>`
   ${layout}
   ${space}
   ${flexbox}

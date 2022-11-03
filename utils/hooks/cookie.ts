@@ -3,7 +3,8 @@ export const useCookie = (key: string) => {
     try {
       return JSON.parse(localStorage.getItem(key));
     } catch (ex) {
-      return localStorage.getItem(key);
+      if (typeof window !== "undefined") return localStorage.getItem(key);
+      return { imgUrl: "", surname: "", username: "", name: "" };
     }
   };
 

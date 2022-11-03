@@ -3,3 +3,7 @@ export interface IUser {
   imgUrl: string;
   name: string;
 }
+
+export interface IActivity {
+  text: string;
+}

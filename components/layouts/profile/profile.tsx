@@ -1,4 +1,3 @@
-import { ReactElement } from "react";
 import { Flex, Container } from "styles";
 import { ProfileActivity } from "./profileActivity";
 import { ProfileInfos } from "./profileInfos";
