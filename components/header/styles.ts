@@ -4,11 +4,14 @@ import { Input as Default } from "components/input/styles";
 export const StyledHeader = styled.header`
   position: fixed;
   background-color: var(--pink);
-  padding: 24px 0px 15px 0px;
-  width: 100%;
+  padding: 24px 8px 15px 8px;
+  width: calc(100% - 16px);
   top: 0px;
 
   z-index 100;
+
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const Input = styled(Default)`
@@ -27,7 +30,7 @@ export const Input = styled(Default)`
 export const Button = styled.button`
   margin-left: 12px;
   padding: 8px;
-  background-color: var(--light-white);
+  background-color: var(--medium-white);
 
   border: 0px;
   border-radius: 50%;

@@ -1,4 +1,5 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
+
 export const GlobalStyles = createGlobalStyle`
   :root {
     --light-blue: #305DFE;
@@ -7,9 +8,11 @@ export const GlobalStyles = createGlobalStyle`
     --light-pink: #FF668B;
     --pink: #F41A4F;
 
-    --light-white: #F7F7F7;
+    --light-white: #fefefe;
+    --medium-white: #F7F7F7;
     --white: #F2F2F2;
 
+    --secondary-gray: #888888;
     --lighter-gray: #979797;
     --light-gray: #404040;
     --medium-gray: #3E3E3E;
@@ -24,26 +27,47 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Poppins';
   }
 
+  body {
+    background-color: var(--light-white);
+  }
+
   a {
     color: var(--black);
     text-decoration: none;
   }
 
+  .link {
+    text-decoration: underline;
+  }
+
+  .link:hover{
+    cursor: pointer;
+  }
+  
   .pointer:hover{
     cursor: pointer;
   }
 
-  .mt-6{
-    padding-top: 24px;
+  .skeleton {
+    background: linear-gradient(-45deg, #DDDDDD, #F0F0F0, #DDDDDD, #F0F0F0);
+    background-size: 400% 400%;
+    -webkit-animation: Gradient 2.25s ease infinite;
+    -moz-animation: Gradient 2.25s ease infinite;
+    animation: Gradient 2.25s ease infinite;
   }
-
-  .mb-6{
-    margin-bottom: 24px;
+  
+  @keyframes Gradient {
+    0% {
+      background-position: 0% 50%
+    }
+    50% {
+      background-position: 100% 50%
+    }
+    100% {
+      background-position: 0% 50%
+    }
   }
-
-  .ml-3 {
-    margin-left: 12px;
-  }
+  
 
 }`;
 
@@ -52,7 +76,14 @@ export const LoginStyle = createGlobalStyle`
     background: url('/images/background.svg'), linear-gradient(116.82deg, #f41a4f 0%, rgba(254, 69, 114, 0) 100%);
     background-position: top right;
     background-repeat: no-repeat;
+    background-size: auto 100%;
     width: 100%;
     height: 100vh;
   }
-}`;
+`;
+
+export const HomeStyle = createGlobalStyle`
+  body {
+    background-color: var(--light-white);
+  }
+`;

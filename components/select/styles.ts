@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  position: relative;
+
   .select__icon {
-    position: relative;
-    right: 30px;
-    top: 4px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
 
     font-size: 18px;
     color: #fff;

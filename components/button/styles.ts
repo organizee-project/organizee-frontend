@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { space, layout, LayoutProps, SpaceProps } from "styled-system";
 
 const variantStyles = (variant = "default") =>
   ({
@@ -16,11 +17,10 @@ const variantStyles = (variant = "default") =>
     `,
   }[variant]);
 
-export const Button = styled.button<PropsTypes>`
+export const Button = styled.button<ButtonProps>`
   display: block;
-  width: ${({ width }) => width ?? "100%"};
 
-  padding: 6px 0px;
+  padding: 6px 12px;
   margin: 6px auto;
 
   border: 0px;
@@ -31,14 +31,32 @@ export const Button = styled.button<PropsTypes>`
   line-height: 24px;
   color: var(--white);
 
+  :hover {
+    cursor: pointer;
+  }
+
+  ${layout}
+  ${space}
   ${({ variant }) => variantStyles(variant)}
+`;
+
+export const Add = styled.button`
+  padding: 10px;
+  margin: 26px auto;
+
+  background-color: var(--blue);
+  border-radius: 50%;
+
+  border: 0;
+  line-height: 0;
+  display: block;
 
   :hover {
     cursor: pointer;
   }
 `;
 
-interface PropsTypes {
-  variant: string;
-  width?: string;
-}
+type ButtonProps = LayoutProps &
+  SpaceProps & {
+    variant: string;
+  };

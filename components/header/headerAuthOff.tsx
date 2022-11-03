@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { LinkText as Text } from "./styles";
 
-import { Flex } from "styles/styles";
+import { Flex } from "styles";
 
 export const HeaderAuthOff = () => {
   return (
-    <Flex>
+    <Flex justifyContent="space-between">
       <Link href="/signin">
         <Text>Entrar</Text>
       </Link>

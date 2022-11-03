@@ -1,7 +1,7 @@
-import SignUpLayout from "layouts/signup";
+import { SignUp } from "layouts/signup";
 
-const SignUp = () => {
-  return <SignUpLayout></SignUpLayout>;
+const Page = () => {
+  return <SignUp />;
 };
 
-export default SignUp;
+export default Page;

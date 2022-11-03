@@ -1,7 +1,7 @@
 import { Banner } from "./homeBanner";
 import { HomeContent } from "./homeContent";
 
-const Home = () => {
+export const Home = () => {
   return (
     <>
       <Banner />
@@ -9,5 +9,3 @@ const Home = () => {
     </>
   );
 };
-
-export default Home;

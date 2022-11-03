@@ -1,6 +1,9 @@
 import styled from "styled-components";
+import { layout, color, ColorProps, LayoutProps } from "styled-system";
 
-export const Container = styled.article`
+type Props = ColorProps | LayoutProps;
+
+export const Container = styled.article<Props>`
   position: relative;
   width: 100%;
   height: 171px;
@@ -11,20 +14,27 @@ export const Container = styled.article`
 
     filter: brightness(45%);
   }
+
+  ${layout}
+  ${color}
 `;
 
-export const Title = styled.h2`
+export const Title = styled.h2<Props>`
   position: absolute;
   left: 8px;
   bottom: 21px;
 
+  width: calc(100% - 24px);
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   color: var(--white);
+
+  ${layout}
+  ${color}
 `;
 
-export const Author = styled.h3`
+export const Author = styled.h3<Props>`
   position: absolute;
   left: 8px;
   bottom: 8px;
@@ -33,4 +43,18 @@ export const Author = styled.h3`
   font-size: 8px;
   line-height: 12px;
   color: var(--white);
+
+  ${layout}
+  ${color}
+`;
+
+export const Lock = styled.h3<Props>`
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+
+  color: var(--white);
+
+  ${layout}
+  ${color}
 `;
