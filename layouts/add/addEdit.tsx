@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { ContainerEdit, Label, Input, Area, Item } from "./styles";
 
@@ -11,11 +11,13 @@ import { FileInput } from "components/fileInput";
 import { Check } from "components/check";
 import { ICategory, IPostGuide } from "types/guide";
 import { useCategories } from "services/categories";
+import { UserContext } from "contexts/user";
 
 const AddGuideEditor = dynamic(import("./addEditEditor"), { ssr: false });
 
 const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
   const { data: categories, isLoading } = useCategories();
+  const { user } = useContext(UserContext);
 
   const [guide, setGuide] = useState<IPostGuide>({
     title: "",
@@ -89,7 +91,12 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
   };
 
   const onVisualization = () => {
-    setFinalGuide(guide);
+    const visualizationGuide = {
+      ...guide,
+      user,
+      content: JSON.stringify(guide.content),
+    };
+    setFinalGuide(visualizationGuide);
     setEdit(false);
   };
 
@@ -121,7 +128,11 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
       </Area>
       <Area area="buttons">
         <Flex justifyContent="flex-end">
-          <Flex width="300px" justifyContent="space-between">
+          <Flex
+            width="300px"
+            justifyContent="space-between"
+            alignItems="flex-start"
+          >
             <Button variant="blue" width="45%" onClick={onVisualization}>
               Visualizar
             </Button>

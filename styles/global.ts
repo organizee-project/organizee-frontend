@@ -87,7 +87,3 @@ export const HomeStyle = createGlobalStyle`
     background-color: var(--light-white);
   }
 `;
-
-export const AdminStyle = createGlobalStyle`
-  body{background-color: var(--white);}
-`;

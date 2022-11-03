@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import { OpenProps } from "styles";
 
 export const ContainerEdit = styled.div<OpenProps>`
-  width: 1106px;
+  width: 1352px;
 
   padding: 0px 39px;
   margin: 140px auto 0px auto;

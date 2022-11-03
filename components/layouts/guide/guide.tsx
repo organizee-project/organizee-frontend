@@ -5,7 +5,7 @@ import { LayoutHeader } from "./guideHeader";
 
 export const LayoutGuide = ({ children, guide }) => {
   return (
-    <Container paddingTop="55px" isGuide={true}>
+    <Container paddingTop="55px">
       <LayoutHeader guide={guide}> {children}</LayoutHeader>
       <LayoutContent content={guide.content} />
     </Container>

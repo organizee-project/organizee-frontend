@@ -29,8 +29,6 @@ export const AddGuide = () => {
   });
 
   const onSave = (newGuide) => {
-    console.log("newGuide");
-    console.log(newGuide);
     mutate(newGuide);
   };
 
