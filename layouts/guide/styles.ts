@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Background = styled.div`
   width: 100%;
@@ -9,4 +9,28 @@ export const Background = styled.div`
 export const Text = styled.h3`
   font-size: 22px;
   font-weight: medium;
+`;
+
+export const Button = styled.div`
+  width: 34px;
+  height: 34px;
+
+  position: relative;
+
+  top: calc(50% - 34px);
+  left: 0px;
+  text-align: center;
+  color: white;
+  font-size: 23px;
+  line-height: 34px;
+
+  border-radius: 50%;
+  background-color: var(--light-blue);
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  user-select: none;
+  padding: 8px;
 `;

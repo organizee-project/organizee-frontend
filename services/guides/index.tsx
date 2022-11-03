@@ -3,16 +3,20 @@ import { api, apiWithToken } from "services/api";
 import { IPagination } from "types/general";
 import { IGuide, IInteractions } from "types/guide";
 
-export const useGuidesList = (sortBy = "popularity") => {
+export const useGuidesList = (sortBy = "", category = "") => {
   const getGuidesList = async ({ pageParam = 0, queryKey }) => {
     const sortBy = queryKey[1];
-    const { data } = await api().get(
-      `/guides?page=${pageParam}&sortBy=${sortBy}&size=12`
-    );
+    const category = queryKey[2];
+
+    let url = `/guides?page=${pageParam}&size=12`;
+    if (sortBy != "") url += `&sortBy=${sortBy}`;
+    if (category != "") url += `&category=${category}`;
+
+    const { data } = await api().get(url);
     return data as IPagination<IGuide>;
   };
 
-  return useInfiniteQuery(["home", sortBy], getGuidesList, {
+  return useInfiniteQuery(["home", sortBy, category], getGuidesList, {
     getNextPageParam: (data) => {
       if (data.nextPage === data.currentPage) return undefined;
 

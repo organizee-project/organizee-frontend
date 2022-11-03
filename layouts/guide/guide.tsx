@@ -22,6 +22,7 @@ import {
   useLikeGuide,
   useUnlikeGuide,
 } from "services/guides";
+import { GuideSuggestions } from "./guideSuggestions";
 
 export const Guide = () => {
   const router = useRouter();
@@ -109,6 +110,7 @@ export const Guide = () => {
           </div>
         </Flex>
       </LayoutGuide>
+      <GuideSuggestions categories={data.categories} />
       <GuideComments comments={[]} />
     </>
   );

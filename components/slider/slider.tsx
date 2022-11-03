@@ -6,6 +6,7 @@ export const Slider = ({
   rightButton,
   leftButton,
   maxWidth = "100%",
+  width = "fit-content",
   jump = 20,
 }) => {
   const [scroll, setScroll] = useState({
@@ -16,18 +17,17 @@ export const Slider = ({
   const [translate, setTranslate] = useState(0);
 
   useEffect(() => {
-    const maxScroll = document.getElementById("inner").offsetWidth;
+    const inner = document.getElementById("inner");
+    const maxScroll = (inner.offsetWidth + 20) * inner.childNodes.length - 20;
     let available = document.getElementById("slider").offsetWidth;
 
     if (maxWidth !== "100%")
       available = parseInt(maxWidth.replace("%", "").replace("px", ""));
 
     setScroll({ maxScroll, available });
-  }, []);
+  }, [children]);
 
   const handleRight = () => () => {
-    console.log(scroll.available);
-    console.log(scroll.maxScroll);
     setScroll({ ...scroll, available: scroll.available + 20 });
     setTranslate(translate - jump);
   };
@@ -37,6 +37,8 @@ export const Slider = ({
     setTranslate(translate + jump);
   };
 
+  console.log(scroll);
+
   return (
     <Container maxWidth={maxWidth} id="slider">
       {translate != 0 && (
@@ -44,7 +46,7 @@ export const Slider = ({
           {leftButton}
         </Button>
       )}
-      <Inner right={translate} id="inner">
+      <Inner right={translate} id="inner" width={width}>
         {children}
       </Inner>
       {scroll.maxScroll > scroll.available && (

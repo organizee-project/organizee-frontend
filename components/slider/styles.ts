@@ -11,7 +11,7 @@ export const Container = styled.div<SliderProps>`
 export const Inner = styled.div<InnerProps>`
   white-space: nowrap;
   transition: transform 0.3s;
-  width: fit-content;
+  width: ${({ width }) => width};
 
   ${({ right }) => `transform: translate(${right}px);`}
 
@@ -29,6 +29,7 @@ export const Button = styled.div<ButtonProps>`
   ${({ left }) => (left ? "left: 0px" : "right: 0px;")};
 
   z-index: 1;
+  height: 100%;
 `;
 
 type SliderProps = {
@@ -37,6 +38,7 @@ type SliderProps = {
 
 type InnerProps = {
   right: number;
+  width: string;
 };
 
 type ButtonProps = {
