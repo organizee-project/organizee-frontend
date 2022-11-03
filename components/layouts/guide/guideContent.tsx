@@ -9,7 +9,8 @@ import {
 } from "components/editorInterpreter";
 
 export const LayoutContent = ({ content }) => {
-  return content.map((block) => {
+  const newContent = JSON.parse(content);
+  return newContent.blocks.map((block) => {
     if (block.type === "header")
       return <Header level={block.data.level}>{block.data.text}</Header>;
     if (block.type === "paragraph")

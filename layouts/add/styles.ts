@@ -7,8 +7,6 @@ export const ContainerEdit = styled.div<OpenProps>`
   padding: 0px 39px;
   margin: 140px auto 0px auto;
 
-  background-color: #fff;
-
   display: ${({ open }) => (open ? "grid" : "none")}};
   grid-template-areas:
     "title private buttons"

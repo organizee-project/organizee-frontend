@@ -1,7 +1,7 @@
-import { useInfiniteQuery } from "react-query";
-import { api } from "services/api";
+import { useInfiniteQuery, useMutation, useQuery } from "react-query";
+import { api, apiWithToken } from "services/api";
 import { IPagination } from "types/general";
-import { IGuide } from "types/guide";
+import { IGuide, IInteractions } from "types/guide";
 
 export const useGuidesList = (sortBy = "popularity") => {
   const getGuidesList = async ({ pageParam = 0, queryKey }) => {
@@ -19,4 +19,31 @@ export const useGuidesList = (sortBy = "popularity") => {
       return data.nextPage;
     },
   });
+};
+
+export const useGuideBySlug = (slug: string) => {
+  const getGuideBySlug = async () => {
+    const { data } = await api().get(`/guides/${slug}`);
+    return data as IGuide;
+  };
+
+  return useQuery(["getGuideBySlug", slug], getGuideBySlug);
+};
+
+export const useGuideInteractions = (slug: string) => {
+  const getGuideInteractions = async () => {
+    const { data } = await apiWithToken().get(`/guides/${slug}/interactions`);
+    return data as IInteractions;
+  };
+
+  return useQuery(["getGuideInteractions", slug], getGuideInteractions);
+};
+
+export const useCreateGuide = (props) => {
+  const createGuide = async (guide) => {
+    const { data } = await apiWithToken().post(`/guides`, guide);
+    return data as IGuide;
+  };
+
+  return useMutation(createGuide, props);
 };

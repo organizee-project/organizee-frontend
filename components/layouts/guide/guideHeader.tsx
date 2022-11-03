@@ -14,7 +14,7 @@ export const LayoutHeader = ({ guide, children }) => {
         {children}
       </Flex>
       <Categories>
-        {guide.tags.map((category, i) => (
+        {guide.categories.map((category, i) => (
           <li key={i}>{category.name}</li>
         ))}
       </Categories>

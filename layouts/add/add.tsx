@@ -1,19 +1,37 @@
+import dynamic from "next/dynamic";
 import { useState } from "react";
+import { useCreateGuide } from "services/guides";
+import { IPostGuide } from "types/guide";
 
 import AddGuideEdit from "./addEdit";
-import { AddGuideView } from "./addView";
+
+const AddGuideView = dynamic(() =>
+  import("./addView").then((mod) => mod.AddGuideView)
+);
 
 export const AddGuide = () => {
   const [edit, setEdit] = useState(true);
-  const [guide, setGuide] = useState({
+  const [guide, setGuide] = useState<IPostGuide>({
     title: "",
-    tags: [],
+    categories: [],
     topics: [],
     content: [],
+    isPrivate: false,
+    imgUrl: "",
+    subtitle: "",
+    references: [],
+  });
+
+  const { mutate } = useCreateGuide({
+    onSuccess: (data) => {
+      console.log(data);
+    },
   });
 
   const onSave = (newGuide) => {
+    console.log("newGuide");
     console.log(newGuide);
+    mutate(newGuide);
   };
 
   return (
@@ -24,12 +42,14 @@ export const AddGuide = () => {
         setEdit={setEdit}
         show={edit}
       />
-      <AddGuideView
-        guide={guide}
-        setEdit={setEdit}
-        show={!edit}
-        onSave={onSave}
-      />
+      {!edit && (
+        <AddGuideView
+          guide={guide}
+          setEdit={setEdit}
+          show={!edit}
+          onSave={onSave}
+        />
+      )}
     </>
   );
 };

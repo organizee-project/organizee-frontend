@@ -1,15 +1,18 @@
 import axios from "axios";
 
-export const api = (token?: string) => {
-  if (!token)
-    return axios.create({
-      baseURL: "http://organizee.us-east-1.elasticbeanstalk.com/v1",
-    });
-  else
-    return axios.create({
-      baseURL: "http://organizee.us-east-1.elasticbeanstalk.com/v1",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+export const api = () => {
+  return axios.create({
+    baseURL: "http://organizee.us-east-1.elasticbeanstalk.com/v1",
+  });
+};
+
+export const apiWithToken = () => {
+  const token = localStorage.getItem("token").replaceAll('"', "");
+
+  return axios.create({
+    baseURL: "http://organizee.us-east-1.elasticbeanstalk.com/v1",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };

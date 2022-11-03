@@ -25,7 +25,7 @@ const AddGuideEditor = ({ setContent, setFiles }) => {
 
   async function handleSave() {
     const savedData = await ejInstance.current?.save();
-    setContent(savedData.blocks);
+    setContent(savedData);
   }
 
   const initEditor = () => {

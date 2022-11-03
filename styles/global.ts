@@ -8,7 +8,7 @@ export const GlobalStyles = createGlobalStyle`
     --light-pink: #FF668B;
     --pink: #F41A4F;
 
-    --light-white: #F9F9F9;
+    --light-white: #fefefe;
     --medium-white: #F7F7F7;
     --white: #F2F2F2;
 
@@ -63,11 +63,17 @@ export const GlobalStyles = createGlobalStyle`
 
 }`;
 
-export const LoginStyle = styled.body`
-  background: url('/images/background.svg'), linear-gradient(116.82deg, #f41a4f 0%, rgba(254, 69, 114, 0) 100%);
-  background-position: top right;
-  background-repeat: no-repeat;
-  background-size: contain;
-  width: 100%;
-  height: 100vh;
+export const LoginStyle = createGlobalStyle`
+  body{
+    background: url('/images/background.svg'), linear-gradient(116.82deg, #f41a4f 0%, rgba(254, 69, 114, 0) 100%);
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    width: 100%;
+    height: 100vh;
+  }
 }`;
+
+export const AdminStyle = createGlobalStyle`
+  background-color: var(--white);
+`;

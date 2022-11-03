@@ -9,39 +9,36 @@ import { Button } from "components/button";
 import { Flex } from "styles";
 import { FileInput } from "components/fileInput";
 import { Check } from "components/check";
+import { ICategory, IPostGuide } from "types/guide";
+import { useCategories } from "services/categories";
 
 const AddGuideEditor = dynamic(import("./addEditEditor"), { ssr: false });
 
 const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
-  const [guide, setGuide] = useState({
+  const { data: categories, isLoading } = useCategories();
+
+  const [guide, setGuide] = useState<IPostGuide>({
     title: "",
+    subtitle: "",
     references: [],
-    tags: [],
+    categories: [],
     topics: [],
-    content: [],
-    private: false,
-    file: null,
+    content: { blocks: [] },
+    isPrivate: false,
+    imgUrl: "",
   });
 
   const [files, setFiles] = useState([]);
 
-  const [optionsTag, setOptionsTag] = useState([
-    { id: "arte", name: "arte" },
-    { id: "europa", name: "europa" },
-    { id: "america-latina", name: "américa latina" },
-  ]);
+  const onClickTag = (item: ICategory) => {
+    const categories = [...guide.categories, item.id];
 
-  const onClickTag = (item) => {
-    const tags = item.id
-      ? [...guide.tags, item]
-      : [...guide.tags, { name: item }];
-
-    setGuide({ ...guide, tags });
+    setGuide({ ...guide, categories });
   };
 
   const onRemoveTag = (item) => {
-    const tags = guide.tags.filter((sel) => sel != item);
-    setGuide({ ...guide, tags });
+    const categories = guide.categories.filter((sel) => sel != item);
+    setGuide({ ...guide, categories });
   };
 
   const onClickTopic = (text: string) => {
@@ -54,8 +51,8 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
     setGuide({ ...guide, topics });
   };
 
-  const onClickRef = (text: string) => {
-    const references = [...guide.references, text];
+  const onClickRef = (url: string) => {
+    const references = [...guide.references, { url }];
     setGuide({ ...guide, references });
   };
 
@@ -75,7 +72,9 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
   };
 
   const prepareGuide = () => {
-    const existingImages = guide.content.filter(
+    const newGuide = guide;
+
+    const existingImages = newGuide.content.blocks.filter(
       (item) => item.type === "image"
     );
 
@@ -85,7 +84,7 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
 
     // post das imagens para API
     // formatar o guide com as novas urls
-
+    newGuide.content = JSON.stringify(guide.content);
     onSave(guide);
   };
 
@@ -93,6 +92,8 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
     setFinalGuide(guide);
     setEdit(false);
   };
+
+  if (isLoading) return <></>;
 
   return (
     <ContainerEdit open={show}>
@@ -108,13 +109,13 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
         <Flex justifyContent="flex-start">
           <Check
             text="Sim"
-            active={guide.private}
-            onClick={() => setGuide({ ...guide, private: true })}
+            active={guide.isPrivate}
+            onClick={() => setGuide({ ...guide, isPrivate: true })}
           />
           <Check
             text="Não"
-            active={!guide.private}
-            onClick={() => setGuide({ ...guide, private: false })}
+            active={!guide.isPrivate}
+            onClick={() => setGuide({ ...guide, isPrivate: false })}
           />
         </Flex>
       </Area>
@@ -131,16 +132,17 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
         </Flex>
       </Area>
       <Area area="tags">
-        <Label>Tags</Label>
+        <Label>Categorias</Label>
         <AddInput
           onClickItem={onClickTag}
-          selectedItems={guide.tags}
-          originalItems={optionsTag}
+          selectedItems={guide.categories}
+          originalItems={categories}
         />
         <Flex justifyContent="flex-start">
-          {guide.tags.map((item, i) => (
-            <Item key={"tags" + i} onClick={() => onRemoveTag(item)}>
-              {item.name} <BsX size="22px" />
+          {guide.categories.map((item, i) => (
+            <Item key={"categories" + i} onClick={() => onRemoveTag(item)}>
+              {categories.filter((category) => category.id === item)[0].name}{" "}
+              <BsX size="22px" />
             </Item>
           ))}
         </Flex>
@@ -162,7 +164,7 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
       </Area>
       <Area area="img">
         <Label>Capa da trilha</Label>
-        <FileInput onChangeFile={(file) => setGuide({ ...guide, file })} />
+        <FileInput onChangeFile={(imgUrl) => setGuide({ ...guide, imgUrl })} />
       </Area>
       <Area area="refs" big={true}>
         <Label>Referências</Label>
@@ -175,7 +177,9 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
         <Flex justifyContent="flex-start">
           {guide.references.map((item, i) => (
             <Item key={"ref" + i} onClick={() => onRemoveRef(item)}>
-              {item} <BsX size="22px" />
+              <>
+                {item.url} <BsX size="22px" />
+              </>
             </Item>
           ))}
         </Flex>

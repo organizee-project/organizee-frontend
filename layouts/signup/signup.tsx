@@ -19,6 +19,8 @@ export const SignUp = () => {
   const router = useRouter();
   const [registerByGoogle, setRegisterByGoogle] = useState(false);
 
+  const [user, loading] = useAuthState(auth);
+
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -28,10 +30,15 @@ export const SignUp = () => {
     surname: "",
   } as IInputs);
 
-  const [user] = useAuthState(auth);
   const { setCookie } = useCookie("user");
+  const { setCookie: setToken } = useCookie("token");
+
+  const handleOnChange = ({ target }, key) => {
+    setInputs({ ...inputs, [key]: target.value });
+  };
 
   const login = async () => {
+    console.log("login");
     const newUser = {
       name: inputs.name,
       username: inputs.username,
@@ -39,19 +46,18 @@ export const SignUp = () => {
     };
 
     try {
-      const data = await createUser(await user.getIdToken(), newUser);
-      setCookie(data);
-      router.push("/");
+      user.getIdToken().then(async (token) => {
+        setToken(token);
+        const data = await createUser(newUser);
+        setCookie(data);
+        router.push("/");
+      });
     } catch (ex) {
       console.log(ex);
     }
   };
 
-  const handleOnChange = ({ target }, key) => {
-    setInputs({ ...inputs, [key]: target.value });
-  };
-
-  const register = () => {
+  const register = async () => {
     if (
       inputs.password !== inputs.confirmPassword ||
       inputs.password.length < 8
@@ -59,20 +65,37 @@ export const SignUp = () => {
       return;
 
     if (registerByGoogle) {
-      login();
+      await login();
       return;
     }
 
-    registerWithEmailAndPassword(inputs.name, inputs.email, inputs.password);
+    await registerWithEmailAndPassword(
+      inputs.name,
+      inputs.email,
+      inputs.password
+    );
+    console.log("bb");
+    await login();
+    return;
   };
 
+  // useEffect(() => {
+  //   if (loading) return;
+
+  //   if (user && !registerByGoogle) {
+  //     login();
+  //   }
+  // }, [user, loading]);
+
   const registerWithGoogle = async () => {
-    signInWithGoogle();
+    const user = await signInWithGoogle();
+    setToken(user.getIdToken);
     setRegisterByGoogle(true);
   };
 
   return (
-    <LoginStyle>
+    <>
+      <LoginStyle />
       <Form
         title={registerByGoogle ? "Finalize sua conta" : "Criar uma conta"}
         secondaryTitle={
@@ -137,7 +160,7 @@ export const SignUp = () => {
           </Button>
         )}
       </Form>
-    </LoginStyle>
+    </>
   );
 };
 

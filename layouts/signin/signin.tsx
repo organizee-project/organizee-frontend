@@ -17,6 +17,7 @@ import { Paragraph } from "styles";
 export const SignIn = () => {
   const router = useRouter();
   const { setCookie } = useCookie("user");
+  const { setCookie: setToken } = useCookie("token");
   const [user, loading] = useAuthState(auth);
 
   const [email, setEmail] = useState("");
@@ -25,12 +26,14 @@ export const SignIn = () => {
 
   const login = async () => {
     try {
-      const data = await getUser(await user.getIdToken());
-      console.log(data.user);
-      setCookie(data.user);
-      router.push("/");
+      user.getIdToken().then(async (token) => {
+        setToken(token);
+        const data = await getUser();
+        setCookie(data.user);
+        router.push("/");
+      });
     } catch {
-      setMessage("usuário não encontrado");
+      setMessage("Usuário não encontrado");
     }
   };
 
@@ -43,7 +46,8 @@ export const SignIn = () => {
   }, [user, loading]);
 
   return (
-    <LoginStyle>
+    <>
+      <LoginStyle />
       <Form
         title="Faça seu login"
         secondaryTitle="Novo por aqui?"
@@ -85,6 +89,6 @@ export const SignIn = () => {
           {message}
         </Paragraph>
       </Form>
-    </LoginStyle>
+    </>
   );
 };

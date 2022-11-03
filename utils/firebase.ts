@@ -43,11 +43,14 @@ const signInWithGoogle = async () => {
         authProvider: "google",
         email: user.email,
       });
+      return user;
     }
   } catch (err) {
     console.error(err);
     alert(err.message);
   }
+
+  return;
 };
 
 const logInWithEmailAndPassword = async (email, password) => {
@@ -57,26 +60,33 @@ const logInWithEmailAndPassword = async (email, password) => {
     console.error(err);
     alert(err.message);
   }
+
+  return;
 };
 
 const registerWithEmailAndPassword = async (name, email, password) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
-    await addDoc(collection(db, "users"), {
+    addDoc(collection(db, "users"), {
       uid: user.uid,
       name,
       authProvider: "local",
       email,
+    }).then(() => {
+      console.log(user);
+      return user;
     });
   } catch (err) {
     console.error(err);
     alert(err.message);
+    return;
   }
 };
 
 const logout = () => {
   signOut(auth);
+  return;
 };
 
 export {

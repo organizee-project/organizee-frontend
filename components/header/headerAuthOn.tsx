@@ -9,14 +9,17 @@ import { useRouter } from "next/router";
 import { useCookie } from "utils/hooks";
 
 export const HeaderAuthOn = () => {
-  const route = useRouter();
+  const router = useRouter();
   const [openOptions, setOpenOptions] = useState(false);
 
   const { removeCookie } = useCookie("user");
+  const { removeCookie: removeToken } = useCookie("token");
 
   const logout = () => {
     firebaseLogout();
     removeCookie();
+    removeToken();
+    router.push("/");
   };
 
   return (
@@ -35,7 +38,7 @@ export const HeaderAuthOn = () => {
             {
               name: "Meu Perfil",
               onClick: () => {
-                route.push("/me/aaa");
+                router.push("/me/aaa");
               },
             },
             {

@@ -1,4 +1,4 @@
-import { api } from "services/api";
+import { apiWithToken } from "services/api";
 import { IResult } from "types/general";
 import { IUser } from "types/user";
 
@@ -8,12 +8,12 @@ interface ICreateUser {
   username: string;
 }
 
-export const createUser = async (token: string, user: ICreateUser) => {
-  const { data } = await api(token).post(`/users`, user);
+export const createUser = async (user: ICreateUser) => {
+  const { data } = await apiWithToken().post(`/users`, user);
   return data as IResult<IUser>;
 };
 
-export const getUser = async (token: string) => {
-  const { data } = await api(token).get(`/users/logged`);
+export const getUser = async () => {
+  const { data } = await apiWithToken().get(`/users/logged`);
   return data as IResult<IUser>;
 };

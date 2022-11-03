@@ -1,17 +1,31 @@
 import { IUser } from "./user";
 
-export interface IGuide {
-  categories: ICategory[];
+interface IGenericGuide {
+  content: any;
+  imgUrl: string;
+  topics: string[];
+  title: string;
+  subtitle: string;
+  references: IReference[];
+}
+
+export interface IGuide extends IGenericGuide {
   createdAt: string;
   likesCount: number;
   slug: string;
-  subtitle: string;
-  title: string;
-  topics: string[];
   updatedAt: string;
-  imgUrl: string;
   user: IUser;
   type: EGuideType;
+  categories: ICategory[];
+}
+
+export interface IPostGuide extends IGenericGuide {
+  isPrivate: boolean;
+  categories: number[];
+}
+
+export interface IReference {
+  url: string;
 }
 
 export interface ICategory {
@@ -23,4 +37,9 @@ export interface ICategory {
 export enum EGuideType {
   public = "PUBLIC",
   private = "PRIVATE",
+}
+
+export interface IInteractions {
+  liked: boolean;
+  saved: boolean;
 }

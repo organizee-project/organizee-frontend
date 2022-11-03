@@ -1,6 +1,10 @@
 export const useCookie = (key: string) => {
   const getCookie = () => {
-    return JSON.parse(localStorage.getItem(key));
+    try {
+      return JSON.parse(localStorage.getItem(key));
+    } catch (ex) {
+      return localStorage.getItem(key);
+    }
   };
 
   const setCookie = (value: any) => {
