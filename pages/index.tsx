@@ -3,12 +3,13 @@ import Head from "next/head";
 
 import { Home } from "layouts/home";
 import { LayoutHeader } from "components/layouts";
-import { GlobalStyles } from "styles/global";
+import { AdminStyle, GlobalStyles } from "styles/global";
 
 const Page = () => {
   return (
     <>
       <GlobalStyles />
+      <AdminStyle />
       <div>
         <Head>
           <title>Organizze - compartilhe seus estudos</title>

@@ -12,7 +12,7 @@ import {
   signInWithGoogle,
 } from "utils/firebase";
 import { useRouter } from "next/router";
-import { createUser, getUser } from "services/users";
+import { createUser } from "services/users";
 import { useCookie } from "utils/hooks";
 
 export const SignUp = () => {
@@ -38,7 +38,6 @@ export const SignUp = () => {
   };
 
   const login = async () => {
-    console.log("login");
     const newUser = {
       name: inputs.name,
       username: inputs.username,
@@ -58,38 +57,29 @@ export const SignUp = () => {
   };
 
   const register = async () => {
-    if (
-      inputs.password !== inputs.confirmPassword ||
-      inputs.password.length < 8
-    )
-      return;
-
     if (registerByGoogle) {
       await login();
       return;
     }
+
+    if (
+      inputs.password !== inputs.confirmPassword ||
+      (inputs.password.length < 8 && registerByGoogle)
+    )
+      return;
 
     await registerWithEmailAndPassword(
       inputs.name,
       inputs.email,
       inputs.password
     );
-    console.log("bb");
     await login();
     return;
   };
 
-  // useEffect(() => {
-  //   if (loading) return;
-
-  //   if (user && !registerByGoogle) {
-  //     login();
-  //   }
-  // }, [user, loading]);
-
   const registerWithGoogle = async () => {
-    const user = await signInWithGoogle();
-    setToken(user.getIdToken);
+    await signInWithGoogle();
+    console.log("a");
     setRegisterByGoogle(true);
   };
 
@@ -133,24 +123,28 @@ export const SignUp = () => {
           value={inputs.username}
           onChange={(e) => handleOnChange(e, "username")}
         />
-        <Field
-          variant="outline"
-          label="Senha"
-          type="password"
-          valid={inputs.password?.length > 7}
-          required="Sua senha precisa ter no mínimo 8 dígitos"
-          value={inputs.password}
-          onChange={(e) => handleOnChange(e, "password")}
-        />
-        <Field
-          variant="outline"
-          label="Confirmar Senha"
-          type="password"
-          valid={inputs.confirmPassword === inputs.password}
-          required="As senhas não batem"
-          value={inputs.confirmPassword}
-          onChange={(e) => handleOnChange(e, "confirmPassword")}
-        />
+        {!registerByGoogle && (
+          <Field
+            variant="outline"
+            label="Senha"
+            type="password"
+            valid={inputs.password?.length > 7}
+            required="Sua senha precisa ter no mínimo 8 dígitos"
+            value={inputs.password}
+            onChange={(e) => handleOnChange(e, "password")}
+          />
+        )}
+        {!registerByGoogle && (
+          <Field
+            variant="outline"
+            label="Confirmar Senha"
+            type="password"
+            valid={inputs.confirmPassword === inputs.password}
+            required="As senhas não batem"
+            value={inputs.confirmPassword}
+            onChange={(e) => handleOnChange(e, "confirmPassword")}
+          />
+        )}
         <Button variant="pink" onClick={register} width="100%">
           Criar conta
         </Button>

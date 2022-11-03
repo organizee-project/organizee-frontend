@@ -75,5 +75,5 @@ export const LoginStyle = createGlobalStyle`
 }`;
 
 export const AdminStyle = createGlobalStyle`
-  background-color: var(--white);
+  body{background-color: var(--white);}
 `;

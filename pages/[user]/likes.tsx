@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import { LayoutProfile, LayoutHeader } from "components/layouts";
-import { Likes } from "layouts/me";
+import { Likes } from "layouts/user";
 
 const Page = () => {
   return <Likes />;

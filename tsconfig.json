@@ -22,7 +22,7 @@
     "**/*.tsx",
     "layouts/addGuide/addGuideEditEditor.tsx",
     "pages/[user]",
-    "layouts/me/me/me"
+    "layouts/user/me/me"
   ],
   "exclude": ["node_modules"]
 }
