@@ -14,16 +14,43 @@ import {
 } from "react-icons/bs";
 import { GuideComments } from "./guideComments";
 import { useRouter } from "next/router";
-import { useGuideBySlug, useGuideInteractions } from "services/guides";
-import { useCookie } from "utils/hooks";
+import {
+  useGuideBySlug,
+  useGuideInteractions,
+  useSaveGuide,
+  useUnsaveGuide,
+  useLikeGuide,
+  useUnlikeGuide,
+} from "services/guides";
 
 export const Guide = () => {
   const router = useRouter();
-  const { getCookie } = useCookie("token");
   const { slug } = router.query;
 
-  const { data: guide, isLoading } = useGuideBySlug(slug as string);
+  const { data, isLoading } = useGuideBySlug(slug as string);
   const { data: interactions } = useGuideInteractions(slug as string);
+
+  const { mutate: saveGuide } = useSaveGuide({
+    onSuccess: () => {
+      setSaved(true);
+    },
+  });
+  const { mutate: unsaveGuide } = useUnsaveGuide({
+    onSuccess: () => {
+      setSaved(false);
+    },
+  });
+
+  const { mutate: likeGuide } = useLikeGuide({
+    onSuccess: () => {
+      setLiked(true);
+    },
+  });
+  const { mutate: unlikeGuide } = useUnlikeGuide({
+    onSuccess: () => {
+      setLiked(false);
+    },
+  });
 
   const [openOptions, setOpenOptions] = useState(false);
   const [liked, setLiked] = useState(false);
@@ -36,20 +63,30 @@ export const Guide = () => {
     }
   }, [interactions]);
 
+  const onClickSave = () => {
+    if (saved) unsaveGuide(slug);
+    else saveGuide(slug);
+  };
+
+  const onClickLike = () => {
+    if (liked) unlikeGuide(slug);
+    else likeGuide(slug);
+  };
+
   if (isLoading) return <></>;
 
   return (
     <>
-      <LayoutGuide guide={guide}>
+      <LayoutGuide guide={data}>
         <Flex width="136px" justifyContent="space-between">
-          <div onClick={() => setLiked(!liked)}>
+          <div onClick={() => onClickLike()}>
             {liked ? (
               <BsHeartFill size="26px" className="pointer" />
             ) : (
               <BsHeart size="26px" className="pointer" />
             )}
           </div>
-          <div onClick={() => setSaved(!saved)}>
+          <div onClick={() => onClickSave()}>
             {saved ? (
               <BsBookmarkFill size="26px" className="pointer" />
             ) : (

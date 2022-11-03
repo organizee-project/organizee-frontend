@@ -47,3 +47,39 @@ export const useCreateGuide = (props) => {
 
   return useMutation(createGuide, props);
 };
+
+export const useSaveGuide = (props) => {
+  const saveGuide = async (slug) => {
+    await apiWithToken().post(`/saved/guides/${slug}`);
+    return;
+  };
+
+  return useMutation(saveGuide, props);
+};
+
+export const useUnsaveGuide = (props) => {
+  const unsaveGuide = async (slug) => {
+    await apiWithToken().delete(`/saved/guides/${slug}`);
+    return;
+  };
+
+  return useMutation(unsaveGuide, props);
+};
+
+export const useLikeGuide = (props) => {
+  const likeGuide = async (slug) => {
+    await apiWithToken().post(`/likes/guide/${slug}`);
+    return;
+  };
+
+  return useMutation(likeGuide, props);
+};
+
+export const useUnlikeGuide = (props) => {
+  const unlikeGuide = async (slug) => {
+    await apiWithToken().delete(`/likes/guide/${slug}`);
+    return;
+  };
+
+  return useMutation(unlikeGuide, props);
+};

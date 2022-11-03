@@ -37,7 +37,7 @@ export const LayoutProfile = ({ children }) => {
     }
   }, [username]);
 
-  if (!user) return <></>;
+  if (!localUser) return <></>;
 
   return (
     <Container paddingTop="35px">

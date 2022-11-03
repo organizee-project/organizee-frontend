@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
-import { createContext, useState } from "react";
+import { createContext } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { createUser } from "services/users";
-import { ICreateUser, IUser, IUserProfile } from "types/user";
-import { auth } from "utils/firebase";
+import { createUser, getUser as getUser } from "services/users";
+import { ICreateUser, IUserProfile } from "types/user";
+import { auth, logout as firebaseLogout } from "utils/firebase";
 import { useCookie } from "utils/hooks";
 
 const UserContext = createContext({} as IUserContext);
@@ -15,9 +15,10 @@ const UserContextProvider = (props) => {
 
   const {
     setCookie: setUser,
-    getCookie: getUser,
+    getCookie: getUserCookie,
     removeCookie: removeUser,
   } = useCookie("user");
+
   const { setCookie: setToken, removeCookie: removeToken } = useCookie("token");
 
   const updateToken = () => {
@@ -53,7 +54,7 @@ const UserContextProvider = (props) => {
 
   return (
     <UserContext.Provider
-      value={{ user: getUser(), login, register, updateToken, logout }}
+      value={{ user: getUserCookie(), login, register, updateToken, logout }}
     >
       {props.children}
     </UserContext.Provider>
@@ -68,7 +69,4 @@ interface IUserContext {
   register: (newUser: ICreateUser) => void;
   updateToken: () => void;
   logout: () => void;
-}
-function firebaseLogout() {
-  throw new Error("Function not implemented.");
 }
