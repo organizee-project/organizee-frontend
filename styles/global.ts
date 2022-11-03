@@ -36,6 +36,14 @@ export const GlobalStyles = createGlobalStyle`
     text-decoration: none;
   }
 
+  .link {
+    text-decoration: underline;
+  }
+
+  .link:hover{
+    cursor: pointer;
+  }
+  
   .pointer:hover{
     cursor: pointer;
   }
@@ -72,7 +80,13 @@ export const LoginStyle = createGlobalStyle`
     width: 100%;
     height: 100vh;
   }
-}`;
+`;
+
+export const HomeStyle = createGlobalStyle`
+  body {
+    background-color: var(--light-white);
+  }
+`;
 
 export const AdminStyle = createGlobalStyle`
   body{background-color: var(--white);}

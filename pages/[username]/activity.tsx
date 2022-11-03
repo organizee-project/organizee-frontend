@@ -9,7 +9,7 @@ const Page = () => {
 Page.getLayout = function getLayout(page: ReactElement) {
   return (
     <LayoutHeader>
-      <LayoutProfile id="0">{page}</LayoutProfile>
+      <LayoutProfile>{page}</LayoutProfile>
     </LayoutHeader>
   );
 };

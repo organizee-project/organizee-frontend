@@ -5,6 +5,8 @@ import { Item } from "./styles";
 export const ProfileActivity = ({ children }) => {
   const router = useRouter();
   const { pathname, query } = router;
+
+  console.log(pathname);
   const { user } = query;
 
   return (
@@ -12,7 +14,7 @@ export const ProfileActivity = ({ children }) => {
       <nav>
         <ul>
           <Link href={`/${user}`}>
-            <Item active={pathname === "/[user]"}>Trilhas Criadas</Item>
+            <Item active={pathname === "/[username]"}>Trilhas Criadas</Item>
           </Link>
           <Link href={`/${user}/likes`}>
             <Item active={pathname.includes("likes")}>Trilhas Curtidas</Item>

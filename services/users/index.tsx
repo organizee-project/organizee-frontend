@@ -1,8 +1,8 @@
-import { useInfiniteQuery } from "react-query";
+import { useInfiniteQuery, useMutation } from "react-query";
 import { apiWithToken } from "services/api";
 import { IPagination, IResult } from "types/general";
 import { IGuide } from "types/guide";
-import { IUser } from "types/user";
+import { IUser, IUserProfile } from "types/user";
 
 interface ICreateUser {
   name: string;
@@ -20,16 +20,21 @@ export const getUser = async () => {
   return data as IResult<IUser>;
 };
 
-export const useUserGuidesList = () => {
-  const getUserGuidesList = async ({ pageParam = 0 }) => {
-    const { username } = JSON.parse(localStorage.getItem("user"));
+export const getUserInfos = async (username: string) => {
+  const { data } = await apiWithToken().get(`/users/${username}`);
+  return data as IResult<IUserProfile>;
+};
+
+export const useUserGuidesList = (username: string) => {
+  const getUserGuidesList = async ({ pageParam = 0, queryKey }) => {
+    const username = queryKey[1];
     const { data } = await apiWithToken().get(
       `/users/${username}/guides?page=${pageParam}&size=12`
     );
     return data as IPagination<IGuide>;
   };
 
-  return useInfiniteQuery(["userGuides"], getUserGuidesList, {
+  return useInfiniteQuery(["userGuides", username], getUserGuidesList, {
     getNextPageParam: (data) => {
       if (data.nextPage === data.currentPage) return undefined;
 
@@ -38,16 +43,16 @@ export const useUserGuidesList = () => {
   });
 };
 
-export const useUserLikesList = () => {
-  const getLikesList = async ({ pageParam = 0 }) => {
-    const { username } = JSON.parse(localStorage.getItem("user"));
+export const useUserLikesList = (username: string) => {
+  const getLikesList = async ({ pageParam = 0, queryKey }) => {
+    const username = queryKey[1];
     const { data } = await apiWithToken().get(
       `/guides/user/${username}/likes?page=${pageParam}&size=12`
     );
     return data as IPagination<IGuide>;
   };
 
-  return useInfiniteQuery(["userLikes"], getLikesList, {
+  return useInfiniteQuery(["userLikes", username], getLikesList, {
     getNextPageParam: (data) => {
       if (data.nextPage === data.currentPage) return undefined;
 
@@ -56,20 +61,38 @@ export const useUserLikesList = () => {
   });
 };
 
-export const useUserInteractionsList = () => {
-  const getInteractionsList = async ({ pageParam = 0 }) => {
-    const { username } = JSON.parse(localStorage.getItem("user"));
+export const useUserInteractionsList = (username: string) => {
+  const getInteractionsList = async ({ pageParam = 0, queryKey }) => {
+    const username = queryKey[1];
     const { data } = await apiWithToken().get(
       `/guides/user/${username}/likes?page=${pageParam}&size=12`
     );
     return data as IPagination<IGuide>;
   };
 
-  return useInfiniteQuery(["userLikes"], getInteractionsList, {
+  return useInfiniteQuery(["userLikes", username], getInteractionsList, {
     getNextPageParam: (data) => {
       if (data.nextPage === data.currentPage) return undefined;
 
       return data.nextPage;
     },
   });
+};
+
+export const useFollowUser = (props) => {
+  const followUser = async (username) => {
+    await apiWithToken().post(`/users/${username}/follow`);
+    return;
+  };
+
+  return useMutation(followUser, props);
+};
+
+export const useUnfollowUser = (props) => {
+  const unfollowUser = async (username) => {
+    await apiWithToken().delete(`/users/${username}/follow`);
+    return;
+  };
+
+  return useMutation(unfollowUser, props);
 };

@@ -2,10 +2,14 @@ import { Guide } from "components/guide";
 import { Add } from "components/button";
 import { GuideContainer } from "./styles";
 import { useUserLikesList } from "services/users";
+import { useRouter } from "next/router";
 
 export const Likes = () => {
+  const router = useRouter();
+  const { username } = router.query;
+
   const { isLoading, isFetchingNextPage, data, fetchNextPage, hasNextPage } =
-    useUserLikesList();
+    useUserLikesList(username as string);
 
   return (
     <>

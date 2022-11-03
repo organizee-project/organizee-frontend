@@ -28,4 +28,8 @@ export const Item = styled.li<Active>`
 
   ${({ active }) =>
     active && `color: black; border-bottom: 1px solid var(--pink)`};
+
+  &:hover {
+    cursor: pointer;
+  }
 `;

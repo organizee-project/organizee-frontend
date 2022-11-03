@@ -2,10 +2,14 @@ import { Guide } from "components/guide";
 import { Add } from "components/button";
 import { GuideContainer } from "./styles";
 import { useUserGuidesList } from "services/users";
+import { useRouter } from "next/router";
 
 export const Guides = () => {
+  const router = useRouter();
+  const { username } = router.query;
+
   const { isLoading, isFetchingNextPage, data, fetchNextPage, hasNextPage } =
-    useUserGuidesList();
+    useUserGuidesList(username as string);
 
   return (
     <>

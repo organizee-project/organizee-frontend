@@ -1,15 +1,23 @@
 import { EText } from "common/types/post";
 import { Text } from "components/editorInterpreter";
+import Link from "next/link";
 import { Flex } from "styles";
+import { IGuide } from "types/guide";
 import { Categories } from "./styles";
 
-export const LayoutHeader = ({ guide, children }) => {
+export const LayoutHeader = ({ guide, children }: Props) => {
   return (
     <>
       <Flex justifyContent="space-between">
         <div>
           <Text type={EText.title}>{guide.title}</Text>
-          <Text type={EText.author}>Por {guide.author}</Text>
+
+          <Text type={EText.author}>
+            Por{" "}
+            <Link href={`/${guide.user.username}`} className="link">
+              {guide.user.name}
+            </Link>
+          </Text>
         </div>
         {children}
       </Flex>
@@ -21,3 +29,8 @@ export const LayoutHeader = ({ guide, children }) => {
     </>
   );
 };
+
+interface Props {
+  guide: IGuide;
+  children: any;
+}
