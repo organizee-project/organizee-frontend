@@ -6,7 +6,7 @@ import { RoundedPicture, Paragraph } from "styles";
 export const ProfileInfos = () => {
   return (
     <InfoContainer>
-      <RoundedPicture height="284px" width="184px">
+      <RoundedPicture height="284px" width="284px">
         <Image
           src={"https://images.unsplash.com/photo-1508138221679-760a23a2285b"}
           layout="fill"

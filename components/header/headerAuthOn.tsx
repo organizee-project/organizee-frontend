@@ -12,7 +12,7 @@ export const HeaderAuthOn = () => {
   const router = useRouter();
   const [openOptions, setOpenOptions] = useState(false);
 
-  const { removeCookie } = useCookie("user");
+  const { removeCookie, getCookie } = useCookie("user");
   const { removeCookie: removeToken } = useCookie("token");
 
   const logout = () => {
@@ -22,6 +22,7 @@ export const HeaderAuthOn = () => {
     router.push("/");
   };
 
+  const { username } = getCookie();
   return (
     <div>
       <Link href="/add">
@@ -38,7 +39,7 @@ export const HeaderAuthOn = () => {
             {
               name: "Meu Perfil",
               onClick: () => {
-                router.push("/me/aaa");
+                router.push("/" + username);
               },
             },
             {
