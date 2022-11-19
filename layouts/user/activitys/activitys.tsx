@@ -3,6 +3,7 @@ import { ActivityContainer } from "./styles";
 import { Activity } from "components/activity";
 import { useUserActivitiesList } from "services/users";
 import { Add } from "components/button";
+import { Paragraph } from "styles";
 
 export const Activitys = () => {
   const router = useRouter();
@@ -14,6 +15,9 @@ export const Activitys = () => {
   return (
     <>
       <ActivityContainer>
+        {data && data.pages[0].count === 0 && (
+          <Paragraph>Não há atividades neste perfil</Paragraph>
+        )}
         {(isLoading || isFetchingNextPage) &&
           Array.from({ length: 20 }).map((_, i) => (
             <Activity isLoading={true} key={i} />

@@ -1,5 +1,6 @@
 import { Guide } from "components/guide";
 import { Add } from "components/button";
+import { Paragraph } from "styles";
 import { GuideContainer } from "./styles";
 import { useUserLikesList } from "services/users";
 import { useRouter } from "next/router";
@@ -14,6 +15,9 @@ export const Likes = () => {
   return (
     <>
       <GuideContainer>
+        {data && data.pages[0].count === 0 && (
+          <Paragraph>Não há trilhas curtidas</Paragraph>
+        )}
         {data &&
           data.pages.map((page) =>
             page.items.map((guide) => <Guide key={guide.slug} guide={guide} />)
