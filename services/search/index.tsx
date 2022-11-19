@@ -22,11 +22,7 @@ export const useSearchList = (q) => {
   });
 };
 
-export const useSuggestionsList = (slug: string) => {
-  const getSuggestions = async () => {
-    const { data } = await api().get(`/search/suggestions?q=${slug}`);
-    return data as string[];
-  };
-
-  return useQuery(["getSuggestions", slug], getSuggestions);
+export const getSuggestions = async (slug: string) => {
+  const { data } = await api().get(`/search/suggestions?q=${slug}`);
+  return data as string[];
 };

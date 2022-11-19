@@ -27,6 +27,27 @@ export const Input = styled(Default)`
   box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.15);
 `;
 
+export const ContainerOptions = styled.div`
+  background-color: #fff;
+
+  border: 0px solid;
+  border-radius: 8px;
+
+  box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  width: 800px;
+  margin-top: -8px;
+
+  div {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    padding: 5px 14px;
+  }
+
+  div:hover {
+    cursor: pointer;
+  }
+`;
+
 export const Button = styled.button`
   margin-left: 12px;
   padding: 8px;

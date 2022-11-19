@@ -31,6 +31,7 @@ export const Container = styled.section`
   gap: 43px 40px;
 
   margin-top: 40px;
+  margin-bottom: 40px;
 `;
 
 export const Categories = styled.ul`
