@@ -10,7 +10,7 @@ import Image from "@editorjs/image";
 
 import { ToogleList } from "components/editorTools";
 
-const AddGuideEditor = ({ setContent, setFiles }) => {
+const AddGuideEditor = ({ setContent }) => {
   const ejInstance = useRef<any>();
 
   useEffect(() => {
@@ -61,12 +61,12 @@ const AddGuideEditor = ({ setContent, setFiles }) => {
                 formData.append("image", file);
 
                 const url = URL.createObjectURL(file);
-                setFiles({ url, file });
 
                 return {
                   success: 1,
                   file: {
                     url,
+                    fileData: file,
                   },
                 };
               },

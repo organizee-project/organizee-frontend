@@ -6,13 +6,14 @@ export const api = () => {
   });
 };
 
-export const apiWithToken = () => {
+export const apiWithToken = (header?: object) => {
   const token = localStorage.getItem("token").replaceAll('"', "");
 
   return axios.create({
     baseURL: "https://organizeeee-backend.herokuapp.com/v1",
     headers: {
       Authorization: `Bearer ${token}`,
+      ...header,
     },
   });
 };

@@ -42,3 +42,16 @@ export const useCreateGuide = (props) => {
 
   return useMutation(createGuide, props);
 };
+
+export const saveFile = async (file: File) => {
+  const header = { "Content-Type": "multipart/form-data" };
+
+  const { data } = await apiWithToken(header).post(`/files`, {
+    file,
+  });
+  return data as IReturnFile;
+};
+
+interface IReturnFile {
+  url: string;
+}

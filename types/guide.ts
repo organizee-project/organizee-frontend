@@ -2,7 +2,7 @@ import { IUser } from "./user";
 
 interface IGenericGuide {
   content: any;
-  imgUrl: string;
+  imgUrl: string | File;
   topics: string[];
   title: string;
   subtitle: string;
@@ -55,4 +55,9 @@ export interface IComment {
   id: string;
   message: string;
   user: IUser;
+}
+
+export interface IFile {
+  url: string;
+  file: File;
 }

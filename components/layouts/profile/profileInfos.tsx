@@ -15,14 +15,12 @@ export const ProfileInfos = ({ user, isLogged }: Props) => {
   const { mutate: follow } = useFollowUser({
     onSuccess: () => {
       setIsFollowed(true);
-      // console.log(data);
     },
   });
 
   const { mutate: unfollow } = useUnfollowUser({
     onSuccess: () => {
       setIsFollowed(false);
-      // console.log(data);
     },
   });
 

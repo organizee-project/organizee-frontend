@@ -19,11 +19,16 @@ const UserContextProvider = (props) => {
     removeCookie: removeUser,
   } = useCookie("user");
 
-  const { setCookie: setToken, removeCookie: removeToken } = useCookie("token");
+  const {
+    setCookie: setToken,
+    removeCookie: removeToken,
+    getCookie: getToken,
+  } = useCookie("token");
 
-  const updateToken = () => {
+  const updateToken = (func: () => void) => {
     user.getIdToken().then(async (token) => {
-      setToken(token);
+      if (getToken() !== token) setToken(token);
+      func();
     });
   };
 
@@ -67,6 +72,6 @@ interface IUserContext {
   user: IUserProfile;
   login: () => void;
   register: (newUser: ICreateUser) => void;
-  updateToken: () => void;
+  updateToken: (func: () => void) => void;
   logout: () => void;
 }

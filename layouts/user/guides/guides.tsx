@@ -12,7 +12,6 @@ export const Guides = () => {
   const { isLoading, isFetchingNextPage, data, fetchNextPage, hasNextPage } =
     useUserGuidesList(username as string);
 
-  console.log(data);
   return (
     <>
       <GuideContainer>

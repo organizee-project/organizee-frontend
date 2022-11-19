@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { useContext, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 
 import { ContainerEdit, Label, Input, Area, Item } from "./styles";
 
@@ -9,15 +9,16 @@ import { Button } from "components/button";
 import { Flex } from "styles";
 import { FileInput } from "components/fileInput";
 import { Check } from "components/check";
-import { ICategory, IPostGuide } from "types/guide";
+import { ICategory, IPostGuide, IFile } from "types/guide";
 import { useCategories } from "services/categories";
 import { UserContext } from "contexts/user";
+import { saveGuideImages } from "utils/guide";
 
-const AddGuideEditor = dynamic(import("./addEditEditor"), { ssr: false });
+const AddGuideEditor = dynamic(() => import("./addEditEditor"), { ssr: false });
 
 const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
   const { data: categories, isLoading } = useCategories();
-  const { user } = useContext(UserContext);
+  const { user, updateToken } = useContext(UserContext);
 
   const [guide, setGuide] = useState<IPostGuide>({
     title: "",
@@ -29,8 +30,6 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
     isPrivate: false,
     imgUrl: "",
   });
-
-  const [files, setFiles] = useState([]);
 
   const onClickTag = (item: ICategory) => {
     const categories = [...guide.categories, item.id];
@@ -69,26 +68,18 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
     });
   };
 
-  const onFilesChange = (file) => {
-    setFiles([...files, file]);
+  const onImgChange = (file) => {
+    setGuide({ ...guide, imgUrl: file });
   };
 
-  const prepareGuide = () => {
-    const newGuide = guide;
-
-    const existingImages = newGuide.content.blocks.filter(
-      (item) => item.type === "image"
-    );
-
-    const imagesToUpload = files.filter((file) =>
-      existingImages.some((img) => img.data.file.url === file.url)
-    );
-
-    // post das imagens para API
-    // formatar o guide com as novas urls
-    newGuide.content = JSON.stringify(guide.content);
-    onSave(guide);
-  };
+  const prepareGuide = useCallback(() => {
+    updateToken(async () => {
+      const newGuide = await saveGuideImages(guide);
+      newGuide.content = JSON.stringify(newGuide.content);
+      console.log(newGuide);
+      onSave(newGuide);
+    });
+  }, [guide]);
 
   const onVisualization = () => {
     const visualizationGuide = {
@@ -175,7 +166,7 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
       </Area>
       <Area area="img">
         <Label>Capa da trilha</Label>
-        <FileInput onChangeFile={(imgUrl) => setGuide({ ...guide, imgUrl })} />
+        <FileInput onChangeFile={(imgUrl) => onImgChange(imgUrl)} />
       </Area>
       <Area area="refs" big={true}>
         <Label>Referências</Label>
@@ -197,7 +188,7 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
       </Area>
       <Area area="editor">
         <Label>Conteúdo</Label>
-        <AddGuideEditor setContent={onContentChange} setFiles={onFilesChange} />
+        <AddGuideEditor setContent={onContentChange} />
       </Area>
     </ContainerEdit>
   );
