@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useMutation } from "react-query";
+import { useInfiniteQuery, useMutation, useQuery } from "react-query";
 import { api, apiWithToken } from "services/api";
 import { IPagination } from "types/general";
 import { IComment } from "types/guide";
@@ -32,4 +32,24 @@ export const useCreateComment = (slug: string, props) => {
   };
 
   return useMutation(createComment, props);
+};
+
+export const useCommentsAnswer = (slug: string, props) => {
+  const getCommentsAnswer = async ({ pageParam = 0, queryKey }) => {
+    const slug = queryKey[1];
+
+    const { data } = await api().get(
+      `/comments/guide/${slug}?page${pageParam}&size=3`
+    );
+    return data as IPagination<IComment>;
+  };
+
+  return useInfiniteQuery(["getCommentsAnswer", slug], getCommentsAnswer, {
+    ...props,
+    getNextPageParam: (data) => {
+      if (data.nextPage === data.currentPage) return undefined;
+
+      return data.nextPage;
+    },
+  });
 };

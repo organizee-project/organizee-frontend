@@ -5,14 +5,19 @@ import { Comment } from "./comment";
 import { Container } from "./styles";
 import { useMemo, useState } from "react";
 import { IComment } from "types/guide";
+import { CommentsReadAnswer } from "./commentsReadAnswer";
 
 const CommentWrite = dynamic(() =>
   import("./commentWrite").then((mod) => mod.CommentWrite)
 );
 
-export const CommentRead = ({ comment, addComment, showLogin }: IProps) => {
+export const CommentRead = ({
+  comment,
+  addComment,
+  showLogin,
+  showReply = true,
+}: IProps) => {
   const [reply, setReply] = useState(false);
-
   const [qt, setQt] = useState(comment.commentsCount);
 
   const date = useMemo(() => {
@@ -51,12 +56,7 @@ export const CommentRead = ({ comment, addComment, showLogin }: IProps) => {
           />
         </Flex>
       </Container>
-      {qt > 0 && (
-        <Paragraph textAlign="center" className="pointer">
-          Veja as respostas deste comentário
-        </Paragraph>
-      )}
-      {reply && (
+      {showReply && reply && (
         <Flex ml="10%" width="90%">
           <CommentWrite
             parent={comment.id}
@@ -65,6 +65,9 @@ export const CommentRead = ({ comment, addComment, showLogin }: IProps) => {
           />
         </Flex>
       )}
+      {qt > 0 && (
+        <CommentsReadAnswer parent={comment} addComment={addComment} />
+      )}
     </>
   );
 };
@@ -72,5 +75,6 @@ export const CommentRead = ({ comment, addComment, showLogin }: IProps) => {
 interface IProps {
   comment: IComment;
   addComment: (comment: IComment) => void;
-  showLogin: () => boolean;
+  showReply: boolean;
+  showLogin?: () => boolean;
 }
