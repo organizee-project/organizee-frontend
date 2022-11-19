@@ -17,6 +17,7 @@ import { saveGuideImages } from "utils/guide";
 const AddGuideEditor = dynamic(() => import("./addEditEditor"), { ssr: false });
 
 const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
+  const [poster, setPoster] = useState<File>(null);
   const { data: categories, isLoading } = useCategories();
   const { user, refreshToken } = useContext(UserContext);
 
@@ -69,14 +70,16 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
   };
 
   const onImgChange = (file) => {
-    setGuide({ ...guide, imgUrl: file });
+    setPoster(file);
   };
 
   const prepareGuide = useCallback(() => {
+    //TO-DO: mensagem de erro caso a imagem nao tenha post
+    if (!poster) return;
+
     refreshToken(async () => {
-      const newGuide = await saveGuideImages(guide);
+      const newGuide = await saveGuideImages(guide, poster);
       newGuide.content = JSON.stringify(newGuide.content);
-      console.log(newGuide);
       onSave(newGuide);
     });
   }, [guide]);

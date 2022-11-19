@@ -2,7 +2,7 @@ import { IUser } from "./user";
 
 interface IGenericGuide {
   content: any;
-  imgUrl: string | File;
+  imgUrl: string;
   topics: string[];
   title: string;
   subtitle: string;

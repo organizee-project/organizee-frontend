@@ -1,11 +1,11 @@
 import { saveFile } from "services/guides";
 import { IPostGuide } from "types/guide";
 
-export const saveGuideImages = async (guide: IPostGuide) => {
+export const saveGuideImages = async (guide: IPostGuide, poster: File) => {
   const newGuide = guide;
 
-  if (typeof newGuide.imgUrl !== "string") {
-    const { url } = await saveFile(newGuide.imgUrl as File);
+  if (newGuide.imgUrl === "") {
+    const { url } = await saveFile(poster as File);
     newGuide.imgUrl = url;
   }
 
