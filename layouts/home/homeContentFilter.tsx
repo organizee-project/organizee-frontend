@@ -6,6 +6,7 @@ import { Select } from "components/select";
 import { BsChevronDown } from "react-icons/bs";
 import { useCategories } from "services/categories";
 import { RightButton, LeftButton } from "./styles";
+import Link from "next/link";
 
 const sortByOptions = [
   { id: "popularity", name: "Popular" },
@@ -29,9 +30,9 @@ export const Filter = ({ handleSortBy }: Props) => {
       >
         {data &&
           data.map((option) => (
-            <div key={option.id} className="pointer">
-              {option.name}
-            </div>
+            <Link href={`/search/${option.slug}`} key={option.id}>
+              <div className="pointer">{option.name}</div>
+            </Link>
           ))}
       </Slider>
       <Select
