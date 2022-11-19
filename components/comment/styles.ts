@@ -3,7 +3,7 @@ import { space, layout } from "styled-system";
 import { GenericProps } from "styles";
 
 export const Container = styled.div<GenericProps>`
-  width: 100%;
+  width: calc(100% - 36px);
   padding: 18px;
   background: #f7f7f7;
   box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.06);

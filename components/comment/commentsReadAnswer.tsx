@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IComment } from "types/guide";
 import { useCommentsAnswer } from "services/guides";
 import { CommentRead } from "./commentRead";
-import { Paragraph } from "styles";
+import { Flex, Paragraph } from "styles";
 import { Loader } from "components/loader";
 
-export const CommentsReadAnswer = ({ parent, addComment }: IProps) => {
+export const CommentsReadAnswer = ({ parent, newComments }: IProps) => {
   const [showAnswer, setShowAnswer] = useState(false);
 
   const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage } =
@@ -13,37 +13,40 @@ export const CommentsReadAnswer = ({ parent, addComment }: IProps) => {
       enabled: !!showAnswer,
     });
 
+  useEffect(() => {
+    console.log(newComments);
+  }, [newComments]);
+
+  const onMessageClick = () => {
+    if (!showAnswer) setShowAnswer(true);
+    else fetchNextPage();
+  };
+
   return (
     <>
-      {!showAnswer && (
-        <Paragraph
-          textAlign="center"
-          className="pointer"
-          onClick={() => setShowAnswer(true)}
-        >
-          Veja as respostas deste comentário
-        </Paragraph>
-      )}
-      {data &&
-        data.pages.map((page) =>
-          page.items.map((item) => (
-            <CommentRead
-              comment={item}
-              addComment={addComment}
-              showReply={false}
-              key={item.id}
-            />
-          ))
-        )}
+      <Flex ml="10%" width="90%">
+        {newComments.map((item) => (
+          <CommentRead comment={item} key={item.id} />
+        ))}
+      </Flex>
+      <Flex ml="10%" width="90%">
+        {data &&
+          data.pages.map((page) =>
+            page.items.map((item) => (
+              <CommentRead comment={item} key={item.id} />
+            ))
+          )}
+      </Flex>
+
       {isLoading || (isFetchingNextPage && <Loader />)}
 
-      {!isLoading && !isFetchingNextPage && hasNextPage && (
+      {((!isLoading && !isFetchingNextPage && hasNextPage) || !showAnswer) && (
         <Paragraph
           textAlign="center"
           className="pointer"
-          onClick={() => fetchNextPage()}
+          onClick={() => onMessageClick()}
         >
-          Veja mais respostas deste comentário
+          Veja as respostas deste comentário
         </Paragraph>
       )}
     </>
@@ -52,5 +55,5 @@ export const CommentsReadAnswer = ({ parent, addComment }: IProps) => {
 
 interface IProps {
   parent: IComment;
-  addComment: (comment: IComment) => void;
+  newComments: IComment[];
 }

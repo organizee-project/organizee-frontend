@@ -1,13 +1,12 @@
 import { Container, Divider } from "styles";
 import { Background, Text } from "./styles";
-import { CommentRead } from "components/comment";
+import { CommentReply, CommentWrite } from "components/comment";
 import { useRouter } from "next/router";
 import { useCommentsBySlug } from "services/guides";
 import { useEffect, useState } from "react";
 import { InfiniteData } from "react-query";
 import { IPagination } from "types/general";
 import { IComment } from "types/guide";
-import { CommentWrite } from "components/comment";
 
 export const GuideComments = ({ showLogin }: IProps) => {
   const router = useRouter();
@@ -43,11 +42,10 @@ export const GuideComments = ({ showLogin }: IProps) => {
         {comments &&
           comments.pages.map((page) =>
             page.items.map((comment) => (
-              <CommentRead
+              <CommentReply
                 showLogin={showLogin}
                 comment={comment}
                 key={comment.id}
-                addComment={addComment}
               />
             ))
           )}

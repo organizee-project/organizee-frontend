@@ -39,7 +39,7 @@ export const useCommentsAnswer = (slug: string, props) => {
     const slug = queryKey[1];
 
     const { data } = await api().get(
-      `/comments/guide/${slug}?page${pageParam}&size=3`
+      `/comments/${slug}/comments?page=${pageParam}&size=3`
     );
     return data as IPagination<IComment>;
   };

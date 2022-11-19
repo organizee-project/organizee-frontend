@@ -24,11 +24,11 @@ export const CommentWrite: React.FC<IProps> = ({
   const router = useRouter();
   const { slug } = router.query;
 
-  const { user, updateToken } = useContext(UserContext);
+  const { user, refreshToken } = useContext(UserContext);
   const { mutate } = useCreateComment(slug as string, {
     onSuccess: async ({ data }) => {
       setMessage("");
-      if (!parent) addComment(data);
+      addComment(data);
     },
   });
 
@@ -38,8 +38,9 @@ export const CommentWrite: React.FC<IProps> = ({
     const send = { message };
     if (parent) send["referencedComment"] = parent;
 
-    updateToken();
-    mutate(send);
+    refreshToken(() => {
+      mutate(send);
+    });
   };
 
   return (

@@ -25,7 +25,7 @@ const UserContextProvider = (props) => {
     getCookie: getToken,
   } = useCookie("token");
 
-  const updateToken = (func: () => void) => {
+  const refreshToken = (func: () => void) => {
     user.getIdToken().then(async (token) => {
       if (getToken() !== token) setToken(token);
       func();
@@ -59,7 +59,7 @@ const UserContextProvider = (props) => {
 
   return (
     <UserContext.Provider
-      value={{ user: getUserCookie(), login, register, updateToken, logout }}
+      value={{ user: getUserCookie(), login, register, refreshToken, logout }}
     >
       {props.children}
     </UserContext.Provider>
@@ -72,6 +72,6 @@ interface IUserContext {
   user: IUserProfile;
   login: () => void;
   register: (newUser: ICreateUser) => void;
-  updateToken: (func: () => void) => void;
+  refreshToken: (func: () => void) => void;
   logout: () => void;
 }

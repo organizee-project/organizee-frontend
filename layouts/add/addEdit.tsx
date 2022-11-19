@@ -18,7 +18,7 @@ const AddGuideEditor = dynamic(() => import("./addEditEditor"), { ssr: false });
 
 const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
   const { data: categories, isLoading } = useCategories();
-  const { user, updateToken } = useContext(UserContext);
+  const { user, refreshToken } = useContext(UserContext);
 
   const [guide, setGuide] = useState<IPostGuide>({
     title: "",
@@ -73,7 +73,7 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
   };
 
   const prepareGuide = useCallback(() => {
-    updateToken(async () => {
+    refreshToken(async () => {
       const newGuide = await saveGuideImages(guide);
       newGuide.content = JSON.stringify(newGuide.content);
       console.log(newGuide);
