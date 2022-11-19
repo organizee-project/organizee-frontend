@@ -1,9 +1,14 @@
 import { Button } from "components/button";
-import { Flex, GenericProps } from "styles";
+import { Flex } from "styles";
 import { Comment } from "./comment";
 import { Container, TextArea } from "./styles";
 
-export const CommentWrite = (props: GenericProps) => {
+interface Props {
+  ml?: string;
+  width?: string;
+}
+
+export const CommentWrite: React.FC<Props> = (props: Props) => {
   const user = {
     username: "user",
     image: "https://images.unsplash.com/photo-1493612276216-ee3925520721",

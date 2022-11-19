@@ -6,7 +6,6 @@ export const ProfileActivity = ({ children }) => {
   const router = useRouter();
   const { pathname, query } = router;
 
-  console.log(pathname);
   const { user } = query;
 
   return (

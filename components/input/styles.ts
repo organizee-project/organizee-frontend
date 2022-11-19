@@ -30,7 +30,7 @@ const input = css`
   border-radius: 8px;
 `;
 
-export const ActionInput = styled.input<{ small: string }>`
+export const ActionInput = styled.input<{ small: boolean }>`
   ${input}
 
   width: ${({ small }) => (small ? "200px" : "calc(100% - 50px)")};

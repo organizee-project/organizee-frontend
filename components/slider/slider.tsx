@@ -37,8 +37,6 @@ export const Slider = ({
     setTranslate(translate + jump);
   };
 
-  console.log(scroll);
-
   return (
     <Container maxWidth={maxWidth} id="slider">
       {translate != 0 && (
