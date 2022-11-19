@@ -15,7 +15,6 @@ export const Modal = styled.div`
 `;
 
 export const Background = styled(OpenDiv)`
-  position: absolute;
   z-index: 9999;
   display: ${({ open }) => (open ? "block" : "none")}};
   background-color: rgba(0, 0, 0, 0.7);

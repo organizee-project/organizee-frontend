@@ -43,3 +43,16 @@ export interface IInteractions {
   liked: boolean;
   saved: boolean;
 }
+
+export interface IPostComment {
+  message: string;
+  referencedComment?: string;
+}
+
+export interface IComment {
+  commentsCount: number;
+  createdAt: string;
+  id: string;
+  message: string;
+  user: IUser;
+}

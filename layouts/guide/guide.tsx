@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
-import { Options } from "components/options";
 import { LayoutGuide } from "components/layouts";
 
 import { Flex } from "styles";
@@ -10,10 +10,10 @@ import {
   BsBookmarkFill,
   BsHeart,
   BsHeartFill,
-  BsThreeDots,
 } from "react-icons/bs";
+
 import { GuideComments } from "./guideComments";
-import { useRouter } from "next/router";
+
 import {
   useGuideBySlug,
   useGuideInteractions,
@@ -33,8 +33,12 @@ export const Guide = () => {
   const router = useRouter();
   const { slug } = router.query;
 
-  const { data, isLoading } = useGuideBySlug(slug as string);
-  const { data: interactions } = useGuideInteractions(slug as string);
+  const { data, isLoading } = useGuideBySlug(slug as string, {
+    enabled: !!slug,
+  });
+  const { data: interactions } = useGuideInteractions(slug as string, {
+    enabled: !!slug && !!user,
+  });
 
   const { mutate: saveGuide } = useSaveGuide({
     onSuccess: () => {
@@ -58,7 +62,6 @@ export const Guide = () => {
     },
   });
 
-  const [openOptions, setOpenOptions] = useState(false);
   const [liked, setLiked] = useState(false);
   const [saved, setSaved] = useState(false);
 
@@ -69,28 +72,30 @@ export const Guide = () => {
     }
   }, [interactions]);
 
-  const onClickSave = () => {
+  const showLogin = () => {
     if (!user) {
       setShowLoginMessage(true);
-      return;
+      return true;
     }
+
+    return false;
+  };
+
+  const onClickSave = () => {
+    if (showLogin()) return;
 
     if (saved) unsaveGuide(slug);
     else saveGuide(slug);
   };
 
   const onClickLike = () => {
-    console.log(user);
-    if (!user) {
-      setShowLoginMessage(true);
-      return;
-    }
+    if (showLogin()) return;
 
     if (liked) unlikeGuide(slug);
     else likeGuide(slug);
   };
 
-  if (isLoading) return <></>;
+  if (isLoading || !data) return <></>;
 
   return (
     <>
@@ -110,24 +115,10 @@ export const Guide = () => {
               <BsBookmark size="26px" className="pointer" />
             )}
           </div>
-          {/* <div style={{ position: "relative" }}>
-            <BsThreeDots
-              size="26px"
-              className="pointer"
-              onClick={() => setOpenOptions(!openOptions)}
-            />
-            <Options
-              open={openOptions}
-              itens={[
-                { name: "Denunciar Trilha", onClick: () => {} },
-                { name: "Denunciar Criador", onClick: () => {} },
-              ]}
-            />
-          </div> */}
         </Flex>
       </LayoutGuide>
       <GuideSuggestions categories={data.categories} />
-      <GuideComments comments={[]} />
+      <GuideComments showLogin={showLogin} />
       <ModalLogin
         onClose={() => {
           setShowLoginMessage(false);
