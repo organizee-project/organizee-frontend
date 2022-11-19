@@ -23,3 +23,19 @@ export interface ICreateUser {
   surname: string;
   username: string;
 }
+
+export enum EActivityType {
+  Like = "LIKE",
+  Save = "SAVE",
+  Comment = "COMMENT",
+  AddGuide = "ADD_GUIDE",
+  Follow = "FOLLOW",
+  Other = "OTHER",
+}
+
+export interface IActivity {
+  date: string;
+  id: string;
+  referenceId: string;
+  type: EActivityType;
+}

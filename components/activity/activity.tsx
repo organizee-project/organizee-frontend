@@ -1,11 +1,30 @@
+import { useContext, useMemo } from "react";
 import Image from "next/image";
 
 import { Container, LoadingImage } from "./styles";
 import { RoundedPicture, Paragraph, Span } from "styles";
-import { IActivity, IUser } from "types/user";
+import { EActivityType, IActivity, IUser } from "types/user";
+import { UserContext } from "contexts/user";
 
-export const Activity = ({ activity, isLoading, user }: Props) => {
-  const { imgUrl, name } = user;
+export const Activity = ({ activity, isLoading }: Props) => {
+  const {
+    user: { imgUrl, username },
+  } = useContext(UserContext);
+
+  const text = useMemo(() => {
+    if (isLoading) return "";
+
+    if (activity.type === EActivityType.Like) return " curtiu uma trilha";
+    if (activity.type === EActivityType.Save) return " salvou uma trilha";
+    if (activity.type === EActivityType.Comment) return " comentou uma trilha";
+    if (activity.type === EActivityType.AddGuide)
+      return " adicionou uma trilha";
+    if (activity.type === EActivityType.Follow)
+      return " seguiu um novo usuário";
+
+    return "entrou no aplicativo";
+  }, [activity]);
+
   if (isLoading)
     return (
       <Container>
@@ -28,15 +47,14 @@ export const Activity = ({ activity, isLoading, user }: Props) => {
         />
       </RoundedPicture>
       <Paragraph>
-        <Span fontWeight="bold">{name}</Span>
-        {activity.text}
+        <Span fontWeight="bold">{username}</Span>
+        {text}
       </Paragraph>
     </Container>
   );
 };
 
 interface Props {
-  activity: IActivity;
+  activity?: IActivity;
   isLoading: boolean;
-  user: IUser;
 }

@@ -6,19 +6,19 @@ export const ProfileActivity = ({ children }) => {
   const router = useRouter();
   const { pathname, query } = router;
 
-  const { user } = query;
+  const { username } = query;
 
   return (
     <div>
       <nav>
         <ul>
-          <Link href={`/${user}`}>
+          <Link href={`/${username}`}>
             <Item active={pathname === "/[username]"}>Trilhas Criadas</Item>
           </Link>
-          <Link href={`/${user}/likes`}>
+          <Link href={`/${username}/likes`}>
             <Item active={pathname.includes("likes")}>Trilhas Curtidas</Item>
           </Link>
-          <Link href={`/${user}/activity`}>
+          <Link href={`/${username}/activity`}>
             <Item active={pathname.includes("activity")}>
               Atividade do Perfil
             </Item>
