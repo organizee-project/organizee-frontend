@@ -6,14 +6,16 @@ import { Select } from "components/select";
 import { BsChevronDown } from "react-icons/bs";
 import { useCategories } from "services/categories";
 import { RightButton, LeftButton } from "./styles";
-import Link from "next/link";
+import { useContext } from "react";
+import { UserContext } from "contexts/user";
 
 const sortByOptions = [
   { id: "popularity", name: "Popular" },
   { id: "date", name: "Recentes" },
 ];
 
-export const Filter = ({ handleSortBy }: Props) => {
+export const Filter = ({ handleSortBy, handleCategory }: Props) => {
+  const { user } = useContext(UserContext);
   const { data } = useCategories();
 
   return (
@@ -28,11 +30,20 @@ export const Filter = ({ handleSortBy }: Props) => {
         leftButton={<LeftButton>{"<"}</LeftButton>}
         maxWidth="1130px"
       >
+        {user && (
+          <div className="pointer" onClick={() => handleCategory("follows")}>
+            Inscrições
+          </div>
+        )}
         {data &&
           data.map((option) => (
-            <Link href={`/search/${option.slug}`} key={option.id}>
-              <div className="pointer">{option.name}</div>
-            </Link>
+            <div
+              className="pointer"
+              key={option.id}
+              onClick={() => handleCategory(option.slug)}
+            >
+              {option.name}
+            </div>
           ))}
       </Slider>
       <Select
@@ -48,4 +59,5 @@ export const Filter = ({ handleSortBy }: Props) => {
 
 interface Props {
   handleSortBy: (e: string) => void;
+  handleCategory: (e: string) => void;
 }

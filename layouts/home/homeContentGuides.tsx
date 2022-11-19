@@ -3,9 +3,9 @@ import { Guide } from "components/guide";
 import { useGuidesList } from "services/guides";
 import { Add } from "components/button";
 
-export const Guides = ({ sortBy }: Props) => {
+export const Guides = ({ sortBy, category }: Props) => {
   const { isLoading, isFetchingNextPage, data, fetchNextPage, hasNextPage } =
-    useGuidesList(sortBy);
+    useGuidesList(sortBy, category);
 
   return (
     <>
@@ -26,4 +26,5 @@ export const Guides = ({ sortBy }: Props) => {
 
 interface Props {
   sortBy: string;
+  category: string;
 }

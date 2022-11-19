@@ -8,9 +8,16 @@ export const useGuidesList = (sortBy = "", category = "") => {
     const sortBy = queryKey[1];
     const category = queryKey[2];
 
-    let url = `/guides?page=${pageParam}&size=12`;
+    let url = "";
+
+    if (category === "follows") {
+      url = "";
+    } else {
+      url = `/guides?page=${pageParam}&size=12`;
+      if (category != "") url += `&category=${category}`;
+    }
+
     if (sortBy != "") url += `&sortBy=${sortBy}`;
-    if (category != "") url += `&category=${category}`;
 
     const { data } = await api().get(url);
     return data as IPagination<IGuide>;

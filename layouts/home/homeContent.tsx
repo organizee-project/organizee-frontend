@@ -5,16 +5,21 @@ import { Guides } from "./homeContentGuides";
 
 export const HomeContent = () => {
   const [sort, setSort] = useState("popularity");
+  const [category, setCategory] = useState("");
 
-  const handleSortBy = (category: string) => {
-    setSort(category);
+  const handleSortBy = (sort: string) => {
+    setSort(sort);
+  };
+
+  const handleCategory = (category: string) => {
+    setCategory(category);
   };
 
   return (
     <>
-      <Filter handleSortBy={handleSortBy} />
+      <Filter handleSortBy={handleSortBy} handleCategory={handleCategory} />
       <Container>
-        <Guides sortBy={sort} />
+        <Guides sortBy={sort} category={category} />
       </Container>
     </>
   );
