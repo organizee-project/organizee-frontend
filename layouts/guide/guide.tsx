@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { Options } from "components/options";
 import { LayoutGuide } from "components/layouts";
@@ -23,8 +23,13 @@ import {
   useUnlikeGuide,
 } from "services/guides";
 import { GuideSuggestions } from "./guideSuggestions";
+import { UserContext } from "contexts/user";
+import { ModalLogin } from "components/modal";
 
 export const Guide = () => {
+  const { user } = useContext(UserContext);
+  const [showLoginMessage, setShowLoginMessage] = useState(false);
+
   const router = useRouter();
   const { slug } = router.query;
 
@@ -65,11 +70,22 @@ export const Guide = () => {
   }, [interactions]);
 
   const onClickSave = () => {
+    if (!user) {
+      setShowLoginMessage(true);
+      return;
+    }
+
     if (saved) unsaveGuide(slug);
     else saveGuide(slug);
   };
 
   const onClickLike = () => {
+    console.log(user);
+    if (!user) {
+      setShowLoginMessage(true);
+      return;
+    }
+
     if (liked) unlikeGuide(slug);
     else likeGuide(slug);
   };
@@ -79,7 +95,7 @@ export const Guide = () => {
   return (
     <>
       <LayoutGuide guide={data}>
-        <Flex width="136px" justifyContent="space-between">
+        <Flex width="80px" justifyContent="space-between">
           <div onClick={() => onClickLike()}>
             {liked ? (
               <BsHeartFill size="26px" className="pointer" />
@@ -94,7 +110,7 @@ export const Guide = () => {
               <BsBookmark size="26px" className="pointer" />
             )}
           </div>
-          <div style={{ position: "relative" }}>
+          {/* <div style={{ position: "relative" }}>
             <BsThreeDots
               size="26px"
               className="pointer"
@@ -107,11 +123,17 @@ export const Guide = () => {
                 { name: "Denunciar Criador", onClick: () => {} },
               ]}
             />
-          </div>
+          </div> */}
         </Flex>
       </LayoutGuide>
       <GuideSuggestions categories={data.categories} />
       <GuideComments comments={[]} />
+      <ModalLogin
+        onClose={() => {
+          setShowLoginMessage(false);
+        }}
+        open={showLoginMessage}
+      />
     </>
   );
 };

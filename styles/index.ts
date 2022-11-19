@@ -32,12 +32,14 @@ export const Flex = styled.div<GenericProps>`
   ${flexbox}
 `;
 
-export const Title = styled.h1<ColorProps>`
+export const Title = styled.h1<ColorProps & TypographyProps>`
   font-weight: 700;
   font-size: 48px;
   line-height: 72px;
 
   color: var(--${(props) => props.color});
+
+  ${typography}
 `;
 
 export const OpenDiv = styled.div<OpenProps>`
