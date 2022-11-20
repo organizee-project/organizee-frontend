@@ -16,7 +16,7 @@ const sortByOptions = [
 
 export const Filter = ({ handleSortBy, handleCategory }: Props) => {
   const { user } = useContext(UserContext);
-  const { data } = useCategories();
+  const { data, isLoading } = useCategories();
 
   return (
     <Container
@@ -30,7 +30,7 @@ export const Filter = ({ handleSortBy, handleCategory }: Props) => {
         leftButton={<LeftButton>{"<"}</LeftButton>}
         maxWidth="1130px"
       >
-        {user && (
+        {user && !isLoading && (
           <div className="pointer" onClick={() => handleCategory("follows")}>
             Inscrições
           </div>

@@ -3,27 +3,30 @@ import { api, apiWithToken } from "services/api";
 import { IPagination } from "types/general";
 import { IGuide } from "types/guide";
 
-export const useGuidesList = (sortBy = "", category = "") => {
+export const useGuidesList = (sortBy = "", category = "", props) => {
   const getGuidesList = async ({ pageParam = 0, queryKey }) => {
     const sortBy = queryKey[1];
     const category = queryKey[2];
 
     let url = "";
 
+    if (sortBy != "") url += `&sortBy=${sortBy}`;
+
     if (category === "follows") {
-      url = "";
-    } else {
-      url = `/guides?page=${pageParam}&size=12`;
-      if (category != "") url += `&category=${category}`;
+      url = `/guides/feed/following?page=${pageParam}&size=12` + url;
+      const { data } = await apiWithToken().get(url);
+      return data as IPagination<IGuide>;
     }
 
-    if (sortBy != "") url += `&sortBy=${sortBy}`;
+    url = `/guides?page=${pageParam}&size=12` + url;
+    if (category != "") url += `&category=${category}`;
 
     const { data } = await api().get(url);
     return data as IPagination<IGuide>;
   };
 
   return useInfiniteQuery(["home", sortBy, category], getGuidesList, {
+    ...props,
     getNextPageParam: (data) => {
       if (data.nextPage === data.currentPage) return undefined;
 

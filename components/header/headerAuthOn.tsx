@@ -13,8 +13,6 @@ export const HeaderAuthOn = () => {
   const router = useRouter();
   const [openOptions, setOpenOptions] = useState(false);
 
-  console.log(user);
-
   return (
     <div>
       <Link href="/add">

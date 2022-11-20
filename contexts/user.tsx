@@ -26,10 +26,12 @@ const UserContextProvider = (props) => {
   } = useCookie("token");
 
   const refreshToken = (func: () => void) => {
-    user.getIdToken().then(async (token) => {
-      if (getToken() !== token) setToken(token);
-      func();
-    });
+    if (user)
+      user.getIdToken().then(async (token) => {
+        if (getToken() !== token) setToken(token);
+        func();
+      });
+    else logout();
   };
 
   const register = (newUser: ICreateUser) => {
