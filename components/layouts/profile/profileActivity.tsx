@@ -18,6 +18,9 @@ export const ProfileActivity = ({ children }) => {
           <Link href={`/${username}/likes`}>
             <Item active={pathname.includes("likes")}>Trilhas Curtidas</Item>
           </Link>
+          <Link href={`/${username}/saved`}>
+            <Item active={pathname.includes("saved")}>Trilhas Salvas</Item>
+          </Link>
           <Link href={`/${username}/activity`}>
             <Item active={pathname.includes("activity")}>
               Atividade do Perfil

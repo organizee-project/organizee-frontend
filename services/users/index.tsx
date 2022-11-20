@@ -55,6 +55,22 @@ export const useUserLikesList = (username: string) => {
   });
 };
 
+export const useUserSavedList = (username: string) => {
+  const getLikesList = async ({ pageParam = 0 }) => {
+    const { data } = await apiWithToken().get(
+      `saved/guides?page=${pageParam}&size=12`
+    );
+    return data as IPagination<IGuide>;
+  };
+
+  return useInfiniteQuery(["userSavedList", username], getLikesList, {
+    getNextPageParam: (data) => {
+      if (data.nextPage === data.currentPage) return undefined;
+
+      return data.nextPage;
+    },
+  });
+};
 export const useUserInteractionsList = (username: string) => {
   const getInteractionsList = async ({ pageParam = 0, queryKey }) => {
     const username = queryKey[1];
