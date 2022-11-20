@@ -13,10 +13,6 @@ export const CommentsReadAnswer = ({ parent, newComments }: IProps) => {
       enabled: !!showAnswer,
     });
 
-  useEffect(() => {
-    console.log(newComments);
-  }, [newComments]);
-
   const onMessageClick = () => {
     if (!showAnswer) setShowAnswer(true);
     else fetchNextPage();
