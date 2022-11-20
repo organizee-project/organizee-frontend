@@ -6,6 +6,7 @@ import { Container } from "./styles";
 import { useEffect, useMemo, useState } from "react";
 import { IComment } from "types/guide";
 import { CommentsReadAnswer } from "./commentsReadAnswer";
+import { useDate } from "utils/hooks";
 
 const CommentWrite = dynamic(() =>
   import("./commentWrite").then((mod) => mod.CommentWrite)
@@ -17,19 +18,7 @@ export const CommentReply = ({ comment, showLogin }: IProps) => {
 
   const [comments, setComments] = useState([]);
 
-  const date = useMemo(() => {
-    const { createdAt } = comment;
-
-    const createdAtDate = new Date(createdAt);
-    const day = createdAtDate.getDate();
-    const month = createdAtDate.getMonth();
-    const year = createdAtDate.getFullYear();
-
-    const hour = createdAtDate.getHours();
-    const minutes = createdAtDate.getMinutes();
-
-    return `${day}/${month}/${year} - ${hour}h${minutes}`;
-  }, [comment]);
+  const date = useDate(comment.createdAt);
 
   const addReplyComment = (comment: IComment) => {
     setReply(false);

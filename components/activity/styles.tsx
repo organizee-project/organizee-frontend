@@ -7,9 +7,6 @@ export const Container = styled.article`
 
   background: var(--medium-white);
   border-radius: 8px;
-
-  display: flex;
-  align-items: center;
 `;
 
 export const LoadingImage = styled.div`

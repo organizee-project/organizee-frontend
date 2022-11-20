@@ -35,6 +35,7 @@ export enum EActivityType {
 
 export interface IActivity {
   date: string;
+  description: string;
   id: string;
   referenceId: string;
   type: EActivityType;
