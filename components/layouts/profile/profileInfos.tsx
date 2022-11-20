@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import Image from "next/image";
 
+import { UserContext } from "contexts/user";
 import { Button } from "components/button";
 import { RoundedPicture, Paragraph } from "styles";
 import { useFollowUser, useUnfollowUser } from "services/users";
@@ -11,6 +12,7 @@ import { InfoContainer } from "./styles";
 
 export const ProfileInfos = ({ user, isLogged }: Props) => {
   const [isFollowed, setIsFollowed] = useState(user.isFollowed);
+  const { refreshToken } = useContext(UserContext);
 
   const { mutate: follow } = useFollowUser({
     onSuccess: () => {
@@ -25,11 +27,13 @@ export const ProfileInfos = ({ user, isLogged }: Props) => {
   });
 
   const onClickFollow = () => {
-    if (isFollowed) {
-      unfollow(user.username);
-    } else {
-      follow(user.username);
-    }
+    refreshToken(() => {
+      if (isFollowed) {
+        unfollow(user.username);
+      } else {
+        follow(user.username);
+      }
+    });
   };
 
   return (

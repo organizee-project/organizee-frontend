@@ -19,7 +19,7 @@ export const getUserInfos = async (username: string) => {
   return data as IResult<IUserProfile>;
 };
 
-export const useUserGuidesList = (username: string) => {
+export const useUserGuidesList = (username: string, props) => {
   const getUserGuidesList = async ({ pageParam = 0, queryKey }) => {
     const username = queryKey[1];
     const { data } = await apiWithToken().get(
@@ -29,6 +29,7 @@ export const useUserGuidesList = (username: string) => {
   };
 
   return useInfiniteQuery(["userGuides", username], getUserGuidesList, {
+    ...props,
     getNextPageParam: (data) => {
       if (data.nextPage === data.currentPage) return undefined;
 
@@ -37,7 +38,7 @@ export const useUserGuidesList = (username: string) => {
   });
 };
 
-export const useUserLikesList = (username: string) => {
+export const useUserLikesList = (username: string, props) => {
   const getLikesList = async ({ pageParam = 0, queryKey }) => {
     const username = queryKey[1];
     const { data } = await apiWithToken().get(
@@ -47,6 +48,7 @@ export const useUserLikesList = (username: string) => {
   };
 
   return useInfiniteQuery(["userLikes", username], getLikesList, {
+    ...props,
     getNextPageParam: (data) => {
       if (data.nextPage === data.currentPage) return undefined;
 
@@ -55,7 +57,7 @@ export const useUserLikesList = (username: string) => {
   });
 };
 
-export const useUserSavedList = (username: string) => {
+export const useUserSavedList = (username: string, props) => {
   const getLikesList = async ({ pageParam = 0 }) => {
     const { data } = await apiWithToken().get(
       `saved/guides?page=${pageParam}&size=12`
@@ -64,6 +66,7 @@ export const useUserSavedList = (username: string) => {
   };
 
   return useInfiniteQuery(["userSavedList", username], getLikesList, {
+    ...props,
     getNextPageParam: (data) => {
       if (data.nextPage === data.currentPage) return undefined;
 
@@ -71,7 +74,7 @@ export const useUserSavedList = (username: string) => {
     },
   });
 };
-export const useUserInteractionsList = (username: string) => {
+export const useUserInteractionsList = (username: string, props) => {
   const getInteractionsList = async ({ pageParam = 0, queryKey }) => {
     const username = queryKey[1];
     const { data } = await apiWithToken().get(
@@ -81,6 +84,7 @@ export const useUserInteractionsList = (username: string) => {
   };
 
   return useInfiniteQuery(["userLikes", username], getInteractionsList, {
+    ...props,
     getNextPageParam: (data) => {
       if (data.nextPage === data.currentPage) return undefined;
 
@@ -89,7 +93,7 @@ export const useUserInteractionsList = (username: string) => {
   });
 };
 
-export const useUserActivitiesList = (username: string) => {
+export const useUserActivitiesList = (username: string, props) => {
   const getActivitiesList = async ({ pageParam = 0, queryKey }) => {
     const username = queryKey[1];
     const { data } = await apiWithToken().get(
@@ -99,6 +103,7 @@ export const useUserActivitiesList = (username: string) => {
   };
 
   return useInfiniteQuery(["userActivities", username], getActivitiesList, {
+    ...props,
     getNextPageParam: (data) => {
       if (data.nextPage === data.currentPage) return undefined;
 
