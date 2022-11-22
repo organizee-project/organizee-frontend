@@ -3,6 +3,7 @@ import {
   space,
   layout,
   color,
+  position,
   flexbox,
   typography,
   SpaceProps,
@@ -10,6 +11,7 @@ import {
   FlexboxProps,
   ColorProps,
   TypographyProps,
+  PositionProps,
 } from "styled-system";
 
 export const Container = styled.div<ContainerProps>`
@@ -30,6 +32,7 @@ export const Flex = styled.div<GenericProps>`
   ${layout}
   ${space}
   ${flexbox}
+  ${position}
 `;
 
 export const Title = styled.h1<ColorProps & TypographyProps>`
@@ -91,7 +94,10 @@ export const Divider = styled.div`
   width: 100%;
 `;
 
-export type GenericProps = SpaceProps & FlexboxProps & LayoutProps;
+export type GenericProps = SpaceProps &
+  FlexboxProps &
+  LayoutProps &
+  PositionProps;
 
 export type OpenProps = {
   open: boolean;

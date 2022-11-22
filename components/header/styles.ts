@@ -82,6 +82,10 @@ export const LinkText = styled.span<Link>`
   }
 `;
 
+export const Form = styled.form`
+  position: relative;
+`;
+
 type Link = {
   active?: boolean;
 };
