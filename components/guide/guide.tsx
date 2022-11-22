@@ -16,7 +16,7 @@ export const Guide = ({ guide, showType, isLoading }: PropsTypes) => {
     );
 
   return (
-    <Link href={`/${guide.user.username}/${guide.slug}`}>
+    <Link href={`/${guide.slug}`}>
       <Container className="pointer">
         <Image
           src={

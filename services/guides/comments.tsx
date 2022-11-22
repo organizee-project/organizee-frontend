@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useMutation, useQuery } from "react-query";
+import { useInfiniteQuery, useMutation } from "react-query";
 import { api, apiWithToken } from "services/api";
 import { IPagination } from "types/general";
 import { IComment } from "types/guide";

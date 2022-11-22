@@ -1,5 +1,6 @@
 import { useContext, useMemo } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import { Container, LoadingImage } from "./styles";
 import { RoundedPicture, Paragraph, Span, Flex } from "styles";
@@ -17,16 +18,12 @@ export const Activity = ({ activity, isLoading }: Props) => {
   const text = useMemo(() => {
     if (isLoading) return "";
 
-    if (activity.type === EActivityType.Like)
-      return " curtiu a trilha " + activity.description;
-    if (activity.type === EActivityType.Save)
-      return " salvou a trilha " + activity.description;
-    if (activity.type === EActivityType.Comment)
-      return " comentou na trilha " + activity.description;
+    if (activity.type === EActivityType.Like) return " curtiu a trilha ";
+    if (activity.type === EActivityType.Save) return " salvou a trilha ";
+    if (activity.type === EActivityType.Comment) return " comentou na trilha ";
     if (activity.type === EActivityType.AddGuide)
-      return " adicionou uma nova trilha: " + activity.description;
-    if (activity.type === EActivityType.Follow)
-      return " seguiu o usuário " + activity.description;
+      return " adicionou uma nova trilha: ";
+    if (activity.type === EActivityType.Follow) return " seguiu o usuário ";
 
     return "entrou no aplicativo";
   }, [activity]);
@@ -54,8 +51,11 @@ export const Activity = ({ activity, isLoading }: Props) => {
           />
         </RoundedPicture>
         <Paragraph>
-          <Span fontWeight="bold">{username}</Span>
+          {username}
           {text}
+          <Link href={`/${activity.referenceId}`}>
+            <Span>{activity.description}</Span>
+          </Link>
         </Paragraph>
       </Flex>
 

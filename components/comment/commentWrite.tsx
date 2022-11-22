@@ -53,7 +53,7 @@ export const CommentWrite: React.FC<IProps> = ({
       />
       <Flex justifyContent="flex-end">
         <Button variant="blue" mr="0px" onClick={() => sendComment()}>
-          Responder
+          Enviar
         </Button>
       </Flex>
     </Container>

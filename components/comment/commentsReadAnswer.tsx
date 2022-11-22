@@ -34,16 +34,19 @@ export const CommentsReadAnswer = ({ parent, newComments }: IProps) => {
           )}
       </Flex>
 
-      {isLoading || (isFetchingNextPage && <Loader />)}
-
-      {((!isLoading && !isFetchingNextPage && hasNextPage) || !showAnswer) && (
-        <Paragraph
-          textAlign="center"
-          className="pointer"
-          onClick={() => onMessageClick()}
-        >
-          Veja as respostas deste comentário
-        </Paragraph>
+      {isLoading || isFetchingNextPage ? (
+        <Loader />
+      ) : (
+        parent.commentsCount > 0 &&
+        (hasNextPage || !showAnswer) && (
+          <Paragraph
+            textAlign="center"
+            className="pointer"
+            onClick={() => onMessageClick()}
+          >
+            Veja as respostas deste comentário
+          </Paragraph>
+        )
       )}
     </>
   );

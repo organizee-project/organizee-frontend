@@ -12,16 +12,16 @@ export const ProfileActivity = ({ children }) => {
     <div>
       <nav>
         <ul>
-          <Link href={`/${username}`}>
+          <Link href={`/user/${username}`}>
             <Item active={pathname === "/[username]"}>Trilhas Criadas</Item>
           </Link>
-          <Link href={`/${username}/likes`}>
+          <Link href={`/user/${username}/likes`}>
             <Item active={pathname.includes("likes")}>Trilhas Curtidas</Item>
           </Link>
-          <Link href={`/${username}/saved`}>
+          <Link href={`/user/${username}/saved`}>
             <Item active={pathname.includes("saved")}>Trilhas Salvas</Item>
           </Link>
-          <Link href={`/${username}/activity`}>
+          <Link href={`/user/${username}/activity`}>
             <Item active={pathname.includes("activity")}>
               Atividade do Perfil
             </Item>

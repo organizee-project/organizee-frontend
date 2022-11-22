@@ -14,7 +14,7 @@ export const LayoutHeader = ({ guide, children }: Props) => {
 
           <Text type={EText.author}>
             Por{" "}
-            <Link href={`/${guide.user.username}`} className="link">
+            <Link href={`/user/${guide.user.username}`} className="link">
               {guide.user.name ?? guide.user.username}
             </Link>
           </Text>
