@@ -28,6 +28,12 @@ export const Activity = ({ activity, isLoading }: Props) => {
     return "entrou no aplicativo";
   }, [activity]);
 
+  const url = useMemo(() => {
+    if (isLoading) return "";
+    if (activity.type === EActivityType.Follow) return "/user";
+    return "";
+  }, [activity]);
+
   if (isLoading)
     return (
       <Container>
@@ -53,7 +59,7 @@ export const Activity = ({ activity, isLoading }: Props) => {
         <Paragraph>
           {username}
           {text}
-          <Link href={`/${activity.referenceId}`}>
+          <Link href={`${url}/${activity.referenceId}`}>
             <Span fontWeight="bold" className="pointer">
               {activity.description}
             </Span>

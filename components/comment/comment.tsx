@@ -1,6 +1,7 @@
 import { Flex, Paragraph, RoundedPicture } from "styles";
 
 import Image from "next/image";
+import Link from "next/link";
 
 export const Comment = ({ user }) => {
   return (
@@ -16,9 +17,11 @@ export const Comment = ({ user }) => {
           layout="fill"
         />
       </RoundedPicture>
-      <Paragraph ml="12px" fontWeight="medium" mb="0px">
-        {user ? "@" + user.username : "Faça o login para comentar"}
-      </Paragraph>
+      <Link href={user ? `/user/${user.username}` : "/signin"}>
+        <Paragraph ml="12px" fontWeight="medium" mb="0px" className="pointer">
+          {user ? "@" + user.username : "Faça o login para comentar"}
+        </Paragraph>
+      </Link>
     </Flex>
   );
 };
