@@ -1,13 +1,9 @@
-import { AddGuide } from "layouts/add";
+import { AddGuide } from "layouts/user/add";
 import { ReactElement } from "react";
 import { LayoutHeader } from "components/layouts";
 
 const Page = () => {
-  return (
-    <>
-      <AddGuide />
-    </>
-  );
+  return <AddGuide />;
 };
 
 Page.getLayout = function getLayout(page: ReactElement) {

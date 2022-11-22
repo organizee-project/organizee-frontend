@@ -3,7 +3,7 @@ import { api, apiWithToken } from "services/api";
 import { IPagination } from "types/general";
 import { IGuide } from "types/guide";
 
-export const useGuidesList = (sortBy = "", category = "", props) => {
+export const useGuidesList = (sortBy = "", category = "", props = {}) => {
   const getGuidesList = async ({ pageParam = 0, queryKey }) => {
     const sortBy = queryKey[1];
     const category = queryKey[2];

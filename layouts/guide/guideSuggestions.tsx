@@ -5,7 +5,7 @@ import { Container } from "styles";
 import { Text, Button } from "./styles";
 
 export const GuideSuggestions = ({ categories }) => {
-  const { data } = useGuidesList("popularity", categories[0].slug);
+  const { data } = useGuidesList("popularity", categories[0]?.slug);
 
   return (
     <Container mt="100px" mb="100px">
