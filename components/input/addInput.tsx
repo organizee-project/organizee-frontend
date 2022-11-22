@@ -14,7 +14,6 @@ export const AddInput = ({
 
   const onClickAdd = () => {
     if (text.trim() === "") return;
-
     onClickItem(text);
     setText("");
   };
@@ -22,7 +21,7 @@ export const AddInput = ({
   useEffect(() => {
     setItems(
       originalItems.filter(
-        (item) => !selectedItems.includes(item) && item.name.includes(text)
+        (item) => !selectedItems.includes(item.id) && item.name.includes(text)
       )
     );
   }, [selectedItems, text, originalItems]);

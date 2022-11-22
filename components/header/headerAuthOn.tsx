@@ -15,7 +15,7 @@ export const HeaderAuthOn = () => {
 
   return (
     <div>
-      <Link href="/add">
+      <Link href="/user/add">
         <Button>
           <BsPlus size="24px" />
         </Button>

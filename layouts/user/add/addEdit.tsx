@@ -32,7 +32,8 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
     imgUrl: "",
   });
 
-  const onClickTag = (item: ICategory) => {
+  const onClickTag = (item: ICategory | string) => {
+    if (typeof item === "string") return;
     const categories = [...guide.categories, item.id];
 
     setGuide({ ...guide, categories });
