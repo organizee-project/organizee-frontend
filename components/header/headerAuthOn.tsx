@@ -29,7 +29,7 @@ export const HeaderAuthOn = () => {
             {
               name: "Meu Perfil",
               onClick: () => {
-                router.push("/" + user.username);
+                router.push("/user/" + user.username);
               },
             },
             {

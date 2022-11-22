@@ -54,7 +54,9 @@ export const Activity = ({ activity, isLoading }: Props) => {
           {username}
           {text}
           <Link href={`/${activity.referenceId}`}>
-            <Span>{activity.description}</Span>
+            <Span fontWeight="bold" className="pointer">
+              {activity.description}
+            </Span>
           </Link>
         </Paragraph>
       </Flex>

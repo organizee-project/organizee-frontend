@@ -13,7 +13,9 @@ export const ProfileActivity = ({ children }) => {
       <nav>
         <ul>
           <Link href={`/user/${username}`}>
-            <Item active={pathname === "/[username]"}>Trilhas Criadas</Item>
+            <Item active={pathname === "/user/[username]"}>
+              Trilhas Criadas
+            </Item>
           </Link>
           <Link href={`/user/${username}/likes`}>
             <Item active={pathname.includes("likes")}>Trilhas Curtidas</Item>
