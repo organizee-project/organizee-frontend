@@ -26,7 +26,7 @@ export const GuideHeader = ({ slug, showLogin }: IProps) => {
   const { user, refreshToken } = useContext(UserContext);
 
   const { data: interactions } = useGuideInteractions(slug as string, {
-    enabled: !!slug && !!user && !!token,
+    enabled: !!slug && !!token,
   });
 
   const { mutate: saveGuide } = useSaveGuide({
@@ -52,9 +52,10 @@ export const GuideHeader = ({ slug, showLogin }: IProps) => {
   });
 
   useEffect(() => {
-    refreshToken(() => {
-      setToken(true);
-    });
+    if (user)
+      refreshToken(() => {
+        setToken(true);
+      });
   }, []);
 
   useEffect(() => {

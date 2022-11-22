@@ -14,7 +14,7 @@ const sortByOptions = [
   { id: "date", name: "Recentes" },
 ];
 
-export const Filter = ({ handleSortBy, handleCategory }: Props) => {
+export const Filter = ({ handleSortBy, handleCategory, category }: Props) => {
   const { user } = useContext(UserContext);
   const { data, isLoading } = useCategories();
 
@@ -31,14 +31,17 @@ export const Filter = ({ handleSortBy, handleCategory }: Props) => {
         maxWidth="1130px"
       >
         {user && !isLoading && (
-          <div className="pointer" onClick={() => handleCategory("follows")}>
+          <div
+            className={"pointer " + (category === "follows" ? "bold" : "")}
+            onClick={() => handleCategory("follows")}
+          >
             Inscrições
           </div>
         )}
         {data &&
           data.map((option) => (
             <div
-              className="pointer"
+              className={"pointer " + (category === option.slug ? "bold" : "")}
               key={option.id}
               onClick={() => handleCategory(option.slug)}
             >
@@ -60,4 +63,5 @@ export const Filter = ({ handleSortBy, handleCategory }: Props) => {
 interface Props {
   handleSortBy: (e: string) => void;
   handleCategory: (e: string) => void;
+  category: string;
 }

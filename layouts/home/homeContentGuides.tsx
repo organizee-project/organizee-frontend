@@ -15,11 +15,11 @@ export const Guides = ({ sortBy, category }: Props) => {
     });
 
   useEffect(() => {
-    if (user)
+    if (user && category === "follows")
       refreshToken(() => {
         setToken(true);
       });
-  }, []);
+  }, [category]);
 
   return (
     <>

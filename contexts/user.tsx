@@ -31,7 +31,6 @@ const UserContextProvider = (props) => {
         if (getToken() !== token) setToken(token);
         func();
       });
-    else logout();
   };
 
   const register = (newUser: ICreateUser) => {

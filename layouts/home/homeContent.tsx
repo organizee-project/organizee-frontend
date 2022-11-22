@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { UserContext } from "contexts/user";
+import { useContext, useEffect, useState } from "react";
 import { Container } from "styles";
 import { Filter } from "./homeContentFilter";
 import { Guides } from "./homeContentGuides";
 
 export const HomeContent = () => {
+  const { user } = useContext(UserContext);
+
   const [sort, setSort] = useState("popularity");
   const [category, setCategory] = useState("");
 
@@ -15,9 +18,17 @@ export const HomeContent = () => {
     setCategory(category);
   };
 
+  useEffect(() => {
+    if (!user) setCategory("");
+  }, [user]);
+
   return (
     <>
-      <Filter handleSortBy={handleSortBy} handleCategory={handleCategory} />
+      <Filter
+        handleSortBy={handleSortBy}
+        handleCategory={handleCategory}
+        category={category}
+      />
       <Container>
         <Guides sortBy={sort} category={category} />
       </Container>

@@ -55,6 +55,10 @@ export const GlobalStyles = createGlobalStyle`
     -moz-animation: Gradient 2.25s ease infinite;
     animation: Gradient 2.25s ease infinite;
   }
+
+  .bold{
+    font-weight: bold;
+  }
   
   @keyframes Gradient {
     0% {
