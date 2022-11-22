@@ -5,34 +5,29 @@ import Image from "next/image";
 import { UserContext } from "contexts/user";
 import { Button } from "components/button";
 import { RoundedPicture, Paragraph } from "styles";
-import { useFollowUser, useUnfollowUser } from "services/users";
+import { useFollowUser } from "services/users";
 import { IUserProfile } from "types/user";
 
 import { InfoContainer } from "./styles";
+
+import { toast } from "react-toastify";
 
 export const ProfileInfos = ({ user, isLogged }: Props) => {
   const [isFollowed, setIsFollowed] = useState(user.isFollowed);
   const { refreshToken } = useContext(UserContext);
 
-  const { mutate: follow } = useFollowUser({
+  const { mutate } = useFollowUser(isFollowed, {
     onSuccess: () => {
-      setIsFollowed(true);
-    },
-  });
+      if (isFollowed) toast.success("Você deixou de seguir @" + user.username);
+      else toast.success("Você está seguindo @" + user.username);
 
-  const { mutate: unfollow } = useUnfollowUser({
-    onSuccess: () => {
-      setIsFollowed(false);
+      setIsFollowed(!isFollowed);
     },
   });
 
   const onClickFollow = () => {
     refreshToken(() => {
-      if (isFollowed) {
-        unfollow(user.username);
-      } else {
-        follow(user.username);
-      }
+      mutate(user.username);
     });
   };
 

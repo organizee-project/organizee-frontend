@@ -112,20 +112,19 @@ export const useUserActivitiesList = (username: string, props) => {
   });
 };
 
-export const useFollowUser = (props) => {
-  const followUser = async (username) => {
-    await apiWithToken().post(`/users/${username}/follow`);
-    return;
-  };
+export const useFollowUser = (isFollowed: boolean, props) => {
+  let req: (username: any) => Promise<void>;
+  if (!isFollowed) {
+    req = async (username) => {
+      await apiWithToken().post(`/users/${username}/follow`);
+      return;
+    };
+  } else {
+    req = async (username) => {
+      await apiWithToken().delete(`/users/${username}/follow`);
+      return;
+    };
+  }
 
-  return useMutation(followUser, props);
-};
-
-export const useUnfollowUser = (props) => {
-  const unfollowUser = async (username) => {
-    await apiWithToken().delete(`/users/${username}/follow`);
-    return;
-  };
-
-  return useMutation(unfollowUser, props);
+  return useMutation(req, props);
 };
