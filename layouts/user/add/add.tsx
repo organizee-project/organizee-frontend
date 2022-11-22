@@ -1,6 +1,7 @@
+import { UserContext } from "contexts/user";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useCreateGuide } from "services/guides";
 import { IPostGuide } from "types/guide";
 
@@ -24,6 +25,7 @@ export const AddGuide = () => {
     references: [],
   });
 
+  const { refreshToken } = useContext(UserContext);
   const { mutate } = useCreateGuide({
     onSuccess: ({ slug }) => {
       router.push("/" + slug);
@@ -31,8 +33,9 @@ export const AddGuide = () => {
   });
 
   const onSave = (newGuide) => {
-    console.log(newGuide);
-    mutate(newGuide);
+    refreshToken(() => {
+      mutate(newGuide);
+    });
   };
 
   return (
