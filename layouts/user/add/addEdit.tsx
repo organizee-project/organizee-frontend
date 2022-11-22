@@ -77,7 +77,6 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
   const prepareGuide = useCallback(() => {
     //TO-DO: mensagem de erro caso a imagem nao tenha post
     if (!poster) return;
-
     refreshToken(async () => {
       const newGuide = await saveGuideImages(guide, poster);
       newGuide.content = JSON.stringify(newGuide.content);

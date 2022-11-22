@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useCreateGuide } from "services/guides";
 import { IPostGuide } from "types/guide";
@@ -10,6 +11,7 @@ const AddGuideView = dynamic(() =>
 );
 
 export const AddGuide = () => {
+  const router = useRouter();
   const [edit, setEdit] = useState(true);
   const [guide, setGuide] = useState<IPostGuide>({
     title: "",
@@ -23,12 +25,13 @@ export const AddGuide = () => {
   });
 
   const { mutate } = useCreateGuide({
-    onSuccess: (data) => {
-      console.log(data);
+    onSuccess: ({ slug }) => {
+      router.push("/" + slug);
     },
   });
 
   const onSave = (newGuide) => {
+    console.log(newGuide);
     mutate(newGuide);
   };
 

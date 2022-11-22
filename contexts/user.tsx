@@ -38,7 +38,7 @@ const UserContextProvider = (props) => {
       setToken(token);
       const data = await createUser(newUser);
       setUser(data);
-      router.push("/");
+      router.back();
     });
   };
 
@@ -47,15 +47,15 @@ const UserContextProvider = (props) => {
       setToken(token);
       const data = await getUser();
       setUser(data.user);
-      router.push("/");
+      router.back();
     });
   };
 
   const logout = () => {
+    router.push("/");
     firebaseLogout();
     removeUser();
     removeToken();
-    router.push("/");
   };
 
   return (
