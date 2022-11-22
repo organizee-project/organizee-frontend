@@ -14,6 +14,7 @@ export const GuideSuggestions = ({ categories }) => {
         rightButton={<Button>{">"}</Button>}
         leftButton={<Button>{"<"}</Button>}
         width="305px"
+        jump={300}
       >
         {data &&
           data.pages.map((page) =>

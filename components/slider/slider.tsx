@@ -28,12 +28,12 @@ export const Slider = ({
   }, [children]);
 
   const handleRight = () => () => {
-    setScroll({ ...scroll, available: scroll.available + 20 });
+    setScroll({ ...scroll, available: scroll.available + jump });
     setTranslate(translate - jump);
   };
 
   const handleLeft = () => () => {
-    setScroll({ ...scroll, available: scroll.available - 20 });
+    setScroll({ ...scroll, available: scroll.available - jump });
     setTranslate(translate + jump);
   };
 
