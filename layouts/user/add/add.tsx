@@ -5,6 +5,8 @@ import { useContext, useState } from "react";
 import { useCreateGuide } from "services/guides";
 import { IPostGuide } from "types/guide";
 
+import { toast } from "react-toastify";
+
 import AddGuideEdit from "./addEdit";
 
 const AddGuideView = dynamic(() =>
@@ -28,11 +30,12 @@ export const AddGuide = () => {
   const { refreshToken } = useContext(UserContext);
   const { mutate } = useCreateGuide({
     onSuccess: ({ slug }) => {
+      toast.success("Trilha criada com sucesso!");
       router.push("/" + slug);
     },
   });
 
-  const onSave = (newGuide) => {
+  const onSave = (newGuide: IPostGuide) => {
     refreshToken(() => {
       mutate(newGuide);
     });

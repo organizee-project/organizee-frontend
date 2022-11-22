@@ -6,13 +6,15 @@ import { ContainerEdit, Label, Input, Area, Item } from "./styles";
 import { BsX } from "react-icons/bs";
 import { AddInput } from "components/input";
 import { Button } from "components/button";
-import { Flex } from "styles";
+import { Flex, Span } from "styles";
 import { FileInput } from "components/fileInput";
 import { Check } from "components/check";
 import { ICategory, IPostGuide, IFile } from "types/guide";
 import { useCategories } from "services/categories";
 import { UserContext } from "contexts/user";
 import { saveGuideImages } from "utils/guide";
+
+import { toast } from "react-toastify";
 
 const AddGuideEditor = dynamic(() => import("./addEditEditor"), { ssr: false });
 
@@ -75,8 +77,21 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
   };
 
   const prepareGuide = useCallback(() => {
-    //TO-DO: mensagem de erro caso a imagem nao tenha post
-    if (!poster) return;
+    if (guide.title === "") {
+      toast.error("Preencha o título");
+      return;
+    }
+
+    if (guide.categories.length === 0) {
+      toast.error("Escolha ao menos uma categoria");
+      return;
+    }
+
+    if (!poster) {
+      toast.error("Escolha uma capa para a trilha");
+      return;
+    }
+
     refreshToken(async () => {
       const newGuide = await saveGuideImages(guide, poster);
       newGuide.content = JSON.stringify(newGuide.content);
@@ -99,14 +114,18 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
   return (
     <ContainerEdit open={show}>
       <Area area="title">
-        <Label>Título da trilha</Label>
+        <Label>
+          Título da trilha <Span color="var(--pink)">*</Span>
+        </Label>
         <Input
           type="text"
           onChange={({ target }) => setGuide({ ...guide, title: target.value })}
         />
       </Area>
       <Area area="private">
-        <Label>Privar trilha</Label>
+        <Label>
+          Privar trilha <Span color="var(--pink)">*</Span>
+        </Label>
         <Flex justifyContent="flex-start">
           <Check
             text="Sim"
@@ -137,7 +156,9 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
         </Flex>
       </Area>
       <Area area="tags">
-        <Label>Categorias</Label>
+        <Label>
+          Categorias <Span color="var(--pink)">*</Span>
+        </Label>
         <AddInput
           onClickItem={onClickTag}
           selectedItems={guide.categories}
@@ -168,7 +189,9 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
         </Flex>
       </Area>
       <Area area="img">
-        <Label>Capa da trilha</Label>
+        <Label>
+          Capa da trilha <Span color="var(--pink)">*</Span>
+        </Label>
         <FileInput onChangeFile={(imgUrl) => onImgChange(imgUrl)} />
       </Area>
       <Area area="refs" big={true}>
@@ -190,7 +213,9 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
         </Flex>
       </Area>
       <Area area="editor">
-        <Label>Conteúdo</Label>
+        <Label>
+          Conteúdo <Span color="var(--pink)">*</Span>
+        </Label>
         <AddGuideEditor setContent={onContentChange} />
       </Area>
     </ContainerEdit>

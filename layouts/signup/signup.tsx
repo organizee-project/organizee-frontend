@@ -4,11 +4,7 @@ import { LoginStyle } from "styles/global";
 import { Form, Field } from "components/form";
 import { Button } from "components/button";
 
-import {
-  auth,
-  registerWithEmailAndPassword,
-  signInWithGoogle,
-} from "utils/firebase";
+import { registerWithEmailAndPassword, signInWithGoogle } from "utils/firebase";
 import { UserContext } from "contexts/user";
 
 export const SignUp = () => {
