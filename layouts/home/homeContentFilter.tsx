@@ -29,6 +29,7 @@ export const Filter = ({ handleSortBy, handleCategory, category }: Props) => {
         rightButton={<RightButton>{">"}</RightButton>}
         leftButton={<LeftButton>{"<"}</LeftButton>}
         maxWidth="1130px"
+        jump={20}
       >
         {user && !isLoading && (
           <div

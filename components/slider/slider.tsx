@@ -18,7 +18,11 @@ export const Slider = ({
 
   useEffect(() => {
     const inner = document.getElementById("inner");
-    const maxScroll = (inner.offsetWidth + 20) * inner.childNodes.length - 20;
+    let maxScroll = Array.from(inner.children).reduce(
+      (acc, cur) => acc + (cur as HTMLElement).offsetWidth + 20,
+      -20
+    );
+
     let available = document.getElementById("slider").offsetWidth;
 
     if (maxWidth !== "100%")
