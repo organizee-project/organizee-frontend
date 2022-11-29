@@ -35,11 +35,7 @@ export const ProfileInfos = ({ user, isLogged }: Props) => {
     <InfoContainer>
       <RoundedPicture height="284px" width="284px">
         <Image
-          src={
-            user.imgUrl != ""
-              ? user.imgUrl
-              : "https://images.unsplash.com/photo-1508138221679-760a23a2285b"
-          }
+          src={user.imgUrl != "" ? user.imgUrl : "/images/icon-organizze.png"}
           layout="fill"
           alt="foto de perfil"
         />

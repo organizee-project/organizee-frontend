@@ -3,13 +3,17 @@ import { useRouter } from "next/router";
 
 import { UserContext } from "contexts/user";
 import { LayoutGuide } from "components/layouts";
-import { ModalLogin } from "components/modal";
 
 import { useGuideBySlug } from "services/guides";
 
 import { GuideHeader } from "./guideHeader";
 import { GuideComments } from "./guideComments";
 import { GuideSuggestions } from "./guideSuggestions";
+import dynamic from "next/dynamic";
+
+const ModalLogin = dynamic(() =>
+  import("components/modal").then((mod) => mod.ModalLogin)
+);
 
 export const Guide = () => {
   const { user } = useContext(UserContext);
@@ -40,12 +44,14 @@ export const Guide = () => {
       </LayoutGuide>
       <GuideSuggestions categories={data.categories} />
       <GuideComments showLogin={showLogin} />
-      <ModalLogin
-        onClose={() => {
-          setShowLoginMessage(false);
-        }}
-        open={showLoginMessage}
-      />
+      {showLoginMessage && (
+        <ModalLogin
+          onClose={() => {
+            setShowLoginMessage(false);
+          }}
+          open={showLoginMessage}
+        />
+      )}
     </>
   );
 };
