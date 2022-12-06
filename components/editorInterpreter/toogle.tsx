@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { BsChevronRight, BsChevronDown } from "react-icons/bs";
-import { EText } from "common/types/post";
+import { EText } from "types/post";
 
 import { StyledToogle } from "./styles";
 import { Text } from "./text";

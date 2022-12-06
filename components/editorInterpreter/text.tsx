@@ -1,4 +1,4 @@
-import { EText } from "common/types/post";
+import { EText } from "types/post";
 import { Paragraph } from "styles";
 import { Title, Author } from "./styles";
 

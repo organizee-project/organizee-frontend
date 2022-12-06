@@ -7,6 +7,7 @@ import { Flex, Container } from "styles";
 
 import { ProfileActivity } from "./profileActivity";
 import { ProfileInfos } from "./profileInfos";
+import { ProfileEdit } from "./profileEdit";
 import { getUserInfos } from "services/users";
 import { UserContext } from "contexts/user";
 
@@ -42,7 +43,11 @@ export const LayoutProfile = ({ children }) => {
   return (
     <Container paddingTop="35px">
       <Flex justifyContent="flex-start">
-        <ProfileInfos user={localUser} isLogged={isLogged} />
+        {!isLogged ? (
+          <ProfileInfos user={localUser} />
+        ) : (
+          <ProfileEdit user={localUser} />
+        )}
         <ProfileActivity>{children}</ProfileActivity>
       </Flex>
     </Container>

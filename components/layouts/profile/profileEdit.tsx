@@ -12,24 +12,8 @@ import { InfoContainer } from "./styles";
 
 import { toast } from "react-toastify";
 
-export const ProfileInfos = ({ user }: Props) => {
-  const [isFollowed, setIsFollowed] = useState(user.isFollowed);
-  const { refreshToken } = useContext(UserContext);
-
-  const { mutate } = useFollowUser(isFollowed, {
-    onSuccess: () => {
-      if (isFollowed) toast.success("Você deixou de seguir @" + user.username);
-      else toast.success("Você está seguindo @" + user.username);
-
-      setIsFollowed(!isFollowed);
-    },
-  });
-
-  const onClickFollow = () => {
-    refreshToken(() => {
-      mutate(user.username);
-    });
-  };
+export const ProfileEdit = ({ user }: Props) => {
+  const [edit, setEdit] = useState(false);
 
   return (
     <InfoContainer>
@@ -43,8 +27,8 @@ export const ProfileInfos = ({ user }: Props) => {
 
       <h1>{user.fullName}</h1>
       <Paragraph mb="20px">@{user.username}</Paragraph>
-      <Button width="100%" onClick={() => onClickFollow()}>
-        {isFollowed ? "Seguindo" : "Seguir"}
+      <Button width="100%" onClick={() => setEdit(true)}>
+        Editar
       </Button>
       <Paragraph mt="24px">{user.description}</Paragraph>
     </InfoContainer>

@@ -1,4 +1,4 @@
-import { EText } from "common/types/post";
+import { EText } from "types/post";
 import { Text } from "components/editorInterpreter";
 import Link from "next/link";
 import { Flex } from "styles";
