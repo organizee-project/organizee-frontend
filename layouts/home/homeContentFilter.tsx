@@ -31,12 +31,12 @@ export const Filter = ({ handleSortBy, handleCategory, category }: Props) => {
         maxWidth="1130px"
         jump={20}
       >
-        {user && !isLoading && (
+        {user && !isLoading && user.following.length > 0 && (
           <div
             className={"pointer " + (category === "follows" ? "bold" : "")}
             onClick={() => handleCategory("follows")}
           >
-            Inscrições
+            Seguindo
           </div>
         )}
         {data &&
