@@ -67,12 +67,18 @@ export const RoundedPicture = styled(Picture)`
   }
 `;
 
-export const Title3 = styled.h3`
+export const Title3 = styled.h3<ParagraphProps>`
   color: var(--darker-gray);
   font-size: 22px;
   font-weight: 500;
 
   margin-bottom: 8px;
+
+  ${layout}
+  ${space}
+  ${flexbox}
+  ${typography}
+  ${color}
 `;
 
 export const Paragraph = styled.p<ParagraphProps>`

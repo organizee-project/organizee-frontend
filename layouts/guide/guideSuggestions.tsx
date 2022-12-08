@@ -9,7 +9,7 @@ export const GuideSuggestions = ({ categories }) => {
 
   return (
     <Container mt="100px" mb="100px">
-      <Title3>Trilhas relacionadas</Title3>
+      <Title3 color="var(--black)">Trilhas relacionadas</Title3>
       <Slider
         rightButton={<Button>{">"}</Button>}
         leftButton={<Button>{"<"}</Button>}

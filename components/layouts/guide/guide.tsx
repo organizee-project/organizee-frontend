@@ -9,7 +9,7 @@ export const LayoutGuide = ({ children, guide }: IProps) => {
     <Container paddingTop="55px">
       <LayoutHeader guide={guide}> {children}</LayoutHeader>
       <LayoutContent content={guide.content} />
-      <Title3>Referências</Title3>
+      <Title3 mt={50}>Referências</Title3>
       {guide.references.map(({ url }, i) => (
         <Paragraph key={i}>{url}</Paragraph>
       ))}

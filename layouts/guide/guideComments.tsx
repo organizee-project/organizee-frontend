@@ -34,7 +34,7 @@ export const GuideComments = ({ showLogin }: IProps) => {
   return (
     <Background>
       <Container>
-        <Title3>Comentários</Title3>
+        <Title3 color="var(--black)">Comentários</Title3>
         <CommentWrite addComment={addComment} showLogin={showLogin} />
       </Container>
       <Divider />

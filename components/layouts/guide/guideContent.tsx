@@ -1,4 +1,3 @@
-import Image from "next/image";
 import {
   Text,
   Header,
@@ -6,29 +5,30 @@ import {
   Code,
   Toogle,
   Table,
+  Picture,
 } from "components/editorInterpreter";
 
 export const LayoutContent = ({ content }) => {
   const newContent = JSON.parse(content);
-  return newContent.blocks.map((block) => {
+  return newContent.blocks.map((block, i) => {
     if (block.type === "header")
-      return <Header level={block.data.level}>{block.data.text}</Header>;
-    if (block.type === "paragraph")
-      return <Text type={block.type}>{block.data.text}</Text>;
-    if (block.type === "quote") return <Quote>{block.data.text}</Quote>;
-    if (block.type === "code") return <Code>{block.data.code}</Code>;
-    if (block.type === "image")
       return (
-        <Image
-          src={block.data.file.url}
-          alt={block.data.file.caption}
-          width="100vw"
-          height="100%"
-          layout="responsive"
-          objectFit="contain"
-        />
+        <Header level={block.data.level} key={i}>
+          {block.data.text.replaceAll("&nbsp", "")}
+        </Header>
       );
-    if (block.type === "toogle") return <Toogle block={block} />;
-    if (block.type === "table") return <Table block={block} />;
+    if (block.type === "paragraph")
+      return (
+        <Text type={block.type} key={i}>
+          {block.data.text.replaceAll("&nbsp", "")}
+        </Text>
+      );
+    if (block.type === "quote")
+      return <Quote key={i}>{block.data.text.replaceAll("&nbsp", "")}</Quote>;
+    if (block.type === "code") return <Code key={i}>{block.data.code}</Code>;
+    if (block.type === "image")
+      return <Picture image={block.data.file} key={i} />;
+    if (block.type === "toogle") return <Toogle block={block} key={i} />;
+    if (block.type === "table") return <Table block={block} key={i} />;
   });
 };
