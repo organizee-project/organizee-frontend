@@ -1,5 +1,5 @@
 import { useInfiniteQuery, useMutation } from "react-query";
-import { apiWithToken } from "services/api";
+import { apiWithToken, api } from "services/api";
 import { IPagination, IResult } from "types/general";
 import { IGuide } from "types/guide";
 import { IUser, IUserProfile, ICreateUser, IActivity } from "types/user";
@@ -15,21 +15,20 @@ export const getUser = async () => {
 };
 
 export const getUserInfos = async (username: string) => {
-  const { data } = await apiWithToken().get(`/users/${username}`);
+  const { data } = await api().get(`/users/${username}`);
   return data as IResult<IUserProfile>;
 };
 
-export const useUserGuidesList = (username: string, props) => {
+export const useUserGuidesList = (username: string) => {
   const getUserGuidesList = async ({ pageParam = 0, queryKey }) => {
     const username = queryKey[1];
-    const { data } = await apiWithToken().get(
+    const { data } = await api().get(
       `/users/${username}/guides?page=${pageParam}&size=12`
     );
     return data as IPagination<IGuide>;
   };
 
   return useInfiniteQuery(["userGuides", username], getUserGuidesList, {
-    ...props,
     getNextPageParam: (data) => {
       if (data.nextPage === data.currentPage) return undefined;
 
@@ -38,17 +37,16 @@ export const useUserGuidesList = (username: string, props) => {
   });
 };
 
-export const useUserLikesList = (username: string, props) => {
+export const useUserLikesList = (username: string) => {
   const getLikesList = async ({ pageParam = 0, queryKey }) => {
     const username = queryKey[1];
-    const { data } = await apiWithToken().get(
+    const { data } = await api().get(
       `/guides/user/${username}/likes?page=${pageParam}&size=12`
     );
     return data as IPagination<IGuide>;
   };
 
   return useInfiniteQuery(["userLikes", username], getLikesList, {
-    ...props,
     getNextPageParam: (data) => {
       if (data.nextPage === data.currentPage) return undefined;
 
@@ -57,34 +55,13 @@ export const useUserLikesList = (username: string, props) => {
   });
 };
 
-export const useUserSavedList = (username: string, props) => {
+export const useUserSavedList = (username: string) => {
   const getLikesList = async ({ pageParam = 0 }) => {
-    const { data } = await apiWithToken().get(
-      `saved/guides?page=${pageParam}&size=12`
-    );
+    const { data } = await api().get(`saved/guides?page=${pageParam}&size=12`);
     return data as IPagination<IGuide>;
   };
 
   return useInfiniteQuery(["userSavedList", username], getLikesList, {
-    ...props,
-    getNextPageParam: (data) => {
-      if (data.nextPage === data.currentPage) return undefined;
-
-      return data.nextPage;
-    },
-  });
-};
-export const useUserInteractionsList = (username: string, props) => {
-  const getInteractionsList = async ({ pageParam = 0, queryKey }) => {
-    const username = queryKey[1];
-    const { data } = await apiWithToken().get(
-      `/guides/user/${username}/likes?page=${pageParam}&size=12`
-    );
-    return data as IPagination<IGuide>;
-  };
-
-  return useInfiniteQuery(["userLikes", username], getInteractionsList, {
-    ...props,
     getNextPageParam: (data) => {
       if (data.nextPage === data.currentPage) return undefined;
 
@@ -93,17 +70,16 @@ export const useUserInteractionsList = (username: string, props) => {
   });
 };
 
-export const useUserActivitiesList = (username: string, props) => {
+export const useUserActivitiesList = (username: string) => {
   const getActivitiesList = async ({ pageParam = 0, queryKey }) => {
     const username = queryKey[1];
-    const { data } = await apiWithToken().get(
+    const { data } = await api().get(
       `/users/${username}/activities?page=${pageParam}&size=20`
     );
     return data as IPagination<IActivity>;
   };
 
   return useInfiniteQuery(["userActivities", username], getActivitiesList, {
-    ...props,
     getNextPageParam: (data) => {
       if (data.nextPage === data.currentPage) return undefined;
 

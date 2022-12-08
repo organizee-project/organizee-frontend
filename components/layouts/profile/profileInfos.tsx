@@ -2,24 +2,27 @@ import { useState, useContext } from "react";
 
 import Image from "next/image";
 
-import { UserContext } from "contexts/user";
+import { AuthContext } from "contexts/auth";
 import { Button } from "components/button";
 import { RoundedPicture, Paragraph } from "styles";
 import { useFollowUser } from "services/users";
-import { IUserProfile } from "types/user";
 
 import { InfoContainer } from "./styles";
 
 import { toast } from "react-toastify";
+import { ProfileContext } from "contexts/profile";
 
-export const ProfileInfos = ({ user }: Props) => {
-  const [isFollowed, setIsFollowed] = useState(user.isFollowed);
-  const { refreshToken } = useContext(UserContext);
+export const ProfileInfos = () => {
+  const { profile } = useContext(ProfileContext);
+
+  const [isFollowed, setIsFollowed] = useState(profile.isFollowed);
+  const { refreshToken } = useContext(AuthContext);
 
   const { mutate } = useFollowUser(isFollowed, {
     onSuccess: () => {
-      if (isFollowed) toast.success("Você deixou de seguir @" + user.username);
-      else toast.success("Você está seguindo @" + user.username);
+      if (isFollowed)
+        toast.success("Você deixou de seguir @" + profile.username);
+      else toast.success("Você está seguindo @" + profile.username);
 
       setIsFollowed(!isFollowed);
     },
@@ -27,7 +30,7 @@ export const ProfileInfos = ({ user }: Props) => {
 
   const onClickFollow = () => {
     refreshToken(() => {
-      mutate(user.username);
+      mutate(profile.username);
     });
   };
 
@@ -35,22 +38,20 @@ export const ProfileInfos = ({ user }: Props) => {
     <InfoContainer>
       <RoundedPicture height="284px" width="284px">
         <Image
-          src={user.imgUrl != "" ? user.imgUrl : "/images/icon-organizze.png"}
+          src={
+            profile.imgUrl != "" ? profile.imgUrl : "/images/icon-organizze.png"
+          }
           layout="fill"
           alt="foto de perfil"
         />
       </RoundedPicture>
 
-      <h1>{user.fullName}</h1>
-      <Paragraph mb="20px">@{user.username}</Paragraph>
+      <h1>{profile.fullName}</h1>
+      <Paragraph mb="20px">@{profile.username}</Paragraph>
       <Button width="100%" onClick={() => onClickFollow()}>
         {isFollowed ? "Seguindo" : "Seguir"}
       </Button>
-      <Paragraph mt="24px">{user.description}</Paragraph>
+      <Paragraph mt="24px">{profile.description}</Paragraph>
     </InfoContainer>
   );
 };
-
-interface Props {
-  user: IUserProfile;
-}

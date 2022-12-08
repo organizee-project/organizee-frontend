@@ -1,4 +1,5 @@
-import { UserContextProvider } from "contexts/user";
+import { AuthContextProvider } from "contexts/auth";
+import { ProfileContextProvider } from "contexts/profile";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { GlobalStyles } from "styles/global";
 import { ToastContainer } from "react-toastify";
@@ -12,11 +13,14 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <GlobalStyles />
-      <UserContextProvider>
-        <QueryClientProvider client={queryClient}>
-          {getLayout(<Component {...pageProps} />)}
-        </QueryClientProvider>
-      </UserContextProvider>
+      <ProfileContextProvider>
+        <AuthContextProvider>
+          <QueryClientProvider client={queryClient}>
+            {getLayout(<Component {...pageProps} />)}
+          </QueryClientProvider>
+        </AuthContextProvider>
+      </ProfileContextProvider>
+
       <ToastContainer
         position="top-right"
         autoClose={5000}

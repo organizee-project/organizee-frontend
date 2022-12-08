@@ -4,26 +4,13 @@ import { Activity } from "components/activity";
 import { useUserActivitiesList } from "services/users";
 import { Add } from "components/button";
 import { Paragraph } from "styles";
-import { useContext, useEffect, useState } from "react";
-import { UserContext } from "contexts/user";
 
 export const Activitys = () => {
-  const [token, setToken] = useState(false);
-  const { refreshToken } = useContext(UserContext);
-
   const router = useRouter();
   const { username } = router.query;
 
   const { isLoading, isFetchingNextPage, data, fetchNextPage, hasNextPage } =
-    useUserActivitiesList(username as string, {
-      enabled: !!token,
-    });
-
-  useEffect(() => {
-    refreshToken(() => {
-      setToken(true);
-    });
-  }, []);
+    useUserActivitiesList(username as string);
 
   return (
     <>

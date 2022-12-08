@@ -10,10 +10,10 @@ import {
 } from "utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Paragraph } from "styles";
-import { UserContext } from "contexts/user";
+import { AuthContext } from "contexts/auth";
 
 export const SignIn = () => {
-  const { login } = useContext(UserContext);
+  const { login } = useContext(AuthContext);
   const [user, loading] = useAuthState(auth);
 
   const [email, setEmail] = useState("");

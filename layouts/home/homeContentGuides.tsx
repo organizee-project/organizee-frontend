@@ -3,7 +3,7 @@ import { Guide } from "components/guide";
 import { useGuidesList } from "services/guides";
 import { Add } from "components/button";
 import { useCallback, useContext, useEffect, useState } from "react";
-import { UserContext } from "contexts/user";
+import { AuthContext } from "contexts/auth";
 import { Paragraph } from "styles";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
@@ -20,7 +20,7 @@ const ModalLogin = dynamic<IModalProps>(() =>
 export const Guides = ({ sortBy, category }: Props) => {
   const [showLogin, setShowLogin] = useState(false);
   const [token, setToken] = useState(false);
-  const { user, refreshToken } = useContext(UserContext);
+  const { user, refreshToken } = useContext(AuthContext);
 
   const router = useRouter();
 

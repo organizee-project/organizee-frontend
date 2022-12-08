@@ -1,4 +1,4 @@
-import { UserContext } from "contexts/user";
+import { AuthContext } from "contexts/auth";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
@@ -27,7 +27,7 @@ export const AddGuide = () => {
     references: [],
   });
 
-  const { refreshToken } = useContext(UserContext);
+  const { refreshToken } = useContext(AuthContext);
   const { mutate } = useCreateGuide({
     onSuccess: ({ slug }) => {
       toast.success("Trilha criada com sucesso!");

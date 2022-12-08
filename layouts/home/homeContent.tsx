@@ -1,11 +1,11 @@
-import { UserContext } from "contexts/user";
+import { AuthContext } from "contexts/auth";
 import { useContext, useEffect, useState } from "react";
 import { Container } from "styles";
 import { Filter } from "./homeContentFilter";
 import { Guides } from "./homeContentGuides";
 
 export const HomeContent = () => {
-  const { user } = useContext(UserContext);
+  const { user } = useContext(AuthContext);
 
   const [sort, setSort] = useState("popularity");
   const [category, setCategory] = useState("");

@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useRouter } from "next/router";
 
-import { UserContext } from "contexts/user";
+import { AuthContext } from "contexts/auth";
 import { LayoutGuide } from "components/layouts";
 
 import { useGuideBySlug } from "services/guides";
@@ -21,7 +21,7 @@ const ModalLogin = dynamic<IModalProps>(() =>
 );
 
 export const Guide = () => {
-  const { user } = useContext(UserContext);
+  const { user } = useContext(AuthContext);
   const [showLoginMessage, setShowLoginMessage] = useState(false);
 
   const router = useRouter();

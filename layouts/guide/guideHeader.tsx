@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 
-import { UserContext } from "contexts/user";
+import { AuthContext } from "contexts/auth";
 
 import {
   useGuideInteractions,
@@ -23,7 +23,7 @@ export const GuideHeader = ({ slug, showLogin }: IProps) => {
   const [liked, setLiked] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const { user, refreshToken } = useContext(UserContext);
+  const { user, refreshToken } = useContext(AuthContext);
 
   const { data: interactions } = useGuideInteractions(slug as string, {
     enabled: !!slug && !!token,

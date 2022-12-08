@@ -5,10 +5,10 @@ import Link from "next/link";
 import { Options } from "components/options";
 import { useContext, useState } from "react";
 import { useRouter } from "next/router";
-import { UserContext } from "contexts/user";
+import { AuthContext } from "contexts/auth";
 
 export const HeaderAuthOn = () => {
-  const { logout, user } = useContext(UserContext);
+  const { logout, user } = useContext(AuthContext);
 
   const router = useRouter();
   const [openOptions, setOpenOptions] = useState(false);

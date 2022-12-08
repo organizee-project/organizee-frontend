@@ -1,5 +1,5 @@
 import { Button } from "components/button";
-import { UserContext } from "contexts/user";
+import { AuthContext } from "contexts/auth";
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import { useCreateComment } from "services/guides";
@@ -24,7 +24,7 @@ export const CommentWrite: React.FC<IProps> = ({
   const router = useRouter();
   const { slug } = router.query;
 
-  const { user, refreshToken } = useContext(UserContext);
+  const { user, refreshToken } = useContext(AuthContext);
   const { mutate } = useCreateComment(slug as string, {
     onSuccess: async ({ data }) => {
       setMessage("");

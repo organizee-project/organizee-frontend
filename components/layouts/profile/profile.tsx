@@ -2,52 +2,47 @@ import { useContext, useEffect, useState } from "react";
 
 import { useRouter } from "next/router";
 
-import { IUserProfile } from "types/user";
 import { Flex, Container } from "styles";
 
 import { ProfileActivity } from "./profileActivity";
 import { ProfileInfos } from "./profileInfos";
 import { ProfileEdit } from "./profileEdit";
 import { getUserInfos } from "services/users";
-import { UserContext } from "contexts/user";
+import { AuthContext } from "contexts/auth";
+import { ProfileContext } from "contexts/profile";
 
 export const LayoutProfile = ({ children }) => {
   const router = useRouter();
   const { username } = router.query;
 
-  const { user } = useContext(UserContext);
+  const { profile, updateProfile } = useContext(ProfileContext);
+  const { user } = useContext(AuthContext);
 
-  const [localUser, setLocalUser] = useState<IUserProfile>();
   const [isLogged, setIsLogged] = useState(false);
 
   const getUser = async () => {
     const data = await getUserInfos(username as string);
-    setLocalUser(data.user);
+    updateProfile(data.user);
     setIsLogged(false);
   };
 
   useEffect(() => {
-    if (username) {
+    if (user)
       if (user.username === username) {
-        setLocalUser(user);
+        updateProfile(user);
         setIsLogged(true);
         return;
       }
 
-      getUser();
-    }
+    getUser();
   }, [username]);
 
-  if (!localUser) return <></>;
+  if (!profile) return <></>;
 
   return (
     <Container paddingTop="35px">
       <Flex justifyContent="flex-start">
-        {!isLogged ? (
-          <ProfileInfos user={localUser} />
-        ) : (
-          <ProfileEdit user={localUser} />
-        )}
+        {!isLogged ? <ProfileInfos /> : <ProfileEdit />}
         <ProfileActivity>{children}</ProfileActivity>
       </Flex>
     </Container>

@@ -9,11 +9,11 @@ import {
   registerWithEmailAndPassword,
   signInWithGoogle,
 } from "utils/firebase";
-import { UserContext } from "contexts/user";
+import { AuthContext } from "contexts/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 export const SignUp = () => {
-  const { register } = useContext(UserContext);
+  const { register } = useContext(AuthContext);
   const [registerByGoogle, setRegisterByGoogle] = useState(false);
   const [user, loading] = useAuthState(auth);
 

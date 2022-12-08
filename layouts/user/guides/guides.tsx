@@ -5,19 +5,17 @@ import { GuideContainer } from "./styles";
 import { useUserGuidesList } from "services/users";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "contexts/user";
+import { AuthContext } from "contexts/auth";
 
 export const Guides = () => {
   const [token, setToken] = useState(false);
-  const { refreshToken } = useContext(UserContext);
+  const { refreshToken } = useContext(AuthContext);
 
   const router = useRouter();
   const { username } = router.query;
 
   const { isLoading, isFetchingNextPage, data, fetchNextPage, hasNextPage } =
-    useUserGuidesList(username as string, {
-      enabled: !!token,
-    });
+    useUserGuidesList(username as string);
 
   useEffect(() => {
     refreshToken(() => {

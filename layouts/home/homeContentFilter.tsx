@@ -7,7 +7,7 @@ import { BsChevronDown } from "react-icons/bs";
 import { useCategories } from "services/categories";
 import { RightButton, LeftButton } from "./styles";
 import { useContext } from "react";
-import { UserContext } from "contexts/user";
+import { AuthContext } from "contexts/auth";
 
 const sortByOptions = [
   { id: "popularity", name: "Popular" },
@@ -15,7 +15,7 @@ const sortByOptions = [
 ];
 
 export const Filter = ({ handleSortBy, handleCategory, category }: Props) => {
-  const { user } = useContext(UserContext);
+  const { user } = useContext(AuthContext);
   const { data, isLoading } = useCategories();
 
   return (

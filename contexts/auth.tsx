@@ -6,9 +6,9 @@ import { ICreateUser, IUserProfile } from "types/user";
 import { auth, logout as firebaseLogout } from "utils/firebase";
 import { useCookie } from "utils/hooks";
 
-const UserContext = createContext({} as IUserContext);
+const AuthContext = createContext({} as IAuthContext);
 
-const UserContextProvider = (props) => {
+const AuthContextProvider = (props) => {
   const router = useRouter();
 
   const [user] = useAuthState(auth);
@@ -59,17 +59,17 @@ const UserContextProvider = (props) => {
   };
 
   return (
-    <UserContext.Provider
+    <AuthContext.Provider
       value={{ user: getUserCookie(), login, register, refreshToken, logout }}
     >
       {props.children}
-    </UserContext.Provider>
+    </AuthContext.Provider>
   );
 };
 
-export { UserContext, UserContextProvider };
+export { AuthContext, AuthContextProvider };
 
-interface IUserContext {
+interface IAuthContext {
   user: IUserProfile;
   login: () => void;
   register: (newUser: ICreateUser) => void;

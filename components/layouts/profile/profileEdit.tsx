@@ -2,18 +2,18 @@ import { useState, useContext } from "react";
 
 import Image from "next/image";
 
-import { UserContext } from "contexts/user";
+import { AuthContext } from "contexts/auth";
 import { Button } from "components/button";
 import { RoundedPicture, Paragraph } from "styles";
-import { useFollowUser } from "services/users";
-import { IUserProfile } from "types/user";
 
 import { InfoContainer } from "./styles";
 
-import { toast } from "react-toastify";
+import { ProfileContext } from "contexts/profile";
 
-export const ProfileEdit = ({ user }: Props) => {
+export const ProfileEdit = () => {
   const [edit, setEdit] = useState(false);
+
+  const { user } = useContext(AuthContext);
 
   return (
     <InfoContainer>
@@ -34,7 +34,3 @@ export const ProfileEdit = ({ user }: Props) => {
     </InfoContainer>
   );
 };
-
-interface Props {
-  user: IUserProfile;
-}

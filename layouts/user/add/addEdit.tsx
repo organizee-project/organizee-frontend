@@ -11,7 +11,7 @@ import { FileInput } from "components/fileInput";
 import { Check } from "components/check";
 import { ICategory, IPostGuide, IFile } from "types/guide";
 import { useCategories } from "services/categories";
-import { UserContext } from "contexts/user";
+import { AuthContext } from "contexts/auth";
 import { saveGuideImages } from "utils/guide";
 
 import { toast } from "react-toastify";
@@ -21,7 +21,7 @@ const AddGuideEditor = dynamic(() => import("./addEditEditor"), { ssr: false });
 const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
   const [poster, setPoster] = useState<File>(null);
   const { data: categories, isLoading } = useCategories();
-  const { user, refreshToken } = useContext(UserContext);
+  const { user, refreshToken } = useContext(AuthContext);
 
   const [guide, setGuide] = useState<IPostGuide>({
     title: "",

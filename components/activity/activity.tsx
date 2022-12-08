@@ -5,13 +5,12 @@ import Link from "next/link";
 import { Container, LoadingImage } from "./styles";
 import { RoundedPicture, Paragraph, Span, Flex } from "styles";
 import { EActivityType, IActivity } from "types/user";
-import { UserContext } from "contexts/user";
 import { useDate } from "utils/hooks";
+import { ProfileContext } from "contexts/profile";
 
 export const Activity = ({ activity, isLoading }: Props) => {
-  const {
-    user: { imgUrl, username },
-  } = useContext(UserContext);
+  const { profile } = useContext(ProfileContext);
+  const { imgUrl, username } = profile;
 
   const date = useDate(activity?.date);
 
