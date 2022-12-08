@@ -67,6 +67,14 @@ export const RoundedPicture = styled(Picture)`
   }
 `;
 
+export const Title3 = styled.h3`
+  color: var(--darker-gray);
+  font-size: 22px;
+  font-weight: 500;
+
+  margin-bottom: 8px;
+`;
+
 export const Paragraph = styled.p<ParagraphProps>`
   font-size: 16px;
   line-height: 24px;

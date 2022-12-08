@@ -1,9 +1,9 @@
 import { EText } from "types/post";
 import { Text } from "components/editorInterpreter";
 import Link from "next/link";
-import { Flex } from "styles";
+import { Flex, Title3 } from "styles";
 import { IGuide } from "types/guide";
-import { Categories } from "./styles";
+import { Categories, Topics } from "./styles";
 
 export const LayoutHeader = ({ guide, children }: Props) => {
   return (
@@ -26,6 +26,12 @@ export const LayoutHeader = ({ guide, children }: Props) => {
           <li key={i}>{category.name}</li>
         ))}
       </Categories>
+      <Title3>Tópicos abordados</Title3>
+      <Topics>
+        {guide.topics.map((topic, i) => (
+          <li key={i}>{topic}</li>
+        ))}
+      </Topics>
     </>
   );
 };

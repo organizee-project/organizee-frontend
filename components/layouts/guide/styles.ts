@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Categories = styled.ul`
-  margin: 16px 0px 33px 0px;
+  margin: 16px 0px 43px 0px;
 
   li {
     padding: 6px 24px;
@@ -13,4 +13,9 @@ export const Categories = styled.ul`
     font-size: 14px;
     line-height: 21px;
   }
+`;
+
+export const Topics = styled.ul`
+  margin-left: 24px;
+  margin-bottom: 15px;
 `;

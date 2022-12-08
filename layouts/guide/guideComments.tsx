@@ -1,5 +1,5 @@
-import { Container, Divider } from "styles";
-import { Background, Text } from "./styles";
+import { Container, Divider, Title3 } from "styles";
+import { Background } from "./styles";
 import { CommentReply, CommentWrite } from "components/comment";
 import { useRouter } from "next/router";
 import { useCommentsBySlug } from "services/guides";
@@ -34,7 +34,7 @@ export const GuideComments = ({ showLogin }: IProps) => {
   return (
     <Background>
       <Container>
-        <Text>Comentários</Text>
+        <Title3>Comentários</Title3>
         <CommentWrite addComment={addComment} showLogin={showLogin} />
       </Container>
       <Divider />
