@@ -1,15 +1,21 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { LoginStyle } from "styles/global";
 import { Form, Field } from "components/form";
 import { Button } from "components/button";
 
-import { registerWithEmailAndPassword, signInWithGoogle } from "utils/firebase";
+import {
+  auth,
+  registerWithEmailAndPassword,
+  signInWithGoogle,
+} from "utils/firebase";
 import { UserContext } from "contexts/user";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export const SignUp = () => {
   const { register } = useContext(UserContext);
   const [registerByGoogle, setRegisterByGoogle] = useState(false);
+  const [user, loading] = useAuthState(auth);
 
   const [inputs, setInputs] = useState({
     email: "",
@@ -23,6 +29,14 @@ export const SignUp = () => {
   const handleOnChange = ({ target }, key) => {
     setInputs({ ...inputs, [key]: target.value });
   };
+
+  useEffect(() => {
+    if (loading) return;
+
+    if (user) {
+      login();
+    }
+  }, [user, loading]);
 
   const login = async () => {
     const newUser = {
@@ -44,10 +58,7 @@ export const SignUp = () => {
   };
 
   const sendRegister = async () => {
-    if (registerByGoogle) {
-      await login();
-      return;
-    }
+    if (registerByGoogle) return;
 
     if (
       inputs.password !== inputs.confirmPassword ||
@@ -60,7 +71,6 @@ export const SignUp = () => {
       inputs.email,
       inputs.password
     );
-    await login();
     return;
   };
 
