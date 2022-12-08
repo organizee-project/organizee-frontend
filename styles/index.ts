@@ -93,6 +93,14 @@ export const Paragraph = styled.p<ParagraphProps>`
   ${flexbox}
   ${typography}
   ${color}
+
+  b {
+    font-weight: bold;
+  }
+
+  a {
+    text-decoration: underline;
+  }
 `;
 
 export const Span = styled.span<ParagraphProps>`

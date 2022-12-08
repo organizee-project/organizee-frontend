@@ -8,8 +8,6 @@ import { RoundedPicture, Paragraph } from "styles";
 
 import { InfoContainer } from "./styles";
 
-import { ProfileContext } from "contexts/profile";
-
 export const ProfileEdit = () => {
   const [edit, setEdit] = useState(false);
 

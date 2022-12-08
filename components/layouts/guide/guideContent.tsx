@@ -14,17 +14,17 @@ export const LayoutContent = ({ content }) => {
     if (block.type === "header")
       return (
         <Header level={block.data.level} key={i}>
-          {block.data.text.replaceAll("&nbsp", "")}
+          {block.data.text.replaceAll("&nbsp;", " ")}
         </Header>
       );
     if (block.type === "paragraph")
       return (
         <Text type={block.type} key={i}>
-          {block.data.text.replaceAll("&nbsp", "")}
+          {block.data.text.replaceAll("&nbsp;", " ")}
         </Text>
       );
     if (block.type === "quote")
-      return <Quote key={i}>{block.data.text.replaceAll("&nbsp", "")}</Quote>;
+      return <Quote key={i}>{block.data.text.replaceAll("&nbsp;", " ")}</Quote>;
     if (block.type === "code") return <Code key={i}>{block.data.code}</Code>;
     if (block.type === "image")
       return <Picture image={block.data.file} key={i} />;
