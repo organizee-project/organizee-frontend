@@ -8,7 +8,12 @@ import { Paragraph } from "styles";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 
-const ModalLogin = dynamic(() =>
+interface IModalProps {
+  onClose: () => void;
+  open: boolean;
+}
+
+const ModalLogin = dynamic<IModalProps>(() =>
   import("components/modal").then((mod) => mod.ModalLogin)
 );
 
