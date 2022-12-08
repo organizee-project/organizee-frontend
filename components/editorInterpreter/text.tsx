@@ -16,6 +16,6 @@ export const Text = ({ type, children, hide }: IProps) => {
 interface IProps {
   type: EText;
   level?: number;
-  children: string;
+  children: any;
   hide?: boolean;
 }
