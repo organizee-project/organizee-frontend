@@ -87,7 +87,7 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
       return;
     }
 
-    if (!poster) {
+    if (poster === null) {
       toast.error("Escolha uma capa para a trilha");
       return;
     }
@@ -97,7 +97,7 @@ const AddGuideEdit = ({ setFinalGuide, onSave, setEdit, show }) => {
       newGuide.content = JSON.stringify(newGuide.content);
       onSave(newGuide);
     });
-  }, [guide]);
+  }, [guide, poster]);
 
   const onVisualization = () => {
     const visualizationGuide = {

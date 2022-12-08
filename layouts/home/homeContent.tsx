@@ -14,8 +14,9 @@ export const HomeContent = () => {
     setSort(sort);
   };
 
-  const handleCategory = (category: string) => {
-    setCategory(category);
+  const handleCategory = (selected: string) => {
+    if (category === selected) setCategory("");
+    else setCategory(selected);
   };
 
   useEffect(() => {
