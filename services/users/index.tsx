@@ -57,7 +57,9 @@ export const useUserLikesList = (username: string) => {
 
 export const useUserSavedList = (username: string) => {
   const getLikesList = async ({ pageParam = 0 }) => {
-    const { data } = await api().get(`saved/guides?page=${pageParam}&size=12`);
+    const { data } = await api().get(
+      `saved/guides/${username}?page=${pageParam}&size=12`
+    );
     return data as IPagination<IGuide>;
   };
 

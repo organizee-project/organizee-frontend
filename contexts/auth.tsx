@@ -58,9 +58,20 @@ const AuthContextProvider = (props) => {
     removeToken();
   };
 
+  const updateUser = (user: IUserProfile) => {
+    setUser(user);
+  };
+
   return (
     <AuthContext.Provider
-      value={{ user: getUserCookie(), login, register, refreshToken, logout }}
+      value={{
+        user: getUserCookie(),
+        login,
+        register,
+        refreshToken,
+        logout,
+        updateUser,
+      }}
     >
       {props.children}
     </AuthContext.Provider>
@@ -72,6 +83,7 @@ export { AuthContext, AuthContextProvider };
 interface IAuthContext {
   user: IUserProfile;
   login: () => void;
+  updateUser: (user: IUserProfile) => void;
   register: (newUser: ICreateUser) => void;
   refreshToken: (func: () => void) => void;
   logout: () => void;

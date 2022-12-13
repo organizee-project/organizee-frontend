@@ -15,16 +15,16 @@ export const StyledHeader = styled.header`
 `;
 
 export const Input = styled(Default)`
-  width: 800px;
-  margin: 0px 0px 12px;
-  padding: 5px 14px;
+  width: 800px !important;
+  margin: 0px 0px 12px !important;
+  padding: 5px 14px !important;
 
-  background-color: #fff;
+  background-color: #fff !important;
 
-  border: 0px solid;
-  border-radius: 20px;
+  border: 0px solid !important;
+  border-radius: 20px !important;
 
-  box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.15) !important;
 `;
 
 export const ContainerOptions = styled.div`

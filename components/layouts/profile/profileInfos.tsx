@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 
 import Image from "next/image";
 
@@ -13,16 +13,40 @@ import { toast } from "react-toastify";
 import { ProfileContext } from "contexts/profile";
 
 export const ProfileInfos = () => {
+  const { refreshToken, user, updateUser } = useContext(AuthContext);
   const { profile } = useContext(ProfileContext);
 
   const [isFollowed, setIsFollowed] = useState(profile.isFollowed);
-  const { refreshToken } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (user) {
+      console.log(user);
+      const isFollowing =
+        user.following.filter(({ username }) => username === profile.username)
+          .length > 0;
+      setIsFollowed(isFollowing);
+    }
+  }, []);
 
   const { mutate } = useFollowUser(isFollowed, {
     onSuccess: () => {
-      if (isFollowed)
+      if (isFollowed) {
         toast.success("Você deixou de seguir @" + profile.username);
-      else toast.success("Você está seguindo @" + profile.username);
+        const following = user.following.filter(
+          ({ username }) => username !== profile.username
+        );
+        const newUser = { ...user, following };
+        updateUser(newUser);
+      } else {
+        toast.success("Você está seguindo @" + profile.username);
+        const newUser = user;
+        newUser.following.push({
+          username: profile.username,
+          imgUrl: profile.imgUrl,
+          name: profile.fullName,
+        });
+        updateUser(newUser);
+      }
 
       setIsFollowed(!isFollowed);
     },
